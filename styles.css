@@ -1,0 +1,275 @@
+/* Modern, clean academic style */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    line-height: 1.6;
+    color: #333;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+}
+
+/* Typography */
+h1 {
+    font-size: 2em;
+    margin-bottom: 0.5em;
+    color: #1a1a1a;
+    font-weight: 600;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 0.3em;
+}
+
+h3 {
+    font-size: 1.2em;
+    margin-top: 1.2em;
+    margin-bottom: 0.4em;
+    color: #34495e;
+}
+
+p {
+    margin-bottom: 1em;
+}
+
+a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: #2980b9;
+}
+
+/* Navigation */
+nav {
+    background-color: #2c3e50;
+    padding: 1em 0;
+    margin: -20px -20px 30px -20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+nav li {
+    margin: 0 20px;
+}
+
+nav a {
+    color: #ecf0f1;
+    font-weight: 500;
+    font-size: 1.05em;
+    padding: 5px 10px;
+    display: block;
+}
+
+nav a:hover {
+    background-color: #34495e;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+/* Header section with photo */
+.header-section {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.profile-photo {
+    flex-shrink: 0;
+}
+
+.profile-photo img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.header-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.contact-links {
+    margin-top: 15px;
+}
+
+.contact-links a {
+    display: inline-block;
+    margin-right: 15px;
+    padding: 8px 16px;
+    background-color: #3498db;
+    color: white;
+    border-radius: 4px;
+    font-size: 0.95em;
+}
+
+.contact-links a:hover {
+    background-color: #2980b9;
+    text-decoration: none;
+}
+
+/* News/Updates section */
+.news-section {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-left: 4px solid #3498db;
+    margin: 30px 0;
+}
+
+.news-item {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.news-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.news-date {
+    color: #7f8c8d;
+    font-size: 0.9em;
+    font-style: italic;
+}
+
+/* Publications */
+.publication {
+    margin-bottom: 25px;
+    padding-left: 20px;
+}
+
+.pub-title {
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 1.05em;
+}
+
+.pub-authors {
+    color: #555;
+    font-style: italic;
+    margin: 5px 0;
+}
+
+.pub-venue {
+    color: #7f8c8d;
+    margin: 5px 0;
+}
+
+.pub-links {
+    margin-top: 8px;
+}
+
+.pub-links a {
+    margin-right: 12px;
+    padding: 4px 10px;
+    background-color: #ecf0f1;
+    border-radius: 3px;
+    font-size: 0.9em;
+    color: #2c3e50;
+}
+
+.pub-links a:hover {
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+}
+
+/* Research projects */
+.project {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+}
+
+.project h3 {
+    margin-top: 0;
+    color: #2c3e50;
+}
+
+/* Teaching */
+.course {
+    margin-bottom: 20px;
+    padding: 15px;
+    border-left: 3px solid #3498db;
+    background-color: #f8f9fa;
+}
+
+.course-title {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.course-details {
+    color: #7f8c8d;
+    font-size: 0.95em;
+    margin: 5px 0;
+}
+
+/* Footer */
+footer {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid #dee2e6;
+    text-align: center;
+    color: #7f8c8d;
+    font-size: 0.9em;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+    
+    nav {
+        margin: -15px -15px 20px -15px;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    nav li {
+        margin: 5px 0;
+    }
+    
+    .header-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .profile-photo img {
+        width: 150px;
+        height: 150px;
+    }
+}
