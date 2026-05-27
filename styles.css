@@ -325,15 +325,16 @@ footer {
     transition: margin-left 0.3s ease;
 }
 
-/* Research figures */
+/* Research figures - base style */
 .research-figure {
     margin: 30px 0;
     text-align: center;
 }
 
 .research-figure img {
-    max-width: 100%;
-    height: auto;
+    max-width: 700px;  /* Default size */
+    width: 100%;       /* Responsive on mobile */
+    height: auto;      /* Maintain aspect ratio */
     border-radius: 6px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
@@ -344,6 +345,23 @@ footer {
     color: #666;
     font-size: 0.9em;
     text-align: center;
+}
+
+/* Size variants */
+.research-figure.small img {
+    max-width: 400px;
+}
+
+.research-figure.medium img {
+    max-width: 600px;
+}
+
+.research-figure.large img {
+    max-width: 900px;
+}
+
+.research-figure.full img {
+    max-width: 100%;
 }
 
 /* Mobile responsive */
