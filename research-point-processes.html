@@ -1,1 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Point Processes - Eliza O'Reilly</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="nav-name">
+                <a href="index.html">Eliza O'Reilly</a>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="research.html">Research</a></li>
+                <li><a href="group.html">Group</a></li>
+                <li><a href="teaching.html">Teaching</a></li>
+                <li><a href="CVApril2026.pdf" target="_blank">CV</a></li>
+            </ul>
+        </div>
+    </nav>
 
+    <h1>Point Processes + Applications</h1>
+
+    <p>
+        Point processes provide mathematical frameworks for modeling and analyzing randomly 
+        distributed collections of points in space. While the most commonly studied models 
+        are <strong>Poisson processes</strong>, where points are placed independently, many 
+        real-world phenomena require models that capture interactions between points.
+    </p>
+
+    <h2>Determinantal Point Processes</h2>
+
+    <p>
+        <strong>Determinantal point processes (DPPs)</strong> are a particularly elegant 
+        class of models that exhibit repulsion between points. Originally arising in random 
+        matrix theory, DPPs have found applications in diverse areas including machine learning, 
+        where they are used to select diverse subsets from large data collections, and in physics, 
+        where they model fermion systems.
+    </p>
+
+    <p>
+        A key mathematical property of DPPs is that their conditional distributions remain DPPs. 
+        In joint work with Jesper Møller, we exploited this structure to quantify the repulsive 
+        nature of these processes: we showed that the effect of a point at a given location is 
+        to probabilistically "push out" one other point, with the distribution of the removed 
+        point determined by the associated kernel of the DPP.
+    </p>
+
+    <h2>Applications to Photonics and Nanomaterials</h2>
+
+    <p>
+        Point process models also provide powerful tools for designing materials with tailored 
+        properties. In collaboration with researchers in photonics, we have demonstrated how 
+        different types of spatial arrangements—from deterministically aperiodic quasicrystals 
+        to various random configurations with controlled correlations—can tune the optical 
+        response of plasmonic nanostructure arrays.
+    </p>
+
+    <p>
+        By systematically comparing quasicrystalline patterns, perturbed lattices (including 
+        Bernoulli point processes and frozen phonon disorder), negatively correlated arrangements 
+        (Strauss point processes), and positively correlated configurations (Log Gaussian Cox 
+        processes), we achieved two orders of magnitude of tunability in the spectral response 
+        of these materials. This work demonstrates how spatial statistics and point process theory 
+        can directly inform the design of optical devices for applications in photovoltaics, 
+        photosensing, and other optoelectronic technologies.
+    </p>
+
+    <p>
+        <a href="https://engineering.jhu.edu/news/researchers-discover-how-messy-patterns-create-superior-optical-materials/" target="_blank">
+            Read more about this research in JHU Engineering News →
+        </a>
+    </p>
+
+    <h2>Related Publications</h2>
+
+    <div class="publication">
+        <div class="pub-title">Quantifying repulsiveness of determinantal point processes</div>
+        <div class="pub-authors">E. O'Reilly, J. Møller</div>
+        <div class="pub-venue">Bernoulli, 2024</div>
+        <div class="pub-links">
+            <a href="#">PDF</a>
+            <a href="#">arXiv</a>
+        </div>
+    </div>
+
+    <div class="publication">
+        <div class="pub-title">Tuning spectral response of plasmonic nanostructure arrays using point process models</div>
+        <div class="pub-authors">E. O'Reilly, et al.</div>
+        <div class="pub-venue">Journal Name, 2025</div>
+        <div class="pub-links">
+            <a href="#">PDF</a>
+            <a href="#">arXiv</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>Last updated: May 2026</p>
+    </footer>
+</body>
+</html>
