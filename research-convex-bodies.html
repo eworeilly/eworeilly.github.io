@@ -1,1 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometric Structure of High-Dimensional Data - Eliza O'Reilly</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="research.html">Research</a></li>
+            <!-- <li><a href="publications.html">Publications</a></li> -->
+            <li><a href="teaching.html">Teaching</a></li>
+            <!-- <li><a href="students.html">Students</a></li> -->
+            <li><a href="cv.pdf" target="_blank">CV</a></li>
+        </ul>
+    </nav>
 
+    <p><a href="research.html">← Back to Research</a></p>
+
+    <section>
+        <h2>Structured Convex Bodies</h2>
+        
+        <h3>Theory</h3>
+        <p>
+            I develop geometric frameworks for understanding structured convex bodies that arise 
+            in optimization and statistics. This includes generalizations of classical objects 
+            like zonotopes and polytopes to higher-dimensional and operator-theoretic settings.
+        </p>
+        
+        <p>
+            <strong>Operatopes and Operanoids:</strong> We introduce operatopes, which are 
+            Minkowski sums of affine images of operator norm balls—a natural generalization 
+            of zonotopes (Minkowski sums of line segments). Taking limits yields operanoids, 
+            defined as expectations of random affine images of operator norm balls. This leads 
+            to the study of noncommutative zonoids using free probability theory.
+        </p>
+
+        <p>
+            <strong>Random Polytopes:</strong> We study facets of convex hulls of random vectors 
+            sampled uniformly from the unit sphere in high dimensions. We establish asymptotic 
+            formulas for the height of facets and expected number of facets as dimension grows, 
+            identifying different regimes with distinct asymptotic behavior.
+        </p>
+
+        <figure class="research-figure">
+            <img src="images/operatopes.png" alt="Operatope structure">
+            <figcaption>Figure 2: Operatopes as generalizations of zonotopes</figcaption>
+        </figure>
+
+        <h3>Applications</h3>
+        <p>
+            These geometric structures provide powerful tools for data analysis:
+        </p>
+        <ul>
+            <li><strong>Statistical estimation:</strong> Operanoids provide flexible shape 
+            constraints for nonparametric regression and density estimation</li>
+            <li><strong>Stochastic processes:</strong> Noncommutative zonoids characterize 
+            distributions of operator-valued random variables</li>
+            <li><strong>Computational geometry:</strong> Understanding random polytope structure 
+            informs algorithms for high-dimensional convex hull computation</li>
+            <li><strong>Support vector machines:</strong> Facet structure of random polytopes 
+            relates to margin distributions in classification</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Spectrahedral Regression</h2>
+        
+        <h3>Theory</h3>
+        <p>
+            Convex regression—fitting a convex function to input-output data—is fundamental 
+            in statistics and machine learning. We introduce <em>spectrahedral regression</em>, 
+            which fits spectrahedral functions (maximum eigenvalue of an affine matrix expression) 
+            to data.
+        </p>
+
+        <p>
+            This significantly generalizes polyhedral (max-affine) regression by allowing the 
+            fitted function to capture richer geometric structure. We prove approximation bounds 
+            showing how well spectrahedral functions approximate arbitrary convex functions via 
+            statistical risk analysis.
+        </p>
+
+        <figure class="research-figure">
+            <img src="images/spectrahedral-regression.png" alt="Spectrahedral function">
+            <figcaption>Figure 3: Spectrahedral functions generalize piecewise linear convex functions</figcaption>
+        </figure>
+
+        <h3>Applications</h3>
+        <p>
+            Spectrahedral regression provides a flexible framework for shape-constrained estimation:
+        </p>
+        <ul>
+            <li><strong>Economics:</strong> Estimating production functions and utility functions 
+            with convexity constraints from economic data</li>
+            <li><strong>Engineering design:</strong> Learning performance trade-offs in system 
+            design where underlying relationships are known to be convex</li>
+            <li><strong>Operations research:</strong> Data-driven optimization where objective 
+            functions must be convex</li>
+            <li><strong>Machine learning:</strong> Learning convex loss functions and penalty 
+            terms from data</li>
+        </ul>
+
+        <p>
+            We develop an alternating minimization algorithm that converges geometrically with 
+            high probability to near-optimal solutions given good initialization. This makes 
+            the method practical for real-world applications.
+        </p>
+    </section>
+
+    <section>
+        <h2>Related Publications</h2>
+        
+        <div class="publication">
+            <div class="pub-title">
+                Operatopes, operanoids, and noncommutative zonoids
+            </div>
+            <div class="pub-authors">
+                <strong>Eliza O'Reilly</strong>, Venkat Chandrasekaran
+            </div>
+            <div class="pub-venue">
+                Preprint, 2026
+            </div>
+            <div class="pub-links">
+                <a href="https://arxiv.org/abs/2602.08103" target="_blank">arXiv</a>
+            </div>
+        </div>
+
+        <div class="publication">
+            <div class="pub-title">
+                Spectrahedral regression
+            </div>
+            <div class="pub-authors">
+                <strong>Eliza O'Reilly</strong>, Venkat Chandrasekaran
+            </div>
+            <div class="pub-venue">
+                <em>SIAM Journal on Optimization</em>, 33(2), 2023
+            </div>
+            <div class="pub-links">
+                <a href="#" target="_blank">arXiv</a>
+                <a href="#" target="_blank">Journal</a>
+            </div>
+        </div>
+
+        <div class="publication">
+            <div class="pub-title">
+                Facets of spherical random polytopes
+            </div>
+            <div class="pub-authors">
+                Gilles Bonnet, <strong>Eliza O'Reilly</strong>
+            </div>
+            <div class="pub-venue">
+                <em>Mathematische Nachrichten</em>, 295(10):1901–1933, 2022
+            </div>
+            <div class="pub-links">
+                <a href="#" target="_blank">arXiv</a>
+                <a href="#" target="_blank">Journal</a>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Collaborators</h2>
+        <ul>
+            <li><a href="#">Venkat Chandrasekaran</a> (Caltech)</li>
+            <li><a href="#">Gilles Bonnet</a> (Université Paris Cité)</li>
+        </ul>
+    </section>
+
+    <footer>
+        <p><a href="research.html">← Back to Research</a></p>
+        <p>Last updated: January 2026</p>
+    </footer>
+</body>
+</html>
