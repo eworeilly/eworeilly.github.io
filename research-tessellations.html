@@ -12,7 +12,7 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="research.html">Research</a></li>
             <li><a href="publications.html">Publications</a></li>
-            <li><a href="teaching.html">Teaching</a></li>
+            <li><a href="teaching.html">Teaching and Advising</a></li>
             <li><a href="CVApril2026.pdf" target="_blank">CV</a></li>
         </ul>
     </nav>
@@ -24,156 +24,153 @@
     <section>
         <h2>Overview</h2>
         <p>
-            The Mondrian process in machine learning is a recursive partition of space with random axis-aligned
-            cuts used to build random forests that achieve minimax optimal rates and Laplace kernel approximations,
-            and it can be viewed as a special case of the stable under iterated tessellation (STIT) in stochastic geometry.
-            My work uses the theory of stationary random tessellations to study learning algorithms based on oblique
-            variants of the Mondrian process where linear combinations of covariates are used to generate splits.
+            Random forests are one of the most widely used tools in machine learning: they work by randomly
+            dividing the input space into regions and making predictions based on the data in each region.
+            The most popular implementations make these divisions along the coordinate axes — that is, using
+            one covariate at a time. My research investigates what happens when we allow more general,
+            <em>oblique</em> splits that cut along arbitrary linear combinations of features, and uses the
+            mathematical theory of <strong>random tessellations</strong> from stochastic geometry to
+            rigorously analyze the resulting algorithms.
         </p>
+
         <figure class="research-figure medium">
             <img src="MondrianTree.png" alt="Mondrian">
             <figcaption>Figure 1: Mondrian process and associated random tree construction</figcaption>
         </figure>
+
+        <h3>From the Mondrian process to stochastic geometry</h3>
+        <p>
+            The Mondrian process is a mathematically elegant model for building random forests: it
+            recursively partitions space with random axis-aligned cuts, and the resulting trees can be used
+            for both prediction and kernel approximations. My work used the fact that the Mondrian process
+            is a special case of the much richer <em>stable under iterated tessellation</em> (STIT)
+            framework from stochastic geometry, which allows cuts in arbitrary directions. By bringing tools
+            from this field into machine learning, we can efficiently simulate and analyze a wide family of
+            random partition models, characterize all kernels they can approximate, and obtain consistency
+            guarantees for the resulting estimators.
+        </p>
+
+        <h3>Why oblique splits matter</h3>
+        <p>
+            Axis-aligned splits ignore correlations between features — a fundamental limitation when data
+            has structure along directions not aligned with the coordinate axes. I proved that a broad class
+            of random forests with oblique splits, including STIT forests and forests derived from Poisson
+            hyperplane tessellations, achieve minimax optimal convergence rates in arbitrary dimension.
+            These are the first such results for oblique random forests, and the proofs rely crucially on
+            stationary random tessellation theory. Further work establishes a precise lower bound showing
+            that axis-aligned Mondrian trees are provably suboptimal for functions that depend on a
+            low-dimensional relevant subspace of the input — and quantifies how much can be gained by
+            orienting splits toward the right directions.
+        </p>
+
+        <h3>Dimension reduction</h3>
+        <p>
+            A practical challenge in high-dimensional data analysis is identifying which linear combinations
+            of features actually matter. The TrIM (Transformed Iterative Mondrian) algorithm addresses this
+            by using an initial Mondrian forest to estimate a matrix projecting onto relevant directions in
+            the feature space, then re-running the forest using these better-oriented splits — and iterating
+            to further improve performance. We prove consistency guarantees and convergence rates for this
+            procedure.
+        </p>
+
+        <h3>Kernel approximations</h3>
+        <p>
+            A key insight from extending the Mondrian process to the STIT framework is that the choice of
+            cut directions determines which kernel a random partition model approximates. My work
+            characterizes all kernels that stationary STIT processes and their mixtures can approximate,
+            establishes uniform convergence rates for the approximation error, and gives a closed-form
+            expression for the density estimator arising from an infinite STIT forest — enabling precise
+            comparisons between the Mondrian forest, the Mondrian kernel, and the Laplace kernel. Building
+            on this foundation, further work studies what happens when a uniform random rotation is applied
+            to the input space before running the Mondrian process: this yields a rotation-invariant kernel,
+            for which we derive a closed-form expression and prove uniform convergence rates using stochastic
+            geometry. This rotation-invariant variant shows improved empirical performance on datasets with
+            no preferred coordinate directions.
+        </p>
     </section>
-
-    <!-- <section>
-        <h2>Key Questions</h2>
-        <ul>
-            <li>How does the geometry of the random parition affect machine learning algorithm performance?</li>
-            <li>How can dimensionality reduction be incorporated into the paritioning process?</li>
-        </ul>
-    </section> -->
-
-    <!-- <section>
-        <h2>Main Results</h2>
-
-        <h3>Random Projections and Dimension Reduction</h3>
-        <p>
-            We proved new concentration bounds for random projections that improve upon
-            classical Johnson-Lindenstrauss results under realistic data assumptions.
-            These results provide theoretical guarantees for dimensionality reduction
-            methods used in practice.
-        </p>
-
-        <h3>Convex Hulls of Random Point Sets</h3>
-        <p>
-            We characterized the typical number of faces and volume of convex hulls
-            formed by random points in high dimensions, with applications to support
-            vector machines and computational geometry.
-        </p>
-    </section> -->
 
     <section>
         <h2>Related Publications</h2>
 
         <div class="publication">
-        <div class="pub-title">
-            TrIM: Transformed iterative Mondrian forests for gradient-based dimension reduction and high-dimensional regression
+            <div class="pub-title">
+                TrIM: Transformed iterative Mondrian forests for gradient-based dimension reduction and high-dimensional regression
+            </div>
+            <div class="pub-authors">
+                Ricardo Baptista, <strong>Eliza O'Reilly</strong>, Yangxinyu Xie
+            </div>
+            <div class="pub-venue">
+                Preprint, 2024
+            </div>
+            <div class="pub-links">
+                <a href="https://arxiv.org/abs/2407.09964" target="_blank">arXiv</a>
+            </div>
         </div>
-        <div class="pub-authors">
-            Ricardo Baptista, <strong>Eliza O'Reilly</strong>, Yangxinyu Xie
-        </div>
-        <div class="pub-venue">
-            Preprint, 2024
-        </div>
-        <div class="pub-links">
-            <a href="https://arxiv.org/abs/2407.09964" target="_blank">arXiv</a>
-        </div>
-    </div>
 
-    <div class="publication">
-        <div class="pub-title">
-            Statistical advantages of oblique randomized decision trees and forests
+        <div class="publication">
+            <div class="pub-title">
+                Statistical advantages of oblique randomized decision trees and forests
+            </div>
+            <div class="pub-authors">
+                <strong>Eliza O'Reilly</strong>
+            </div>
+            <div class="pub-venue">
+                Preprint, 2024
+            </div>
+            <div class="pub-links">
+                <a href="https://arxiv.org/abs/2407.02458" target="_blank">arXiv</a>
+            </div>
         </div>
-        <div class="pub-authors">
-            <strong>Eliza O'Reilly</strong>
-        </div>
-        <div class="pub-venue">
-            Preprint, 2024
-        </div>
-        <div class="pub-links">
-            <a href="https://arxiv.org/abs/2407.02458" target="_blank">arXiv</a>
-        </div>
-    </div>
 
-    <div class="publication">
-        <div class="pub-title">
-            Minimax rates for high dimensional random tessellation forests
+        <div class="publication">
+            <div class="pub-title">
+                Minimax rates for high dimensional random tessellation forests
+            </div>
+            <div class="pub-authors">
+                <strong>Eliza O'Reilly</strong>, Ngoc Mai Tran
+            </div>
+            <div class="pub-venue">
+                <em>Journal of Machine Learning Research</em>, 25:1–32, 2024
+            </div>
+            <div class="pub-links">
+                <a href="https://jmlr.org/papers/v25/22-0673.html" target="_blank">Journal</a>
+            </div>
         </div>
-        <div class="pub-authors">
-            <strong>Eliza O'Reilly</strong>, Ngoc Mai Tran
-        </div>
-        <div class="pub-venue">
-            <em>Journal of Machine Learning Research</em>, 25:1–32, 2024
-        </div>
-        <div class="pub-links">
-            <a href="https://jmlr.org/papers/v25/22-0673.html" target="_blank">Journal</a>
-        </div>
-    </div>
 
-    <div class="publication">
-        <div class="pub-title">
-            Stochastic geometry to generalize the Mondrian process
+        <div class="publication">
+            <div class="pub-title">
+                Stochastic geometry to generalize the Mondrian process
+            </div>
+            <div class="pub-authors">
+                <strong>Eliza O'Reilly</strong>, Ngoc Mai Tran
+            </div>
+            <div class="pub-venue">
+                <em>SIAM Journal on Mathematics of Data Science</em>, 4(2):531–552, 2022
+            </div>
+            <div class="pub-links">
+                <a href="https://epubs.siam.org/doi/10.1137/20M1354490" target="_blank">Journal</a>
+            </div>
         </div>
-        <div class="pub-authors">
-            <strong>Eliza O'Reilly</strong>, Ngoc Mai Tran
-        </div>
-        <div class="pub-venue">
-            <em>SIAM Journal on Mathematics of Data Science</em>, 4(2):531–552, 2022
-        </div>
-        <div class="pub-links">
-            <a href="https://epubs.siam.org/doi/10.1137/20M1354490" target="_blank">Journal</a>
-        </div>
-    </div>
 
-     <div class="publication">
-        <div class="pub-title">
-            The uniformly rotated Mondrian kernel
+        <div class="publication">
+            <div class="pub-title">
+                The uniformly rotated Mondrian kernel
+            </div>
+            <div class="pub-authors">
+                Calvin Osborne, <strong>Eliza O'Reilly</strong>
+            </div>
+            <div class="pub-venue">
+                <em>The 28th International Conference on Artificial Intelligence and Statistics (AISTATS)</em>, 2025
+            </div>
+            <div class="pub-links">
+                <a href="https://openreview.net/forum?id=nLClQpOUIh" target="_blank">OpenReview</a>
+            </div>
         </div>
-        <div class="pub-authors">
-            Calvin Osborne, <strong>Eliza O'Reilly</strong>
-        </div>
-        <div class="pub-venue">
-            <em>The 28th International Conference on Artificial Intelligence and Statistics (AISTATS)</em>, 2025
-        </div>
-        <div class="pub-links">
-            <a href="https://openreview.net/forum?id=nLClQpOUIh" target="_blank">OpenReview</a>
-        </div>
-    </div>
-
     </section>
-
-    <!-- research-tessellations.html -->
-    <!-- <h2>Related Talks</h2>
-    <div class="talk">
-        <h3>The Stochastic Geometry of Randomized DEcision Trees and Forests</h3>
-        <p>Probability and Analysis Webinar, 2024</p>
-        <div class="talk-links">
-            <a href="https://youtube.com/...">▶ Video</a>
-            <a href="slides/...pdf">📄 Slides</a>
-        </div>
-    </div> -->
-
-    <!-- <section>
-        <h2>Collaborators</h2>
-        <ul>
-            <li><a href="#">Collaborator Name</a> (University)</li>
-            <li><a href="#">Collaborator Name</a> (University)</li>
-        </ul>
-    </section> -->
-
-    <!-- <section>
-        <h2>Talks & Presentations</h2>
-        <ul>
-            <li><strong>January 2024:</strong> Workshop on Stochastic Geometry, ICERM</li>
-            <li><strong>November 2023:</strong> Applied Math Colloquium, MIT</li>
-            <li><strong>June 2023:</strong> Conference on Learning Theory (COLT)</li>
-        </ul>
-    </section> -->
 
     <footer>
         <p><a href="research.html">← Back to Research</a></p>
-        <p>Last updated: January 2024</p>
+        <p>Last updated: June 2026</p>
     </footer>
 </body>
 </html>
