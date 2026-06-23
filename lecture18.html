@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture 18: Particle Processes — EN.553.726</title>
+<link rel="stylesheet" href="notes.css">
+<script>
+MathJax = {tex: {inlineMath: [['$','$']], displayMath: [['$$','$$']]}};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+<nav><ul>
+  <li><a href="../index.html">Home</a></li>
+  <li><a href="../research.html">Research</a></li>
+  <li><a href="../teaching.html">Teaching</a></li>
+  <li><a href="../CVApril2026.pdf" target="_blank">CV</a></li>
+</ul></nav>
+<div class="lecture-nav"><a href="lecture17.html">← Lecture 17</a> &nbsp;|&nbsp; <a href="index.html">↑ All Lectures</a> &nbsp;|&nbsp; <a href="lecture19.html">Lecture 19 →</a></div>
+<h1 id="introduction">Introduction</h1>
+<p>Recall from last time:</p>
+<ul>
+<li><p>A <em>set process</em> is a point process on <span class="math inline">\((\mathcal{F}&#39;, \mathcal{B}(\mathcal{F}&#39;))\)</span>, the space of nonempty closed subsets of <span class="math inline">\(\mathbb{R}^d\)</span>.</p></li>
+<li><p>A set process <span class="math inline">\(\Phi = \sum_{n\in\mathbb{N}} \delta_{F_n}\)</span> is <em>stationary</em> if <span class="math inline">\(\Phi \stackrel{d}{=} t_x \Phi := \sum_{n\in\mathbb{N}} \delta_{F_n - x},
+     \forall\, x \in \mathbb{R}^d.\)</span></p></li>
+</ul>
+<p>Today:</p>
+<ul>
+<li><p>Poisson set processes</p></li>
+<li><p>Particle processes</p></li>
+<li><p>Particle processes as marked point processes</p></li>
+</ul>
+<p>From now on, all set processes are assumed simple with locally finite intensity measure.</p>
+<h1 id="poisson-set-processes">Poisson Set Processes</h1>
+<p>Let <span class="math inline">\(\Lambda\)</span> be a locally finite measure on <span class="math inline">\(\mathcal{F}&#39;\)</span>: (<span class="math inline">\(\Lambda(\mathcal{F}_C) &lt; \infty, \forall C\in\mathcal{C}.\)</span>)</p>
+<p>Then there exists a Poisson set process <span class="math inline">\(\Phi\)</span> with intensity measure <span class="math inline">\(\Lambda\)</span>.</p>
+<p>The capacity functional of the coverage model <span class="math inline">\(Z_\Phi\)</span> is <span class="math inline">\(T_{Z_\Phi}(C)
+= 1 - \mathbb{P}(\Phi(\mathcal{F}_C)=0)
+= 1 - e^{-\Lambda(\mathcal{F}_C)}.\)</span></p>
+<p>::: <span>proposition</span> **Proposition.** A Poisson set process is stationary iff its intensity measure is translation invariant: <span class="math display">\[\Lambda(A)
+= \Lambda(\{F+x : F\in A\}),
+\qquad  \forall A\in\mathcal{B}(\mathcal{F}&#39;),\; x\in\mathbb{R}^d.\]</span> :::</p>
+<h1 id="particle-processes">Particle Processes</h1>
+<p>::: <span>definition</span> **Definition (Particle Process).** A <em>particle process</em> <span class="math inline">\(\Phi\)</span> in <span class="math inline">\(\mathbb{R}^d\)</span> is a (simple) point process in <span class="math inline">\(\mathcal{F}&#39;\)</span> with support in <span class="math inline">\(\mathcal{C}&#39;\)</span> (nonempty compact sets). :::</p>
+<p>For stationary particle processes, there is a useful decomposition of the intensity measure.</p>
+<p>For <span class="math inline">\(C\in\mathcal{C}&#39;\)</span>, Let <span class="math inline">\(c(C)\)</span> denote the center of the smallest closed ball containing <span class="math inline">\(C\)</span>.</p>
+<p>Then, <span class="math inline">\(\mathcal{C}&#39;_0 := \{ C\in\mathcal{C}&#39; : c(C)=0 \}.\)</span> is called the <em>grain space</em>.</p>
+<p>Define the mapping <span class="math display">\[T : \mathbb{R}^d \times \mathcal{C}&#39;_0 \to \mathcal{C}&#39;, \qquad
+T(x,C) = x + C.\]</span></p>
+<p>::: <span>theorem</span> **Theorem.** Let <span class="math inline">\(\Phi\)</span> be a stationary particle process on <span class="math inline">\(\mathbb{R}^d\)</span> with locally finite, nonzero intensity measure <span class="math inline">\(\Lambda\)</span>. Then there exist a number <span class="math inline">\(\lambda \in (0,\infty)\)</span> and a probability measure <span class="math inline">\(\mathbb{Q}\)</span> on <span class="math inline">\(\mathcal{C}&#39;_0\)</span> such that <span class="math display">\[\Lambda = \lambda T\big( \ell \otimes Q \big),\]</span> where <span class="math inline">\(\ell\)</span> denotes the Lebesgue measure on <span class="math inline">\(\mathbb{R}^d\)</span>. :::</p>
+<p>In particular, <span class="math display">\[\int_{\mathcal{C}&#39;} f \, d\Lambda
+= 
+\lambda \int_{\mathcal{C}&#39;_0} \int_{\mathbb{R}^d} f(C+x)\, dx \, \mathbb{Q}(dC).\]</span></p>
+<ul>
+<li><p><span class="math inline">\(\lambda\)</span> is called the <em>intensity</em> of <span class="math inline">\(\Phi\)</span>.</p></li>
+<li><p><span class="math inline">\(\mathbb{Q}\)</span> is called the <em>grain distribution</em> of <span class="math inline">\(\Phi\)</span>.</p></li>
+</ul>
+<p>In general, one may consider any center function <span class="math inline">\(c : \mathcal{C}&#39; \to \mathbb{R}^d\)</span> such that:</p>
+<ol>
+<li><p><span class="math inline">\(c\)</span> is measurable,</p></li>
+<li><p><span class="math inline">\(c\)</span> is compatible with translations: <span class="math display">\[c(C+x) = c(C) + x, \qquad \forall\, x \in \mathbb{R}^d.\]</span></p></li>
+</ol>
+<p>One still obtains a decomposition of <span class="math inline">\(\Lambda\)</span>, but with different grain distributions.</p>
+<p>::: <span>definition</span> **Definition.** A random closed set with distribution <span class="math inline">\(\mathbb{Q}\)</span> is called a <em>typical grain</em> of <span class="math inline">\(\Phi\)</span>. :::</p>
+<h2 id="particle-processes-as-marked-point-processes">Particle Processes as Marked Point Processes</h2>
+<p>::: <span>theorem</span> **Theorem.** If <span class="math inline">\(\Phi = \sum_{n=1}^{\infty} \delta_{Z_n}\)</span> is a stationary particle process with locally finite intensity measure <span class="math inline">\(\Lambda\)</span>, and <span class="math inline">\(c\)</span> is a center function, then:</p>
+<ul>
+<li><p><span class="math inline">\(\Phi_0 := \sum_{n=1}^{\infty} \delta_{c(Z_n)}\)</span> is a stationary point process on <span class="math inline">\(\mathbb{R}^d\)</span>;</p></li>
+<li><p><span class="math inline">\(\widetilde{\Phi} := \sum_{n=1}^{\infty} \delta_{(c(Z_n),\, Z_n - c(Z_n))}\)</span> is a stationary point process on <span class="math inline">\(\mathbb{R}^d\)</span> with mark space <span class="math inline">\(\mathcal{C}&#39;_0\)</span> (i.e., a stationary point process on <span class="math inline">\(\mathbb{R}^d \times \mathcal{C}&#39;_0\)</span>).</p></li>
+</ul>
+<p>:::</p>
+<p><strong>Remarks:</strong> Let <span class="math inline">\(\mathbb{Q}\)</span> be the grain distribution of <span class="math inline">\(\Phi\)</span> and let <span class="math inline">\(\lambda\)</span> be its intensity.</p>
+<ul>
+<li><p>We can interpret <span class="math inline">\(\mathbb{Q}\)</span> as the distribution of the mark of the point at the origin under the Palm distribution of <span class="math inline">\(\Phi_0\)</span>.</p></li>
+<li><p>Campbell’s theorem implies: for any <span class="math inline">\(A \in \mathcal{B}(\mathcal{C}&#39;)\)</span>, <span class="math display">\[\mathbb{Q}(A)
+    =
+    \frac{1}{\lambda}
+    \mathbb{E}\!\left[
+        \sum_{n=1}^{\infty}
+        \mathbf{1}_{\{ c(Z_n) \in [0,1]^d \}}
+        \mathbf{1}_{\{ Z_n - c(Z_n) \in A \}}
+    \right].\]</span></p></li>
+<li><p>In particular, <span class="math display">\[\lambda
+    =
+    \mathbb{E}\!\left[
+        \sum_{n=1}^{\infty}
+        \mathbf{1}_{\{ c(Z_n) \in [0,1]^d \}}
+    \right],\]</span> and <span class="math inline">\(\lambda\)</span> is also the intensity of <span class="math inline">\(\Phi_0\)</span>.</p></li>
+</ul>
+<h1 id="germ-grain-processes">Germ-Grain Processes</h1>
+<p>::: <span>definition</span> **Definition.** A marked point process <span class="math inline">\(\widetilde{\Phi}\)</span> with mark space <span class="math inline">\(\mathcal{C}&#39;\)</span> is called a <em>germ–grain process</em> if <span class="math display">\[\Phi := \sum_{(x,C)\in \mathrm{supp}(\widetilde{\Phi})} \delta_{x+C}\]</span> is a particle process. We need to check local finiteness. :::</p>
+<p>::: <span>proposition</span> **Proposition.** If <span class="math inline">\(\widetilde{\Phi}\)</span> is a stationary marked point process with mark space <span class="math inline">\(\mathcal{C}&#39;\)</span> and mark distribution <span class="math inline">\(\mathbb{Q}\)</span>, then the particle process <span class="math inline">\(\Phi\)</span> defined above has locally finite intensity measure <span class="math inline">\(\Lambda\)</span> if and only if <span class="math display">\[\int_{\mathcal{C}&#39;} \mathrm{Vol}(C + B^d)\, \mathbb{Q}(dC) &lt; \infty,\]</span> where <span class="math inline">\(B^d\)</span> denotes the ball of radius <span class="math inline">\(1\)</span> in <span class="math inline">\(\mathbb{R}^d\)</span> centered at <span class="math inline">\(0\)</span>, and <span class="math display">\[C + B^d = \{ x + y : x \in C,\ y \in B^d \}\]</span> is the Minkowski sum. :::</p>
+<p>If a germ–grain process <span class="math inline">\(\widetilde{\Phi}\)</span> is obtained by <span class="math inline">\(\mathbb{Q}\)</span>-marking of an independent point process <span class="math inline">\(\Phi_0\)</span> on <span class="math inline">\(\mathbb{R}^d\)</span>, then <span class="math inline">\(\widetilde{\Phi}\)</span> is called an <em>independent germ–grain process</em>.</p>
+<h1 id="boolean-model">Boolean Model</h1>
+<p>Let <span class="math display">\[\widetilde{\Phi} = \sum_{n\in\mathbb{N}} \delta_{(X_n, Z_n)}\]</span> be a stationary, independent germ–grain process such that the ground point process <span class="math display">\[\Phi_0 = \sum_{n\in\mathbb{N}} \delta_{X_n}\]</span> is a stationary Poisson process.</p>
+<p><strong>Note:</strong> This implies that <span class="math inline">\(\widetilde{\Phi}\)</span> is a Poisson marked point process.</p>
+<p>The coverage model given by <span class="math display">\[\widetilde{Z} := \bigcup_{n\in\mathbb{N}} (Z_n + X_n)\]</span> is called a <em>Boolean model</em>.</p>
+<div class="lecture-nav"><a href="lecture17.html">← Lecture 17</a> &nbsp;|&nbsp; <a href="index.html">↑ All Lectures</a> &nbsp;|&nbsp; <a href="lecture19.html">Lecture 19 →</a></div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture 8: Markings and Stationairy — EN.553.726</title>
+<link rel="stylesheet" href="notes.css">
+<script>
+MathJax = {tex: {inlineMath: [['$','$']], displayMath: [['$$','$$']]}};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+<nav><ul>
+  <li><a href="../index.html">Home</a></li>
+  <li><a href="../research.html">Research</a></li>
+  <li><a href="../teaching.html">Teaching</a></li>
+  <li><a href="../CVApril2026.pdf" target="_blank">CV</a></li>
+</ul></nav>
+<div class="lecture-nav"><a href="lecture7.html">← Lecture 7</a> &nbsp;|&nbsp; <a href="index.html">↑ All Lectures</a> &nbsp;|&nbsp; <a href="lecture9.html">Lecture 9 →</a></div>
+<h1 id="marking">Marking</h1>
+<p>Let <span class="math inline">\((E, \mathcal{B}(E))\)</span> be a locally compact CSMS.</p>
+<p>Let <span class="math inline">\((G, \mathcal{G})\)</span> be a measurable space (<em>mark space</em>).</p>
+<p>Let <span class="math inline">\(K: E \times \mathcal{G} \rightarrow [0,1]\)</span>. That is, for all <span class="math inline">\(x \in E\)</span>, <span class="math inline">\(K(x, \cdot)\)</span> is a probability measure on <span class="math inline">\((G, \mathcal{G})\)</span>, and for all <span class="math inline">\(B \in \mathcal{G}\)</span>, the mapping <span class="math inline">\(x \mapsto K(x, B)\)</span> is measurable.</p>
+<p>::: <span>definition</span> **Definition.** Let <span class="math inline">\(\Phi = \sum_{k=1}^{N} \delta_{X_k}\)</span> be a point process on <span class="math inline">\(E\)</span>. A <span class="math inline">\(K\)</span>-<em>marking</em> of <span class="math inline">\(\Phi\)</span> is the point process <span class="math inline">\(\tilde{\Phi} = \sum_{k=1}^{N} \delta_{(X_k, Z_k)}\)</span> on <span class="math inline">\(E \times G\)</span>, where, conditioned on <span class="math inline">\(\Phi\)</span>, <span class="math inline">\(\{Z_k\}_{k=1}^{N}\)</span> is a collection of independent random elements of <span class="math inline">\(G\)</span> such that <span class="math inline">\(\mathbb{P}[Z_k \in \cdot \mid \Phi] = K(X_k, \cdot)\)</span>. :::</p>
+<p>If <span class="math inline">\(K(x, \cdot) = \mathbb{Q}\)</span> for all <span class="math inline">\(x \in E\)</span>, then <span class="math inline">\(\tilde{\Phi}\)</span> is called an <em>independent <span class="math inline">\(\mathbb{Q}\)</span>-marking</em> or an <em>i.i.d. marked point process</em>.</p>
+<p>::: <span>proposition</span> **Proposition.** Let <span class="math inline">\(\tilde{\Phi}\)</span> be a <span class="math inline">\(K\)</span>-marking of a point process <span class="math inline">\(\Phi\)</span> with intensity measure <span class="math inline">\(\Lambda\)</span>. Then:</p>
+<ul>
+<li><p>The intensity measure <span class="math inline">\(\tilde{\Lambda}\)</span> of <span class="math inline">\(\tilde{\Phi}\)</span> is given by <span class="math inline">\(\tilde{\Lambda}(B) = \int_{E} \int_{G} \mathbf{1}_{B}(x, y) \, K(x, dy) \, \Lambda(dx)\)</span>, for <span class="math inline">\(B \in \mathcal{B}(E) \otimes \mathcal{G}\)</span>.</p></li>
+<li><p>For all measurable <span class="math inline">\(f: E \times G \rightarrow \mathbb{R}_{+}\)</span>, <span class="math inline">\(L_{\tilde{\Phi}}(f) = L_{\Phi}(\tilde{f})\)</span>, where <span class="math inline">\(\tilde{f}(x) = -\log \left[ \int_{G} e^{-f(x, z)} K(x, dz) \right]\)</span>.</p></li>
+</ul>
+<p>:::</p>
+<p>::: <span>theorem</span> **Theorem (Marking Theorem).** Let <span class="math inline">\(\tilde{\Phi}\)</span> be a <span class="math inline">\(K\)</span>-marking of a Poisson process on <span class="math inline">\(E\)</span> with intensity measure <span class="math inline">\(\Lambda\)</span>. Then, <span class="math inline">\(\tilde{\Phi}\)</span> is a Poisson process on <span class="math inline">\(E \times G\)</span> with intensity measure <span class="math inline">\(\tilde{\Lambda}(dx \, dz) = \Lambda(dx) \, K(x, dz)\)</span> (This is the same as <span class="math inline">\(\tilde{\Lambda}\)</span> from (i) of the previous proposition.). :::</p>
+<p>::: <span>proof</span> *Proof.* Use the Laplace functional characterization of Poisson processes and the previous proposition (ii).</p>
+<p><span class="math inline">\(\square\)</span> :::</p>
+<p>::: <span>example</span> **Example (Poisson Cluster Process on <span class="math inline">\(\mathbb{R}^d\)</span>).** :::</p>
+<p>Let <span class="math inline">\(E = \mathbb{R}^d\)</span> and <span class="math inline">\((G, \mathcal{G}) = (\mathcal{M}(\mathbb{R}^d), \mathcal{M}(\mathcal{B}(\mathbb{R}^d)))\)</span>, the measurable space of counting measures on <span class="math inline">\(\mathbb{R}^d\)</span>.</p>
+<p>Let <span class="math inline">\(K: \mathbb{R}^d \times \mathcal{M}(\mathbb{R}^d) \rightarrow [0,1]\)</span> be a probability kernel from <span class="math inline">\(\mathbb{R}^d\)</span> to <span class="math inline">\(\mathcal{M}(\mathbb{R}^d)\)</span>. That is, for all <span class="math inline">\(x \in \mathbb{R}^d\)</span>, <span class="math inline">\(K(x, \cdot)\)</span> is a probability measure on <span class="math inline">\(\mathcal{M}(\mathbb{R}^d)\)</span>, i.e., the distribution of a point process.</p>
+<p>Then, let <span class="math inline">\(\tilde{\Phi} = \sum_{k=1}^{N} \delta_{(X_k, \Psi_k)}\)</span> be a <span class="math inline">\(K\)</span>-marking of a Poisson process <span class="math inline">\(\Phi = \sum_{k=1}^{N} \delta_{X_k}\)</span> on <span class="math inline">\(\mathbb{R}^d\)</span>. Here <span class="math inline">\(\{\Psi_k\}_{k=1}^{N}\)</span> are point processes on <span class="math inline">\(\mathbb{R}^d\)</span> that, conditioned on <span class="math inline">\(\Phi\)</span>, are independent, and <span class="math inline">\(\mathbb{P}[\Psi_k \in \cdot \mid \Phi] = K(X_k, \cdot)\)</span>.</p>
+<p>Then, define <span class="math inline">\(\hat{\Phi} = \sum_{k=1}^{N} \sum_{y \in \Psi_k} \delta_{X_k + y}\)</span>. Note that <span class="math inline">\(\hat{\Phi}(B) = \sum_{k=1}^{N} \Psi_k(B - X_k)\)</span> for <span class="math inline">\(B \in \mathcal{B}(\mathbb{R}^d)\)</span>. Hence, <span class="math inline">\(\hat{\Phi}\)</span> is a Poisson cluster process.</p>
+<p>::: <span>example</span> **Example (Special Case: Matérn Cluster Process).** Let <span class="math inline">\(\{\Psi_k\}_{k=1}^{N}\)</span> be i.i.d. homogeneous Poisson processes in <span class="math inline">\(B_d(0, R) = \{x \in \mathbb{R}^d : \|x\| \le R\}\)</span>. Then each cluster <span class="math inline">\(\Psi_k\)</span> is centered at <span class="math inline">\(X_k\)</span>, and <span class="math inline">\(B_d(X_k, R)\)</span> denotes the cluster region associated with the parent point <span class="math inline">\(X_k\)</span>. :::</p>
+<h1 id="stationarity-of-point-processes-on-mathbbrd">Stationarity of Point Processes on <span class="math inline">\(\mathbb{R}^d\)</span></h1>
+<p>Define shift maps <span class="math inline">\(\{t_x\}_{x \in \mathbb{R}^d}\)</span> where <span class="math inline">\(t_x : \mathcal{M}(\mathbb{R}^d) \rightarrow \mathcal{M}(\mathbb{R}^d)\)</span> is defined by <span class="math inline">\(t_x \gamma(B) = \gamma(B + x)\)</span>.</p>
+<p>Note that <span class="math inline">\(t_x \delta_x(B) = \delta_{x}(B+x) = \delta_0(B)\)</span>, thus <span class="math inline">\(t_x \delta_x = \delta_0\)</span>.</p>
+<p>::: <span>definition</span> **Definition.** A point process <span class="math inline">\(\Phi\)</span> on <span class="math inline">\(\mathbb{R}^d\)</span> is <em>stationary</em> if <span class="math inline">\(t_x \Phi \overset{d}{=} \Phi\)</span> for all <span class="math inline">\(x \in \mathbb{R}^d\)</span>. :::</p>
+<p>::: <span>proposition</span> **Proposition.** Let <span class="math inline">\(\Phi\)</span> be a stationary point process on <span class="math inline">\(\mathbb{R}^d\)</span> with intensity measure <span class="math inline">\(\Lambda\)</span> such that <span class="math inline">\(\lambda := \Lambda([0,1]^d) &lt; \infty\)</span>. Then <span class="math inline">\(\Lambda(dx) = \lambda \, dx\)</span>, and <span class="math inline">\(\lambda\)</span> is the intensity of <span class="math inline">\(\Phi\)</span>. :::</p>
+<p>::: <span>proof</span> *Proof.* Stationarity of <span class="math inline">\(\Phi\)</span> implies that for all <span class="math inline">\(x \in \mathbb{R}^d\)</span>, <span class="math inline">\(\Lambda(B + x) = \mathbb{E}[\Phi(B + x)] = \mathbb{E}[\Phi(B)] = \Lambda(B)\)</span>. That is, <span class="math inline">\(\Lambda\)</span> is a translation-invariant measure on <span class="math inline">\(\mathbb{R}^d\)</span> such that <span class="math inline">\(\Lambda([0,1]^d) = \lambda &lt; \infty\)</span>. By uniqueness of the Lebesgue measure, <span class="math inline">\(\Lambda(dx) = \lambda \, dx\)</span>.</p>
+<p><span class="math inline">\(\square\)</span> :::</p>
+<p>::: <span>proposition</span> **Proposition.** A Poisson process <span class="math inline">\(\Phi\)</span> on <span class="math inline">\(\mathbb{R}^d\)</span> is stationary if and only if <span class="math inline">\(\Lambda(dx) = \lambda \, dx\)</span> for some <span class="math inline">\(\lambda \in \mathbb{R}_{+}\)</span>. :::</p>
+<div class="lecture-nav"><a href="lecture7.html">← Lecture 7</a> &nbsp;|&nbsp; <a href="index.html">↑ All Lectures</a> &nbsp;|&nbsp; <a href="lecture9.html">Lecture 9 →</a></div>
+</body>
+</html>

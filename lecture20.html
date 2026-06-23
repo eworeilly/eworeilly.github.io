@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture 20: Inversion Formula — EN.553.726</title>
+<link rel="stylesheet" href="notes.css">
+<script>
+MathJax = {tex: {inlineMath: [['$','$']], displayMath: [['$$','$$']]}};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+<nav><ul>
+  <li><a href="../index.html">Home</a></li>
+  <li><a href="../research.html">Research</a></li>
+  <li><a href="../teaching.html">Teaching</a></li>
+  <li><a href="../CVApril2026.pdf" target="_blank">CV</a></li>
+</ul></nav>
+<div class="lecture-nav"><a href="lecture19.html">← Lecture 19</a> &nbsp;|&nbsp; <a href="index.html">↑ All Lectures</a> &nbsp;|&nbsp; <a href="lecture21.html">Lecture 21 →</a></div>
+<h1 id="introduction">Introduction</h1>
+<p>Recall from last time:</p>
+<ul>
+<li><p>The Voronoi tessellation <span class="math inline">\(V_\Phi\)</span> is the collection of Voronoi cells of points in <span class="math inline">\(\mathrm{supp}(\Phi)\)</span>;</p></li>
+<li><p>If <span class="math inline">\(\Phi\)</span> is stationary with intensity <span class="math inline">\(\lambda&gt;0\)</span>, then <span class="math inline">\(V_\Phi\)</span> is a stationary particle process;</p></li>
+<li><p>The <em>typical cell</em> of <span class="math inline">\(V_\Phi\)</span> is <span class="math inline">\(Z := V(0, \Phi^0),\)</span> the Voronoi cell of <span class="math inline">\(0\)</span> under the Palm distribution <span class="math inline">\(\Phi^0\)</span>.</p></li>
+</ul>
+<p>Today: Iversion formula &amp; consequences.</p>
+<h1 id="inversion-formula">Inversion Formula</h1>
+<p>Let <span class="math inline">\(\Phi\)</span> be a stationary point process on <span class="math inline">\(\mathbb{R}^d\)</span> with intensity <span class="math inline">\(\lambda&gt;0\)</span>. The typical cell <span class="math inline">\(Z\)</span> of <span class="math inline">\(V_\Phi\)</span> gives the following inversion formula, allowing us to obtain the distribution of <span class="math inline">\(\Phi\)</span> from the Palm version <span class="math inline">\(\Phi^0\)</span>.</p>
+<p>::: <span>theorem</span> **Theorem (Inversion Formula).** For all measurable <span class="math inline">\(f : \mathcal{M}(\mathbb{R}^d) \to \mathbb{R}_{+}\)</span>, <span class="math display">\[\mathbb{E}\bigl[f(\Phi)\bigr]
+= \lambda \,\mathbb{E}\!\left[
+\int_{\mathbb{R}^d}
+f\bigl(t_x \Phi^0\bigr)\,
+\mathbf{1}_{\{x \in Z\}}\,dx
+\right],\]</span> where <span class="math inline">\(Z := V(0,\Phi^0)\)</span> is the typical cell of <span class="math inline">\(V_{\Phi}\)</span>, and <span class="math inline">\(t_x \mu(B) := \mu(B+x)\)</span>. :::</p>
+<p>Some Consequences:</p>
+<ul>
+<li><p>Letting <span class="math inline">\(f \equiv 1\)</span>, <span class="math inline">\(\mathbb{E}\bigl[|Z|\bigr] = \frac{1}{\lambda}.\)</span></p></li>
+<li><p>Define <span class="math inline">\(Z_{0}(\Phi)\)</span> to be the cell of <span class="math inline">\(V_{\Phi}\)</span> containing the origin. Let <span class="math inline">\(f(\Phi) := \frac{1}{|Z_{0}(\Phi)|}.\)</span> Then <span class="math display">\[\mathbb{E}\!\left[|Z_{0}(\Phi)|^{-1}\right]
+    = 
+    \lambda \,\mathbb{E}\!\left[
+    \int_{\mathbb{R}^d}
+    |Z_{0}(t_x \Phi^0)|^{-1}
+    \mathbf{1}_{\{x \in Z\}}\,dx
+    \right].\]</span></p>
+<p>If <span class="math inline">\(x \in Z = V(0,\Phi^0)\)</span>, then <span class="math inline">\(0 \in  V\bigl(-x,\,t_x \Phi^0\bigr) \overset{d}{=} V\bigl(0,\Phi^0\bigr)-x,\)</span> implying that <span class="math inline">\(|Z_{0}(t_x \Phi^0)| = |Z|.\)</span></p>
+<p>Therefore, <span class="math display">\[\mathbb{E}\!\left[|Z_{0}(\Phi)|^{-1}\right]
+    =
+    \lambda\, \mathbb{E}\!\left[
+    \int_{\mathbb{R}^d}
+    |Z|^{-1}\mathbf{1}_{\{x \in Z\}}\,dx
+    \right]
+    = \lambda\,\mathbb{E}[1]
+    = \lambda.\]</span> By Jensen’s inequality, <span class="math display">\[\mathbb{E}\bigl[|Z_{0}(\Phi)|\bigr]^{-1}
+    \;\le\;
+    \mathbb{E}\!\left[|Z_{0}(\Phi)|^{-1}\right] = \lambda = \frac{1}{\mathbb{E}\bigl[|Z|\bigr]}.\]</span></p>
+<p>Thus, <span class="math display">\[\mathbb{E}[|Z|]
+    \;\le\;
+    \mathbb{E}[|Z_{0}(\Phi)|].\]</span></p>
+<p>This inequality expresses <em>Feller’s Paradox</em>.</p></li>
+</ul>
+<h2 id="inversion-formula-from-a-general-result">Inversion Formula from a General Result</h2>
+<p>Define <span class="math inline">\(\tau : \mathbb{R}^d \times \mathcal{M}(\mathbb{R}^d) \to \mathbb{R}^d\)</span> by letting <span class="math inline">\(\tau(x,\eta)\)</span> be the point in <span class="math inline">\(\mathrm{supp}(\eta)\)</span> that is closest to <span class="math inline">\(x\)</span>. Let <span class="math inline">\(\Phi\)</span> be a stationary point process on <span class="math inline">\(\mathbb{R}^d\)</span> with intensity <span class="math inline">\(\lambda&gt;0\)</span>. Also define <span class="math inline">\(Y := \tau(0,\Phi)\)</span>.</p>
+<p>::: <span>theorem</span> **Theorem.** For all measurable <span class="math inline">\(h : \mathbb{R}^d \times \mathcal{M}(\mathbb{R}^d) \to \mathbb{R}_{+}\)</span>, <span class="math display">\[\mathbb{E}\bigl[h(Y,\Phi)\bigr]
+=
+\lambda\,\mathbb{E}\!\left[
+\int_{\mathbb{R}^d}
+h\!\left(-x,\,t_x \Phi^0\right)
+\mathbf{1}_{\{x \in Z\}}\,dx
+\right],\]</span> and the inversion formula follows from letting <span class="math inline">\(h(x,\eta)=f(\eta)\)</span>. :::</p>
+<p>::: <span>proof</span> *Proof.* Recall refined Campbell’s theorem together with a change of variables:</p>
+<p><span class="math display">\[\quad
+\mathbb{E}\!\left[\int_{\mathbb{R}^d} f(x,\Phi)\,\Phi(dx)\right]
+= \lambda\,\mathbb{E}\!\left[\int_{\mathbb{R}^d} f(-x,\,t_x \Phi^0)\,dx\right].\]</span></p>
+<p>Now let <span class="math inline">\(f(x,\Phi) := h\bigl(x,\Phi\bigr)\,\mathbf{1}_{\{\tau(0,\Phi)=x\}}.\)</span></p>
+<p>The LHS of Eq. <a href="#eq:if" data-reference-type="ref" data-reference="eq:if">[eq:if]</a> equals: <span class="math display">\[\begin{aligned}
+\mathbb{E}\!\left[
+\int_{\mathbb{R}^d}
+h(x,\Phi)\,
+\mathbf{1}_{\{\tau(0,\Phi)=x\}}\,
+\Phi(dx)
+\right]
+&amp;=
+\mathbb{E}\bigl[h(Y,\Phi)\bigr].\end{aligned}\]</span></p>
+<p>The RHS of Eq. <a href="#eq:if" data-reference-type="ref" data-reference="eq:if">[eq:if]</a> equals: <span class="math display">\[\begin{aligned}
+\quad
+\lambda\,\mathbb{E}\!\left[
+\int_{\mathbb{R}^d}
+h(-x,\,t_x \Phi^0)\,
+\mathbf{1}_{\{\tau(0,t_x \Phi^0)=-x\}}
+\,dx
+\right].\end{aligned}\]</span></p>
+<p>We note that <span class="math inline">\(\tau\)</span> satisfies the following property: <span class="math display">\[\tau(x-y,\,t_y \mu)
+=
+\tau(x,\mu)-y.\]</span></p>
+<p>Letting <span class="math inline">\(y = x\)</span>, we have <span class="math inline">\(\tau(0,t_x\Phi^0)=\tau(x,\Phi^0)-x\)</span>. Then <span class="math display">\[\tau(0,t_x\Phi^0) = -x
+\quad\Longleftrightarrow\quad
+\tau(x,\Phi^0)=0.\]</span></p>
+<p>Therefore, <span class="math display">\[\begin{aligned}
+\text{RHS}&amp;=
+\lambda\,\mathbb{E}\!\left[
+\int_{\mathbb{R}^d}
+h(-x,\,t_x \Phi^0)\,
+\mathbf{1}_{\{\tau(x,\Phi^0)=0\}}
+\,dx
+\right]
+\\
+&amp;=
+\lambda\,\mathbb{E}\!\left[
+\int_{\mathbb{R}^d}
+h(-x,\,t_x \Phi^0)\,
+\mathbf{1}_{\{x \in Z\}}
+\,dx
+\right].\end{aligned}\]</span></p>
+<p><span class="math inline">\(\square\)</span> :::</p>
+<h4 id="a-consequence-of-this-more-general-result">A consequence of this more general result:</h4>
+<p>Let <span class="math inline">\(h(x,\mu) := g(t_x \mu)\)</span>. Then <span class="math inline">\(h\!\left(-x,\,t_x \Phi^0\right)
+=
+g\!\left(t_{-x}t_x \Phi^0\right)
+=
+g(\Phi^0),\)</span> and <span class="math display">\[\mathbb{E}\bigl[g(t_Y \Phi)\bigr]=\lambda\,\mathbb{E}\!\left[\,|Z|\,g(\Phi^0)\right].\]</span></p>
+<p>This shows that the distribution of <span class="math inline">\(t_Y \Phi\)</span> is absolutely continuous with respect to the Palm distribution.</p>
+<p>Further, letting <span class="math inline">\(g\)</span> in Eq. <a href="#eq:g" data-reference-type="ref" data-reference="eq:g">[eq:g]</a> satisfy <span class="math inline">\(g(\mu) := f(\mu)\,|Z_{0}(\mu)|^{-1},\)</span> gives <span class="math display">\[\lambda\,\mathbb{E}\!\left[f(\Phi^0)\right]
+=
+\mathbb{E}\!\left[
+|Z_{0}(t_Y \Phi)|^{-1}\,
+f(t_Y \Phi)
+\right].\]</span></p>
+<p>Since <span class="math inline">\(Z_{0}(t_Y \Phi) = Z_{0}(\Phi) - Y,\)</span> we obtain the following.</p>
+<p>::: <span>proposition</span> **Proposition.** <span class="math display">\[\lambda\,\mathbb{E}\!\left[f(\Phi^0)\right]
+=
+\mathbb{E}\!\left[
+|Z_{0}(\Phi)|^{-1}\,f(t_Y \Phi)
+\right].\]</span> :::</p>
+<p>This gives, for <span class="math inline">\(f(\mu) := |Z_{0}(\mu)|^{\alpha+1},\)</span> the more genral formula <span class="math display">\[\lambda\,\mathbb{E}\!\left[|Z|^{\alpha+1}\right]
+=
+\mathbb{E}\!\left[|Z_{0}|^{\alpha}\right].\]</span></p>
+<div class="lecture-nav"><a href="lecture19.html">← Lecture 19</a> &nbsp;|&nbsp; <a href="index.html">↑ All Lectures</a> &nbsp;|&nbsp; <a href="lecture21.html">Lecture 21 →</a></div>
+</body>
+</html>

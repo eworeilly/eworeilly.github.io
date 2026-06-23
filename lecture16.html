@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture 16: Random Closed Sets (Continued) — EN.553.726</title>
+<link rel="stylesheet" href="notes.css">
+<script>
+MathJax = {tex: {inlineMath: [['$','$']], displayMath: [['$$','$$']]}};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+<nav><ul>
+  <li><a href="../index.html">Home</a></li>
+  <li><a href="../research.html">Research</a></li>
+  <li><a href="../teaching.html">Teaching</a></li>
+  <li><a href="../CVApril2026.pdf" target="_blank">CV</a></li>
+</ul></nav>
+<div class="lecture-nav"><a href="lecture15.html">← Lecture 15</a> &nbsp;|&nbsp; <a href="index.html">↑ All Lectures</a> &nbsp;|&nbsp; <a href="lecture17.html">Lecture 17 →</a></div>
+<h1 id="introduction">Introduction</h1>
+<p>Last time:</p>
+<ul>
+<li><p>We defined the Fell topology on <span class="math inline">\(\mathcal{F}\)</span>, the space of closed subsets of <span class="math inline">\(\mathbb{R}^d\)</span>, and the Borel <span class="math inline">\(\sigma\)</span>-algebra <span class="math inline">\(\mathcal{B}(\mathcal{F})\)</span>.</p></li>
+<li><p>We defined random closed sets (RACS) as measurable maps <span class="math inline">\(Z:\Omega\to\mathcal{F}\)</span>.</p></li>
+</ul>
+<p>Today:</p>
+<ul>
+<li><p>Characterize the distribution of a RACS.</p></li>
+<li><p>Consider stationary RACS and contact distributions.</p></li>
+</ul>
+<p>Let <span class="math inline">\(\mathcal{C}\)</span> denote the set of compact subsets of <span class="math inline">\(\mathbb{R}^d\)</span>.</p>
+<h1 id="capacity-functional">Capacity Functional</h1>
+<p>We can characterize the distribution of a RACS with a functional haveing properties analogous to the distribution function of a random variable.</p>
+<p>::: <span>definition</span> **Definition.** Let <span class="math inline">\(Z\)</span> be a RACS. Its <em>capacity functional</em> is the mapping <span class="math display">\[T_Z : \mathcal{C}\to \mathbb{R}_+,
+\qquad
+T_Z(C) := \mathbb{P}(Z\in \mathcal{F}_C) = \mathbb{P}(Z\cap C\neq\varnothing).\]</span> :::</p>
+<p>::: <span>theorem</span> **Theorem.** If <span class="math inline">\(Z\)</span> and <span class="math inline">\(Z&#39;\)</span> are RACS such that <span class="math inline">\(T_Z = T_{Z&#39;}\)</span>, then <span class="math inline">\(Z \stackrel{d}{=} Z&#39;\)</span>. :::</p>
+<p>::: <span>proof</span> *Proof.* The class <span class="math inline">\(\{\mathcal{F}_C : C\in\mathcal{C}\}\)</span> is nonempty, stable under finite intersections, and generates the Fell Borel <span class="math inline">\(\sigma\)</span>-algebra. If <span class="math inline">\(Z\)</span> and <span class="math inline">\(Z&#39;\)</span> agree on this generating class, they agree on <span class="math inline">\(\mathcal{B}(\mathcal{F})\)</span>.</p>
+<p><span class="math inline">\(\square\)</span> :::</p>
+<p>::: <span>example</span> **Example.** Let <span class="math inline">\(\Phi\)</span> be a point process on <span class="math inline">\(\mathbb{R}^d\)</span>, and let <span class="math inline">\(Z = \mathrm{Supp}(\Phi)\)</span>. Then <span class="math display">\[T_Z(C) = \mathbb{P}(\Phi(C) &gt; 0)
+= 1 - \mathbb{P}(\Phi(C)=0)
+= 1 - v_\Phi(C),\]</span> where <span class="math inline">\(v_\Phi(C)\)</span> is the void probability of <span class="math inline">\(\Phi\)</span>. For simple point processes, the distribution is completely determined by the void probabilities. :::</p>
+<h2 id="properties-of-capacity-functionals">Properties of Capacity Functionals</h2>
+<p>For a RACS <span class="math inline">\(Z\)</span>:</p>
+<ul>
+<li><p><span class="math inline">\(0 \le T_Z(C) \le 1\)</span> for all <span class="math inline">\(C\in\mathcal{C}\)</span>, and <span class="math inline">\(T_Z(\varnothing)=0\)</span>.</p></li>
+<li><p><strong>Upper semicontinuity:</strong> If <span class="math inline">\(C_n\downarrow C\)</span>, then <span class="math display">\[T_Z(C_n) \downarrow T_Z(C).\]</span></p></li>
+<li><p><strong>Complete alternation:</strong> for all <span class="math inline">\(C_0,\ldots,C_k\in\mathcal{C}\)</span>, define recursively <span class="math display">\[S_0(C_0) := 1 - T_Z(C_0),\]</span> <span class="math display">\[S_k(C_0;\,C_1,\ldots,C_k)
+    := S_{k-1}(C_0;\,C_1,\ldots,C_{k-1})
+      - S_{k-1}(C_0\cup C_k;\,C_1,\ldots,C_{k-1}).\]</span> Then <span class="math display">\[S_k(C_0;\,C_1,\ldots,C_k) \ge 0.\]</span></p></li>
+</ul>
+<p>::: <span>theorem</span> **Theorem (Choquet).** If <span class="math inline">\(T:\mathcal{C}\to\mathbb{R}_+\)</span> satisfies (i)–(iii), then there exists a RACS <span class="math inline">\(Z\)</span> with <span class="math inline">\(T_Z=T\)</span>. :::</p>
+<h1 id="stationary-racs">Stationary RACS</h1>
+<p>::: <span>definition</span> **Definition.** A RACS <span class="math inline">\(Z\)</span> is <em>stationary</em> if for all <span class="math inline">\(x\in\mathbb{R}^d\)</span>, <span class="math inline">\(Z \stackrel{d}{=} Z - x.\)</span> :::</p>
+<p>By the capacity functional characterization, <span class="math inline">\(Z\)</span> is stationary iff <span class="math display">\[T_Z(C) = T_Z(C - x) \qquad \forall C\in\mathcal{C},\; x\in\mathbb{R}^d.\]</span></p>
+<p>For any RACS <span class="math inline">\(Z\)</span>, consider the stochastic process on <span class="math inline">\(\mathbb{R}^d\)</span> given by <span class="math inline">\(\mathbf{1}_Z(x)=\mathbf{1}_{\{x\in Z\}}.\)</span></p>
+<p>Define the mean and covariance functions: <span class="math display">\[m_Z(x) := \mathbb{E}[\mathbf{1}_Z(x)] = \mathbb{P}(x\in Z),\]</span> <span class="math display">\[k_Z(x,y)
+:= \mathbb{E}[(\mathbf{1}_Z(x)-m_Z(x))(\mathbf{1}_Z(y)-m_Z(y))]
+= \mathbb{P}(x,y\in Z) - m_Z(x)m_Z(y).\]</span></p>
+<p>For stationary RACS:</p>
+<ul>
+<li><p><span class="math inline">\(m_Z(x)=p:=\mathbb{P}(0\in Z)\)</span>, the <em>volume fraction</em>,</p></li>
+<li><p><span class="math inline">\(k_Z(x,y)=k_Z(x-y,0)\)</span>,</p></li>
+<li><p><span class="math inline">\(k_Z(x,0)=\mathbb{P}(0,x\in Z) - p^2\)</span>.</p></li>
+</ul>
+<p>Another way to describe stationary RACS is by <strong>contact distributions</strong>.</p>
+<p>::: <span>definition</span> **Definition.** Let <span class="math inline">\(K\subset\mathbb{R}^d\)</span> be a compact convex body containing the origin. Define the <span class="math inline">\(K\)</span>-distance of <span class="math inline">\(x\in\mathbb{R}^d\)</span> from <span class="math inline">\(F\in\mathcal{F}&#39;\)</span> by <span class="math display">\[d_K(x,F)
+    := \min\{ r&gt;0 : x + rK \cap F \neq \varnothing \}.\]</span> :::</p>
+<p>::: <span>definition</span> **Definition.** The <em>contact distribution</em> of a RACS <span class="math inline">\(Z\)</span> w.r.t. <span class="math inline">\(K\)</span> is <span class="math display">\[H_K(r)
+:= \mathbb{P}( d_K(0,Z) \le r \mid 0\notin Z ),
+\qquad r\ge 0.\]</span> :::</p>
+<p>Special Cases:</p>
+<ul>
+<li><p><span class="math inline">\(K=\mathbb{B}^d\)</span>: spherical contact distribution.</p></li>
+<li><p><span class="math inline">\(K=[0,u]\)</span>: linear contact distribution, measuring distance in direction <span class="math inline">\(u\)</span>.</p></li>
+</ul>
+<div class="lecture-nav"><a href="lecture15.html">← Lecture 15</a> &nbsp;|&nbsp; <a href="index.html">↑ All Lectures</a> &nbsp;|&nbsp; <a href="lecture17.html">Lecture 17 →</a></div>
+</body>
+</html>

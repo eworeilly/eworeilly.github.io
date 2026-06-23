@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture 11: Cox Processes (Doubly Stochastic Poisson Processes) — EN.553.726</title>
+<link rel="stylesheet" href="notes.css">
+<script>
+MathJax = {tex: {inlineMath: [['$','$']], displayMath: [['$$','$$']]}};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+<nav><ul>
+  <li><a href="../index.html">Home</a></li>
+  <li><a href="../research.html">Research</a></li>
+  <li><a href="../teaching.html">Teaching</a></li>
+  <li><a href="../CVApril2026.pdf" target="_blank">CV</a></li>
+</ul></nav>
+<div class="lecture-nav"><a href="lecture10.html">← Lecture 10</a> &nbsp;|&nbsp; <a href="index.html">↑ All Lectures</a> &nbsp;|&nbsp; <a href="lecture12.html">Lecture 12 →</a></div>
+<h1 id="random-measure">Random Measure</h1>
+<p>We can generalize the definition of a point process to a random locally finite measure.</p>
+<p>Let <span class="math inline">\(\overline{\mathcal{M}}(\mathbb{R}^{d})\)</span> be the space of locally finite measures on <span class="math inline">\(\mathbb{R}^{d}\)</span>, and let <span class="math inline">\(\overline{\mathscr{M}}(\mathbb{R}^{d})\)</span> be equipped with the smallest <span class="math inline">\(\sigma\)</span>-algebra making the maps <span class="math inline">\(\mu \mapsto \mu(B)\)</span> measurable for all <span class="math inline">\(B \in \mathcal{B}(\mathbb{R}^{d})\)</span>.</p>
+<p>Let <span class="math inline">\((\Omega, \mathcal{A}, \mathbb{P})\)</span> be a probability space.</p>
+<p>::: <span>definition</span> **Definition.** A <em>random measure</em> <span class="math inline">\(\Psi\)</span> on <span class="math inline">\(\mathbb{R}^{d}\)</span> is a random element of <span class="math inline">\(\overline{\mathcal{M}}(\mathbb{R}^{d})\)</span>, i.e., a measurable map <span class="math inline">\(\Psi : \Omega \to \overline{\mathcal{M}}(\mathbb{R}^{d})\)</span>. :::</p>
+<p>As with point processes, the distribution of a random measure <span class="math inline">\(\Psi\)</span> is determined by its finite-dimensional distributions <span class="math inline">\((\Psi(B_{1}), \ldots, \Psi(B_{n})), \forall B_{1}, \ldots, B_{n} \in \mathcal{B}(\mathbb{R}^{d})\)</span>, and by its Laplace functional: <span class="math display">\[L_{\Psi}(f) = \mathbb{E}\Big[e^{-\int f\, d\Psi}\Big],
+\qquad \text{for all measurable } f : \mathbb{R}^{d} \to \mathbb{R}_{+}.\]</span></p>
+<h1 id="cox-processes">Cox Processes</h1>
+<p>For <span class="math inline">\(\Lambda \in \overline{\mathcal{M}}(\mathbb{R}^{d})\)</span>, let <span class="math inline">\(\Phi_{\Lambda}\)</span> denote a Poisson process with intensity measure <span class="math inline">\(\Lambda\)</span>.</p>
+<p>::: <span>definition</span> **Definition.** Let <span class="math inline">\(\Psi\)</span> be a random measure on <span class="math inline">\(\mathbb{R}^{d}\)</span>. Then the mixture <span class="math inline">\(\Phi_{\Psi}\)</span> is called a <em>Cox process</em> on <span class="math inline">\(\mathbb{R}^{d}\)</span>.</p>
+<p>That is, conditioned on <span class="math inline">\(\Psi\)</span>, <span class="math inline">\(\Phi_{\Psi}\)</span> is Poisson with intensity measure <span class="math inline">\(\Psi\)</span>. :::</p>
+<p>::: <span>example</span> **Example.** Let <span class="math inline">\(\Psi = \xi \Lambda\)</span>, where <span class="math inline">\(\Lambda \in \overline{\mathcal{M}}(\mathbb{R}^{d})\)</span> and <span class="math inline">\(\xi\)</span> is a non-negative random variable. Then the Cox process <span class="math inline">\(\Phi_{\Psi}\)</span> is called a <em>mixed Poisson process</em>. :::</p>
+<p>::: <span>theorem</span> **Theorem.** Let <span class="math inline">\(\Phi_{\Psi}\)</span> and <span class="math inline">\(\Phi_{\Psi&#39;}\)</span> be Cox processes with directing measures <span class="math inline">\(\Psi\)</span> and <span class="math inline">\(\Psi&#39;\)</span>. Then <span class="math display">\[\Phi_{\Psi} \overset{d}{=} \Phi_{\Psi&#39;}
+    \quad \text{iff} \quad
+    \Psi \overset{d}{=} \Psi&#39;.\]</span> :::</p>
+<h2 id="stationarity-of-cox-processes">Stationarity of Cox Processes</h2>
+<p>::: <span>definition</span> **Definition.** A random locally finite measure <span class="math inline">\(\Psi\)</span> is <em>stationary</em> if <span class="math display">\[t_x \Psi \overset{d}{=} \Psi, \qquad \forall x \in \mathbb{R}^{d}.\]</span> :::</p>
+<p>::: <span>proposition</span> **Proposition.** Let <span class="math inline">\(\Phi_{\Psi}\)</span> be a Cox process directed by <span class="math inline">\(\Psi\)</span>. Then <span class="math inline">\(\Phi_{\Psi}\)</span> is stationary if and only if <span class="math inline">\(\Psi\)</span> is stationary. :::</p>
+<p>::: <span>proof</span> *Proof.* [Idea of the proof] <span class="math inline">\(t_x \Phi_{\Psi}\)</span> is a Cox process directed by <span class="math inline">\(t_x \Psi\)</span>. By the previous theorem, <span class="math display">\[t_x \Phi_{\Psi} \overset{d}{=} \Phi_{\Psi}
+    \quad \Longleftrightarrow \quad
+    t_x \Psi \overset{d}{=} \Psi,\]</span> and thus, by the definition of stationarity, <span class="math inline">\(\Phi_{\Psi}\)</span> is stationary if and only if <span class="math inline">\(\Psi\)</span> is stationary.</p>
+<p><span class="math inline">\(\square\)</span> :::</p>
+<h2 id="properties-of-a-cox-process">Properties of a Cox Process</h2>
+<p>A Cox process <span class="math inline">\(\Phi_{\Psi}\)</span> with directing measure <span class="math inline">\(\Psi \in \mathcal{M}(\mathbb{R}^{d})\)</span> has:</p>
+<ul>
+<li><p><strong>Intensity measure:</strong> <span class="math display">\[\Lambda(B) = \mathbb{E}[\Psi(B)].\]</span></p></li>
+<li><p><strong>Laplace functional:</strong> <span class="math display">\[L_{\Phi_{\Psi}}(f) = L_{\Psi}(1 - e^{-f}).\]</span></p></li>
+<li><p><strong>Void function:</strong> <span class="math display">\[\nu_{\Phi_{\Psi}}(B) = \mathbb{E}\big[e^{-\Psi(B)}\big].\]</span></p></li>
+<li><p><strong>Factorial moment measures:</strong> for pairwise disjoint <span class="math inline">\(B_1,\ldots,B_n\)</span>, <span class="math display">\[\alpha^{(n)}(B_1 \times \cdots \times B_n)
+    = \mathbb{E}\bigg[\prod_{i=1}^{n} \Psi(B_i)\bigg].\]</span></p></li>
+</ul>
+<p>Remark: Recall that for a point process <span class="math inline">\(\Phi\)</span> with intensity measure <span class="math inline">\(\Lambda\)</span>, <span class="math display">\[\mathrm{Var}(\Phi(B))
+=
+\alpha^{(2)}(B \times B)
+-
+\Lambda(B)^2
++
+\Lambda(B).\]</span></p>
+<p>For <span class="math inline">\(\Phi\)</span> Poisson, <span class="math display">\[\mathrm{Var}(\Phi(B))
+=
+\mathbb{E}[\Phi(B)].\]</span></p>
+<p>For the Cox process <span class="math inline">\(\Phi_{\Psi}\)</span>, <span class="math display">\[\mathrm{Var}(\Phi_{\Psi}(B))
+=
+\mathbb{E}[\Psi(B)^2] - \mathbb{E}[\Psi(B)]^2 + \mathbb{E}[\Psi(B)]
+=
+\mathrm{Var}(\Psi(B)) + \mathbb{E}[\Psi(B)].\]</span></p>
+<p>Therefore, <span class="math display">\[\mathrm{Var}(\Phi_{\Psi}(B))
+\ge
+\mathbb{E}[\Psi(B)].\]</span></p>
+<p>Hence, the number of points in a given set has greater variability in a Cox process than in a Poisson process.</p>
+<h2 id="examples">Examples</h2>
+<p>::: <span>example</span> **Example (Cox Processes with Random Intensity Fields).** Let <span class="math inline">\(\{Y(x)\}_{x \in \mathbb{R}^{d}}\)</span> be a non-negative stochastic process on <span class="math inline">\(\mathbb{R}^{d}\)</span>.</p>
+<p>Define the random measure by <span class="math display">\[\Psi(B) = \int_{B} Y(x)\, dx, \qquad B \in \mathcal{B}(\mathbb{R}^{d}),\]</span> assuming <span class="math inline">\(Y\)</span> is locally integrable a.s.</p>
+<p>Then <span class="math inline">\(\Phi_{\Psi}\)</span> is a Cox process with random intensity field <span class="math inline">\(\{Y(x)\}\)</span>. :::</p>
+<p>::: <span>example</span> **Example (Specific Example: Log-Gaussian Cox Processes).** Let <span class="math inline">\(\{Z(x)\}_{x \in \mathbb{R}^{d}}\)</span> be a Gaussian process on <span class="math inline">\(\mathbb{R}^{d}\)</span>. That is, for all <span class="math inline">\(x_1, \ldots, x_n \in \mathbb{R}^{d}\)</span>, <span class="math display">\[(Z(x_1), \ldots, Z(x_n))\]</span> are Gaussian random vectors, and its distribution is determined by the mean function <span class="math display">\[\mu(x) = \mathbb{E}[Z(x)]\]</span> and covariance function <span class="math display">\[C(x,y) = \mathrm{Cov}(Z(x), Z(y)).\]</span> Now define the random measure <span class="math inline">\(\Psi\)</span> by <span class="math display">\[\Psi(B) = \int_{B} e^{Z(x)}\, dx, \qquad B \in \mathcal{B}(\mathbb{R}^{d}).\]</span></p>
+<p>The Cox process <span class="math inline">\(\Phi_{\Psi}\)</span> is called a <em>Log-Gaussian Cox Process (LGCP)</em>.</p>
+<p>(Coerrolly, Møller, Waagepetersen, 2016) showed that for a stationary LGCP <span class="math inline">\(\Phi\)</span> with underlying Gaussian process <span class="math inline">\(\{Z(x)\}_{x \in \mathbb{R}^{d}}\)</span>, the reduced Palm version <span class="math inline">\(\Phi_{\Psi}^{0,!} := \Phi^{0} - \delta_{0}\)</span> is a LGCP with underlying Gaussian process <span class="math inline">\(\{Z_{0}(x)\}_{x \in \mathbb{R}^{d}}\)</span>, where <span class="math inline">\(Z_{0}(x) = Z(x) + C(0,x),\)</span> and <span class="math inline">\(C\)</span> is the covariance function of <span class="math inline">\(\{Z(x)\}_{x \in \mathbb{R}^{d}}\)</span>. :::</p>
+<div class="lecture-nav"><a href="lecture10.html">← Lecture 10</a> &nbsp;|&nbsp; <a href="index.html">↑ All Lectures</a> &nbsp;|&nbsp; <a href="lecture12.html">Lecture 12 →</a></div>
+</body>
+</html>

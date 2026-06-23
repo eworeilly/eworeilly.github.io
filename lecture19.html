@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture 19: Boolean Models and Random Voronoi Tessellations — EN.553.726</title>
+<link rel="stylesheet" href="notes.css">
+<script>
+MathJax = {tex: {inlineMath: [['$','$']], displayMath: [['$$','$$']]}};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+<nav><ul>
+  <li><a href="../index.html">Home</a></li>
+  <li><a href="../research.html">Research</a></li>
+  <li><a href="../teaching.html">Teaching</a></li>
+  <li><a href="../CVApril2026.pdf" target="_blank">CV</a></li>
+</ul></nav>
+<div class="lecture-nav"><a href="lecture18.html">← Lecture 18</a> &nbsp;|&nbsp; <a href="index.html">↑ All Lectures</a> &nbsp;|&nbsp; <a href="lecture20.html">Lecture 20 →</a></div>
+<h1 id="boolean-models">Boolean Models</h1>
+<p>Recall the definition of a Boolean Model from last time:</p>
+<p>Let <span class="math inline">\(\widetilde{\Phi} = \sum_{n\in\mathbb{N}} \delta_{(X_n, Z_n)}\)</span> be a stationary, independent germ-grain process such that the ground point process <span class="math inline">\(\Phi_0 = \sum_{n\in\mathbb{N}} \delta_{X_n}\)</span> is a stationary Poisson process (thus <span class="math inline">\(\widetilde{\Phi}\)</span> is Poisson).</p>
+<p>The coverage model <span class="math display">\[\widetilde{Z} := \bigcup_{n\in\mathbb{N}} (Z_n + X_n)\]</span> is called a <em>Boolean model</em>.</p>
+<p>The <strong>capacity functional</strong> of <span class="math inline">\(\widetilde{Z}\)</span> is <span class="math display">\[T_{\widetilde{Z}}(C)
+:= \mathbb{P}(\widetilde{Z} \cap C \neq \varnothing) \quad \text{for }\ C \in \mathcal{C}.\]</span></p>
+<p>Let <span class="math inline">\(A_C := \{ (x, K) \in \mathbb{R}^d \times \mathcal{C}&#39;: K + x \in \mathcal{F}_C\}\)</span> for <span class="math inline">\(C \in \mathcal{C}\)</span>. Then, <span class="math display">\[T_{\widetilde{Z}}(C)
+= \mathbb{P}\big( \widetilde{\Phi}(A_C) &gt; 0 \big)
+= 1 - e^{-\widetilde{\Lambda}(A_C)},\]</span> where <span class="math inline">\(\widetilde{\Lambda}\)</span> is the intensity measure of <span class="math inline">\(\widetilde{\Phi}\)</span>. Since <span class="math inline">\(\widetilde{\Phi}\)</span> is stationary, <span class="math display">\[\begin{aligned}
+\widetilde{\Lambda}(A_C)
+&amp;= \lambda \int_{\mathcal{C}&#39;}\int_{\mathbb{R}^d} \mathbf{1}_{\{ K + x \cap C \neq \varnothing \}}\, dx \, \mathbb{Q}(dK) \\
+&amp;= \lambda \int_{\mathcal{C}&#39;} \mathrm{vol}(K - C)\, \mathbb{Q}(dK).\end{aligned}\]</span></p>
+<p>::: <span>example</span> **Example (Spherical Contact Distribution).** Let <span class="math display">\[d(0,\widetilde{Z}) := \min\{ r\geq0 : rB^d \cap \widetilde{Z} \neq \varnothing \}.\]</span> Then the spherical contact distribution is <span class="math display">\[H_{B^d}(r)
+    := \mathbb{P}\big( d(0,\widetilde{Z}) \le r \,\big|\, 0 \notin \widetilde{Z} \big)
+    = 1 -
+    \frac{
+        \mathbb{P}( d(0,\widetilde{Z}) &gt; r )
+    }{
+        \mathbb{P}(0 \notin \widetilde{Z})
+    }.\]</span></p>
+<p>Since <span class="math display">\[\mathbb{P}( d(0,\widetilde{Z}) &gt; r ) 
+    = 1 - T_{\widetilde{Z}}(B(0,r)),
+    \qquad
+    \mathbb{P}(0 \notin \widetilde{Z}) 
+    = 1 - T_{\widetilde{Z}}(\{0\}),\]</span> we obtain <span class="math display">\[H_{B^d}(r)
+    =
+    1 - \exp\!\left(
+        -\,\lambda
+        \int_{\mathcal{C}&#39;}
+            \big( \mathrm{vol}(K + B(0,r)) - \mathrm{vol}(K) \big)
+        \, \mathbb{Q}(dK)
+    \right).\]</span> :::</p>
+<h1 id="voronoi-tessellations">Voronoi Tessellations</h1>
+<p>Let <span class="math inline">\(X = \{ x_i \}_{i=1}^n\)</span> be a locally finite subset of <span class="math inline">\(\mathbb{R}^d\)</span> (with <span class="math inline">\(n=\infty\)</span> allowed).</p>
+<p>::: <span>definition</span> **Definition.** The Voronoi cell of <span class="math inline">\(x_i\)</span> (with respect to <span class="math inline">\(X\)</span>) is <span class="math display">\[V(x_i, X)
+:= 
+\big\{ y \in \mathbb{R}^d : \|y - x_i\|_2 \le \|y - x_j\|_2 \ \ \forall\, x_j \in X \big\}.\]</span> :::</p>
+<p>Equivalently, for <span class="math inline">\(x \neq y\)</span>, define <span class="math inline">\(H_y^{+}(x)\)</span> as the closed halfspace containing <span class="math inline">\(x\)</span> and bounded by the mid-hyperplane of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. Then <span class="math display">\[V(x_i, X)
+=
+\bigcap_{j \ne i} H_{x_j}^{+}(x_i).\]</span></p>
+<p><strong>Notes:</strong></p>
+<ul>
+<li><p><span class="math inline">\(V(x_i, X)\)</span> is a closed convex polyhedron in <span class="math inline">\(\mathbb{R}^d\)</span>.</p></li>
+<li><p><span class="math inline">\(\displaystyle \bigcup_{i=1}^n V(x_i, X) = \mathbb{R}^d\)</span>.</p></li>
+</ul>
+<p>::: <span>definition</span> **Definition (Voronoi Tessellation).** The collection <span class="math display">\[\mathcal{V} := \{ V(x_i, X) \}_{i=1}^n\]</span> is called the <em>Voronoi tessellation</em> generated by <span class="math inline">\(X\)</span>. :::</p>
+<div class="lecture-nav"><a href="lecture18.html">← Lecture 18</a> &nbsp;|&nbsp; <a href="index.html">↑ All Lectures</a> &nbsp;|&nbsp; <a href="lecture20.html">Lecture 20 →</a></div>
+</body>
+</html>

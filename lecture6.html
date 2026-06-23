@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture 6: Poisson Processes Continued — EN.553.726</title>
+<link rel="stylesheet" href="notes.css">
+<script>
+MathJax = {tex: {inlineMath: [['$','$']], displayMath: [['$$','$$']]}};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+<nav><ul>
+  <li><a href="../index.html">Home</a></li>
+  <li><a href="../research.html">Research</a></li>
+  <li><a href="../teaching.html">Teaching</a></li>
+  <li><a href="../CVApril2026.pdf" target="_blank">CV</a></li>
+</ul></nav>
+<div class="lecture-nav"><a href="lecture5.html">← Lecture 5</a> &nbsp;|&nbsp; <a href="index.html">↑ All Lectures</a> &nbsp;|&nbsp; <a href="lecture7.html">Lecture 7 →</a></div>
+<h1 id="superposition-of-poisson-processes">Superposition of Poisson Processes</h1>
+<p>::: <span>proposition</span> **Proposition.** Let <span class="math inline">\(\Phi_1, \Phi_2, \dots\)</span> be a sequence of independent Poisson processes on <span class="math inline">\(E\)</span> with intensity measures <span class="math inline">\(\Lambda_1, \Lambda_2, \dots\)</span>. Then their superposition <span class="math display">\[\Phi = \sum_{i=1}^\infty \Phi_i\]</span> is itself a Poisson process with intensity measure <span class="math display">\[\Lambda = \sum_{i=1}^\infty \Lambda_i\]</span> provided that <span class="math inline">\(\Lambda\)</span> is locally finite. :::</p>
+<p>::: <span>proof</span> *Proof.* If <span class="math inline">\(\Lambda = \sum_{i=1}^\infty \Lambda_i\)</span> is locally finite, then <span class="math inline">\(\Phi\)</span> is a point process (see Proposition 2.2.1 in [baccelli2024random]). It remains to check that <span class="math inline">\(\Phi\)</span> is a Poisson process.</p>
+<p>We do this by computing its Laplace functional: <span class="math display">\[\begin{aligned}
+L_\Phi(f) &amp;= \mathbb{E}\left[ e^{ - \int_E f\, d\Phi } \right] 
+= \mathbb{E}\left[ e^{ - \int_E f\, d\left( \sum_{i=1}^\infty \Phi_i \right) } \right] \\
+&amp;= \mathbb{E}\left[ \prod_{i=1}^\infty e^{ - \int_E f\, d\Phi_i } \right]
+= \prod_{i=1}^\infty \mathbb{E}\left[ e^{ - \int_E f\, d\Phi_i } \right] \\
+&amp;= \prod_{i=1}^\infty \exp\left( - \int_E (1 - e^{-f})\, d\Lambda_i \right) \\
+&amp;= \exp\left( - \sum_{i=1}^\infty \int_E (1 - e^{-f})\, d\Lambda_i \right) \\
+&amp;= \exp\left( - \int_E (1 - e^{-f})\, d\Lambda \right).\end{aligned}\]</span></p>
+<p>Thus, <span class="math inline">\(L_\Phi(f)\)</span> has the Laplace functional of a Poisson process with intensity measure <span class="math inline">\(\Lambda\)</span>, and the result follows.</p>
+<p><span class="math inline">\(\square\)</span> :::</p>
+<h1 id="existence-of-a-poisson-process">Existence of a Poisson Process</h1>
+<p>::: <span>theorem</span> **Theorem.** Let <span class="math inline">\(\Lambda\)</span> be a locally finite measure on a locally compact CSMS <span class="math inline">\(E\)</span>. Then, there exists a Poisson process on <span class="math inline">\(E\)</span> with intensity measure <span class="math inline">\(\Lambda\)</span>. :::</p>
+<p>::: <span>proof</span> *Proof.* Suppose first that <span class="math inline">\(0 &lt; \Lambda(E) &lt; \infty\)</span>. Let <span class="math inline">\(X_1, X_2, \dots\)</span> be i.i.d. random elements of <span class="math inline">\(E\)</span> with distribution <span class="math inline">\(\frac{\Lambda(\cdot)}{\Lambda(E)}.\)</span> That is, <span class="math inline">\(\mathbb{P}[X_i \in B] = \frac{\Lambda(B)}{\Lambda(E)} \quad \text{for all } B \in \mathcal{B}.\)</span></p>
+<p>Also, let <span class="math inline">\(N\)</span> be a Poisson random variable with parameter <span class="math inline">\(\Lambda(E)\)</span>. By a proposition from the previous lecture, <span class="math inline">\(\Phi = \sum_{i=1}^N \delta_{X_i}\)</span> is a Poisson process with intensity measure <span class="math inline">\(\Lambda(E) \cdot \frac{\Lambda(\cdot)}{\Lambda(E)} = \Lambda(\cdot).\)</span></p>
+<p>Now, assume <span class="math inline">\(\Lambda(E) = \infty\)</span>.</p>
+<p>Fact: Due to the local compactness assumption on <span class="math inline">\(E\)</span>, there exist pairwise disjoint relatively compact (closure is compact) Borel sets <span class="math inline">\(A_1, A_2, \dots\)</span> such that <span class="math display">\[\bigcup_{i \in \mathbb{N}} A_i = E.\]</span> (see Lemma 1.1.4 in [baccelli2024random])</p>
+<p>Since <span class="math inline">\(\Lambda\)</span> is locally finite, we have <span class="math inline">\(\Lambda(A_i) &lt; \infty\)</span> for all <span class="math inline">\(i \in \mathbb{N}\)</span>.</p>
+<p>Note: If <span class="math inline">\(\Lambda(A_i) = 0\)</span>, we can either omit <span class="math inline">\(A_i\)</span> or combine it with another <span class="math inline">\(A_j\)</span> so that <span class="math inline">\(\Lambda(A_j) &gt; 0\)</span>.</p>
+<p>Let <span class="math inline">\(\{\Phi_i\}_{i \in \mathbb{N}}\)</span> be independent point processes such that for each <span class="math inline">\(i \in \mathbb{N}\)</span>, <span class="math inline">\(\Phi_i\)</span> is a Poisson process with intensity measure <span class="math display">\[\Lambda_i(\cdot) = \Lambda(\cdot \cap A_i).\]</span></p>
+<p>By the superposition property, <span class="math display">\[\Phi = \sum_{i \in \mathbb{N}} \Phi_i\]</span> is a Poisson process on <span class="math inline">\(E\)</span> with intensity measure <span class="math inline">\(\Lambda\)</span>. Indeed, <span class="math display">\[\sum_i \Lambda_i(B) = \sum_i \Lambda(B \cap A_i) = \Lambda(B).\]</span></p>
+<p><span class="math inline">\(\square\)</span> :::</p>
+<h1 id="thinning">Thinning</h1>
+<p>::: <span>definition</span> **Definition.** Let <span class="math inline">\(\Phi = \sum_{k=1}^{N} \delta_{X_k}\)</span> be a point process on <span class="math inline">\(E\)</span> with <span class="math inline">\(N = \Phi(E)\)</span> a random variable taking values in <span class="math inline">\(\mathbb{N} \cup \{\infty\}\)</span>, let <span class="math inline">\(p: E \to [0,1]\)</span> be a measurable function, and let <span class="math inline">\(U_1, U_2, \dots\)</span> be a sequence of i.i.d. <span class="math inline">\(\mathrm{Uniform}([0,1])\)</span> random variables, independent of <span class="math inline">\(\Phi\)</span>.</p>
+<p>Then the <strong><span class="math inline">\(p\)</span>-thinning</strong> of <span class="math inline">\(\Phi\)</span> is the point process <span class="math display">\[\widetilde{\Phi} = \sum_{k=1}^{N} \mathbf{1}_{\{U_k \leq p(X_k)\}} \, \delta_{X_k}.\]</span> :::</p>
+<p>That is, <span class="math inline">\(\widetilde{\Phi}\)</span> is obtained from <span class="math inline">\(\Phi\)</span> by <em>deleting each point <span class="math inline">\(X_k\)</span> with probability <span class="math inline">\(1 - p(X_k)\)</span> and retaining it with probability <span class="math inline">\(p(X_k)\)</span></em>, independently of the other points.</p>
+<div class="lecture-nav"><a href="lecture5.html">← Lecture 5</a> &nbsp;|&nbsp; <a href="index.html">↑ All Lectures</a> &nbsp;|&nbsp; <a href="lecture7.html">Lecture 7 →</a></div>
+</body>
+</html>

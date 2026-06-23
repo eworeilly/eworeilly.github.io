@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture 4: Characterizing the Distribition of Point Processes — EN.553.726</title>
+<link rel="stylesheet" href="notes.css">
+<script>
+MathJax = {tex: {inlineMath: [['$','$']], displayMath: [['$$','$$']]}};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+<nav><ul>
+  <li><a href="../index.html">Home</a></li>
+  <li><a href="../research.html">Research</a></li>
+  <li><a href="../teaching.html">Teaching</a></li>
+  <li><a href="../CVApril2026.pdf" target="_blank">CV</a></li>
+</ul></nav>
+<div class="lecture-nav"><a href="lecture3.html">← Lecture 3</a> &nbsp;|&nbsp; <a href="index.html">↑ All Lectures</a> &nbsp;|&nbsp; <a href="lecture5.html">Lecture 5 →</a></div>
+<h1 id="product-densities">Product Densities</h1>
+<p>Let <span class="math inline">\(E = \mathbb{R}^d\)</span>.</p>
+<p>::: <span>definition</span> **Definition (Product density).** Suppose that the factorial moment measure <span class="math inline">\(\alpha^{(n)}\)</span> is locally finite and absolutely continuous on <span class="math inline">\((\mathbb{R}^d)^n\)</span>. Then <span class="math inline">\(\alpha^{(n)}\)</span> admits a density <span class="math inline">\(\rho^{(n)}\)</span>, called the <em><span class="math inline">\(n\)</span>-th order product density</em> (also called <em>joint density</em>). :::</p>
+<p>That is, by Campbell’s theorem, <span class="math display">\[\mathbb{E}\left[ \sum_{(x_1, \dots, x_n) \in \Phi^{(n)}} f(x_1, \dots, x_n) \right] 
+= \int_{(\mathbb{R}^d)^n} f(x_1, \dots, x_n) \rho^{(n)}(x_1, \dots, x_n) \, dx_1 \dots dx_n.\]</span></p>
+<p>The quantity <span class="math display">\[\rho^{(n)}(x_1, \dots, x_n) \, dx_1 \dots dx_n\]</span> can be interpreted as the probability that there is a point of <span class="math inline">\(\Phi\)</span> in each infinitesimal region <span class="math inline">\(x_i + dx_i\)</span>.</p>
+<p>::: <span>example</span> **Example.** For measurable sets <span class="math inline">\(B_1, \dots, B_n \subset \mathbb{R}^d\)</span>, we have <span class="math display">\[\mathbb{E}\left[ \Phi^{(n)}(B_1 \times \dots \times B_n) \right] 
+= \int_{(\mathbb{R}^d)^n} \mathbf{1}\{ x_1 \in B_1, \dots, x_n \in B_n \} \rho^{(n)}(x_1, \dots, x_n) \, dx_1 \dots dx_n\]</span></p>
+<p><span class="math display">\[= \int_{B_1 \times \dots \times B_n} \rho^{(n)}(x_1, \dots, x_n) \, dx_1 \dots dx_n.\]</span> :::</p>
+<h1 id="finite-dimensional-distributions-and-laplace-functional">Finite-dimensional Distributions and Laplace Functional</h1>
+<p>We will denote equality in distribution by <span class="math inline">\(\overset{d}{=}\)</span>.</p>
+<p>::: <span>definition</span> **Definition (Finite-dimensional distributions).** The <em>finite-dimensional distributions</em> of a point process <span class="math inline">\(\Phi\)</span> on <span class="math inline">\((E, \mathcal{B})\)</span> are the joint probability distributions of the random vectors <span class="math display">\[\big( \Phi(B_1), \dots, \Phi(B_n) \big)\]</span> for all <span class="math inline">\(n \in \mathbb{N}\)</span> and <span class="math inline">\(B_1, \dots, B_n \in \mathcal{B}\)</span>. :::</p>
+<p>::: <span>proposition</span> **Proposition.** Let <span class="math inline">\(\Phi\)</span> and <span class="math inline">\(\Phi&#39;\)</span> be point processes on <span class="math inline">\(E\)</span>. If <span class="math display">\[\big( \Phi(B_1), \dots, \Phi(B_n) \big) \overset{d}{=} \big( \Phi&#39;(B_1), \dots, \Phi&#39;(B_n) \big)\]</span> for all <span class="math inline">\(B_1, \dots, B_n \in \mathcal{B}\)</span>, then <span class="math display">\[\Phi \overset{d}{=} \Phi&#39;.\]</span> :::</p>
+<p>Note: It actually suffices to take all <span class="math inline">\(B_1, \dots, B_n\)</span> to be pairwise disjoint.</p>
+<p>::: <span>definition</span> **Definition (Laplace functional).** The <em>Laplace functional</em> of a point process <span class="math inline">\(\Phi\)</span> on <span class="math inline">\(E\)</span> is defined by <span class="math display">\[\mathcal{L}_\Phi(f) := \mathbb{E}\left[ \exp \left( - \int_E f \, d\Phi \right) \right]\]</span> for all measurable functions <span class="math inline">\(f: E \to \mathbb{R}_+\)</span>. :::</p>
+<p>::: <span>proposition</span> **Proposition.** If <span class="math inline">\(\Phi\)</span> and <span class="math inline">\(\Phi&#39;\)</span> are point processes on <span class="math inline">\(E\)</span> and <span class="math display">\[\mathcal{L}_\Phi(f) = \mathcal{L}_{\Phi&#39;}(f)\]</span> for all measurable <span class="math inline">\(f: E \to \mathbb{R}_+\)</span>, then <span class="math display">\[\Phi \overset{d}{=} \Phi&#39;.\]</span> :::</p>
+<p>::: <span>proof</span> *Proof.* Let <span class="math inline">\(f = \sum_{i=1}^n c_i \mathbf{1}_{B_i}\)</span> with <span class="math inline">\(c_i \in (0, \infty)\)</span> and <span class="math inline">\(B_i \in \mathcal{B}\)</span>. Then <span class="math display">\[\mathcal{L}_\Phi(f) = \mathbb{E}\left[ \exp\left( - \sum_{i=1}^n c_i \Phi(B_i) \right) \right]
+= \mathcal{L}_{(\Phi(B_1), \dots, \Phi(B_n))}(c_1, \dots, c_n),\]</span> which is precisely the multivariate Laplace transform of <span class="math inline">\((\Phi(B_1), \dots, \Phi(B_n))\)</span>.</p>
+<p>Thus, <span class="math display">\[\mathcal{L}_\Phi(f) = \mathcal{L}_{\Phi&#39;}(f) \quad \forall f 
+\quad \Rightarrow \quad 
+(\Phi(B_1), \dots, \Phi(B_n)) \overset{d}{=} (\Phi&#39;(B_1), \dots, \Phi&#39;(B_n))\]</span> and hence, by the previous proposition, <span class="math display">\[\Phi \overset{d}{=} \Phi&#39;.\]</span></p>
+<p><span class="math inline">\(\square\)</span> :::</p>
+<p>::: <span>example</span> **Example (Binomial point process).** Recall the binomial point process <span class="math display">\[\Phi = \sum_{i=1}^n \delta_{X_i},\]</span> where <span class="math inline">\(\{X_i\}_{i=1}^n\)</span> are i.i.d. random elements of <span class="math inline">\(E\)</span> with distribution <span class="math inline">\(\mathbb{Q}\)</span>.</p>
+<p>The Laplace functional of <span class="math inline">\(\Phi\)</span> is <span class="math display">\[\begin{aligned}
+\mathcal{L}_\Phi(f) &amp;= \mathbb{E}\left[ \exp\left( - \int_E f\, d\Phi \right) \right] 
+= \mathbb{E}\left[ \exp\left( - \sum_{i=1}^n f(X_i) \right) \right] \\
+&amp;= \mathbb{E}\left[ \prod_{i=1}^n e^{-f(X_i)} \right] 
+= \prod_{i=1}^n \mathbb{E}\left[ e^{-f(X_i)} \right] \quad (\text{i.i.d.}) \\
+&amp;= \left( \mathcal{L}_{f(X_1)}(1) \right)^n.\end{aligned}\]</span> :::</p>
+<p>::: <span>definition</span> **Definition (Void probability function).** The <em>void probability function</em> of a point process <span class="math inline">\(\Phi\)</span> is defined by <span class="math display">\[\gamma_\Phi(B) = \mathbb{P}[\Phi(B) = 0], \quad B \in \mathcal{B}.\]</span> :::</p>
+<p>::: <span>proposition</span> **Proposition.** The void probability function <span class="math inline">\(\gamma_\Phi\)</span> characterizes the distribution of a <em>simple</em> point process <span class="math inline">\(\Phi\)</span>. :::</p>
+<p>::: <span>proof</span> *Proof.* See [baccelli2024random]<span>Thm. 2.1.10</span>.</p>
+<p><span class="math inline">\(\square\)</span> :::</p>
+<p>::: <span>example</span> **Example (Void probability of a binomial point process).** Consider the binomial point process <span class="math display">\[\Phi = \sum_{i=1}^n \delta_{X_i}, \quad X_i \stackrel{\text{i.i.d.}}{\sim} \mathbb{Q}.\]</span> Then the void probability is <span class="math display">\[\begin{aligned}
+\mathbb{P}[\Phi(B) = 0] 
+&amp;= \mathbb{P}\left[ \bigcap_{i=1}^n \{ X_i \notin B \} \right] \\
+&amp;= \left[ 1 - Q(B) \right]^n.\end{aligned}\]</span> :::</p>
+<div class="lecture-nav"><a href="lecture3.html">← Lecture 3</a> &nbsp;|&nbsp; <a href="index.html">↑ All Lectures</a> &nbsp;|&nbsp; <a href="lecture5.html">Lecture 5 →</a></div>
+</body>
+</html>

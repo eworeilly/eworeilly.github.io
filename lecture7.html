@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture 7: More on Poisson Transformations — EN.553.726</title>
+<link rel="stylesheet" href="notes.css">
+<script>
+MathJax = {tex: {inlineMath: [['$','$']], displayMath: [['$$','$$']]}};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+<nav><ul>
+  <li><a href="../index.html">Home</a></li>
+  <li><a href="../research.html">Research</a></li>
+  <li><a href="../teaching.html">Teaching</a></li>
+  <li><a href="../CVApril2026.pdf" target="_blank">CV</a></li>
+</ul></nav>
+<div class="lecture-nav"><a href="lecture6.html">← Lecture 6</a> &nbsp;|&nbsp; <a href="index.html">↑ All Lectures</a> &nbsp;|&nbsp; <a href="lecture8.html">Lecture 8 →</a></div>
+<h1 id="simulation-of-poisson-process-on-mathbbrd">Simulation of Poisson Process on <span class="math inline">\(\mathbb{R}^d\)</span></h1>
+<p>Let <span class="math inline">\(\Phi\)</span> be a Poisson process on <span class="math inline">\(\mathbb{R}^d\)</span> with intensity measure <span class="math display">\[\Lambda(\cdot) = \lambda |\cdot|,\]</span> where <span class="math inline">\(|\cdot|\)</span> denotes the Lebesgue measure. Then <span class="math inline">\(\Phi\)</span> is called a <strong>homogeneous Poisson process</strong> with intensity <span class="math inline">\(\lambda\)</span>.</p>
+<p>To simulate a realization of <span class="math inline">\(\Phi\)</span> on a compact window <span class="math inline">\(W \subset \mathbb{R}^d\)</span>, proceed as follows:</p>
+<ol>
+<li><p>Simulate a Poisson random variable <span class="math inline">\(N\)</span> with parameter <span class="math inline">\(\lambda |W|\)</span>.</p></li>
+<li><p>Conditioned on <span class="math inline">\(N = n\)</span>, simulate <span class="math inline">\(X_1, \dots, X_n\)</span> i.i.d. uniformly distributed on <span class="math inline">\(W\)</span>.</p></li>
+</ol>
+<p>Formally, the distribution of each point is <span class="math display">\[X_i \sim \frac{\Lambda(\cdot \cap W)}{\Lambda(W)} 
+= \frac{\lambda |\cdot \cap W|}{\lambda |W|} 
+= \frac{|\cdot \cap W|}{|W|}.\]</span></p>
+<h1 id="thinning-of-point-processes">Thinning of Point Processes</h1>
+<p>Let <span class="math inline">\((E, \mathcal{B})\)</span> be a locally compact complete separable metric space (CSMS) with Borel <span class="math inline">\(\sigma\)</span>-algebra <span class="math inline">\(\mathcal{B}\)</span>.</p>
+<p>Recall that for a point process <span class="math inline">\(\Phi\)</span> on <span class="math inline">\(E\)</span>, we can write <span class="math inline">\(\Phi = \sum_{k=1}^N \delta_{X_k},\)</span> where <span class="math inline">\(N = \Phi(E)\)</span> is a random variable taking values in <span class="math inline">\(\mathbb{N} \cup \{\infty\}\)</span>.</p>
+<p>::: <span>definition</span> **Definition (Thinning).** Let <span class="math inline">\(\Phi = \sum_{k=1}^N \delta_{X_k}\)</span> be a point process on <span class="math inline">\(E\)</span>, and let <span class="math inline">\(p: E \to [0,1]\)</span> be a measurable function. Let <span class="math inline">\(\{U_k\}_{k\geq 1}\)</span> be a sequence of i.i.d. <span class="math inline">\(\mathrm{Uniform}[0,1]\)</span> random variables independent of <span class="math inline">\(\Phi\)</span>.</p>
+<p>Then the <strong><span class="math inline">\(p\)</span>-thinning</strong> of <span class="math inline">\(\Phi\)</span> is the point process <span class="math display">\[\widetilde{\Phi} = \sum_{k=1}^N \mathbf{1}\{ U_k \leq p(X_k) \} \, \delta_{X_k}.\]</span> :::</p>
+<p>::: <span>proposition</span> **Proposition (Laplace functional under thinning).** Let <span class="math inline">\(\widetilde{\Phi}\)</span> be a <span class="math inline">\(p\)</span>-thinning of <span class="math inline">\(\Phi = \sum_{k=1}^N \delta_{X_k},\)</span> and suppose <span class="math inline">\(\Phi\)</span> has intensity measure <span class="math inline">\(\Lambda\)</span>. Then the Laplace functional of <span class="math inline">\(\widetilde{\Phi}\)</span> satisfies <span class="math display">\[L_{\widetilde{\Phi}}(f) = L_{\Phi}(\tilde{f}),\]</span> where <span class="math display">\[\tilde{f}(x) = -\log\left[ 1 - p(x) \big( 1 - e^{-f(x)} \big) \right]\]</span> for all measurable <span class="math inline">\(f: E \to \mathbb{R}_+\)</span>. :::</p>
+<p>::: <span>proof</span> *Proof.* <span class="math display">\[\begin{aligned}
+L_{\widetilde{\Phi}}(f) 
+&amp;:= \mathbb{E}\left[ e^{ -\int_E f \, d\widetilde{\Phi} } \right] \\
+&amp;= \mathbb{E}\left[ e^{ - \sum_{k=1}^N \mathbf{1}\{ U_k \leq p(X_k) \} f(X_k) } \right] \\
+&amp;= \mathbb{E}\left[ \mathbb{E}\left[ e^{ - \sum_{k=1}^N \mathbf{1}\{ U_k \leq p(X_k) \} f(X_k) } \,\middle|\, \Phi \right] \right] \\
+&amp;= \mathbb{E}\left[ \prod_{k=1}^N \mathbb{E}\left[ e^{ - \mathbf{1}\{ U_k \leq p(X_k) \} f(X_k) } \,\middle|\, \Phi \right] \right] \\
+&amp;= \mathbb{E}\left[ \prod_{k=1}^N \Big( (1 - p(X_k)) + p(X_k) e^{-f(X_k)} \Big) \right] \\
+&amp;= \mathbb{E}\left[ e^{ - \int_E \tilde{f}(x) \, d\Phi(x) } \right] \\
+&amp;= L_{\Phi}(\tilde{f}).\end{aligned}\]</span></p>
+<p><span class="math inline">\(\square\)</span> :::</p>
+<p>::: <span>corollary</span> **Corollary (Thinning of a Poisson process).** The <span class="math inline">\(p\)</span>-thinning of a Poisson process on <span class="math inline">\(E\)</span> with intensity measure <span class="math inline">\(\Lambda\)</span> is itself a Poisson process with intensity measure <span class="math display">\[\widetilde{\Lambda}(dx) = p(x)\Lambda(dx).\]</span> :::</p>
+<p>::: <span>proof</span> *Proof.* This follows directly from the Laplace functional characterization of a Poisson process and the previous proposition.</p>
+<p><span class="math inline">\(\square\)</span> :::</p>
+<p>::: <span>example</span> **Example (Simulation of an inhomogeneous Poisson process on <span class="math inline">\(\mathbb{R}^d\)</span>).** Let <span class="math inline">\(\Phi\)</span> be a Poisson process on <span class="math inline">\(\mathbb{R}^d\)</span> with intensity measure <span class="math display">\[\Lambda(dx) = \lambda(x)\, dx,\]</span> where <span class="math inline">\(\lambda(x)\)</span> is called the intensity function.</p>
+<p>Assume <span class="math inline">\(\lambda(x) \leq \lambda^\star &lt; \infty\)</span>. We can simulate a realization of this inhomogeneous Poisson process as follows:</p>
+<ol>
+<li><p>Simulate a homogeneous Poisson process <span class="math inline">\(\Phi^\star\)</span> on <span class="math inline">\(\mathbb{R}^d\)</span> with constant intensity <span class="math inline">\(\lambda^\star\)</span>.</p></li>
+<li><p>Let <span class="math inline">\(p(x) = \frac{\lambda(x)}{\lambda^\star}\)</span> and generate a <span class="math inline">\(p\)</span>-thinning of <span class="math inline">\(\Phi^\star\)</span>.</p></li>
+</ol>
+<p>The simulated Poisson process has intensity measure <span class="math display">\[\Lambda(B) = \int_B \frac{\lambda(x)}{\lambda^\star} \lambda^\star dx = \int_B \lambda(x) dx.\]</span></p>
+<p>Note: The intensity measure <span class="math inline">\(\widetilde{\Lambda}\)</span> of the <span class="math inline">\(p\)</span>-thinning <span class="math inline">\(\widetilde{\Phi}\)</span> of <span class="math inline">\(\Phi\)</span> with intensity measure <span class="math inline">\(\Lambda\)</span> is given by <span class="math display">\[\widetilde{\Lambda}(B) = \int_B p(x)\, \Lambda(dx).\]</span> :::</p>
+<h1 id="mapping">Mapping</h1>
+<p>Let <span class="math inline">\((E, \mathcal{B}(E))\)</span> and <span class="math inline">\((G, \mathcal{B}(G))\)</span> be locally compact CSMS equipped with Borel <span class="math inline">\(\sigma\)</span>-algebras. Let <span class="math inline">\(\mathcal{C}(E)\)</span> and <span class="math inline">\(\mathcal{C}(G)\)</span> denote the collections of compact sets of <span class="math inline">\(E\)</span> and <span class="math inline">\(G\)</span>, respectively. Let <span class="math inline">\(T: E \rightarrow G\)</span> be a measurable mapping and assume that <span class="math display">\[T^{-1}(C) \in \mathcal{C}(E) \quad \text{for all } C \in \mathcal{C}(G).\]</span></p>
+<p>Then, for any locally finite measure <span class="math inline">\(\mu\)</span> on <span class="math inline">\(E\)</span>, the image of <span class="math inline">\(\mu\)</span> under <span class="math inline">\(T\)</span> (also called the <em>pushforward</em> of <span class="math inline">\(\mu\)</span>), defined by <span class="math display">\[T(\mu) = \mu \circ T^{-1},\]</span> is a locally finite measure on <span class="math inline">\(G\)</span>.</p>
+<p>::: <span>proposition</span> **Proposition.** In the above setting, if <span class="math inline">\(\Phi\)</span> is a Poisson process on <span class="math inline">\(E\)</span> with intensity measure <span class="math inline">\(\Lambda\)</span>, then <span class="math inline">\(T(\Phi)\)</span> is a Poisson process with intensity measure <span class="math display">\[T(\Lambda) = \Lambda \circ T^{-1}.\]</span> :::</p>
+<p>::: <span>example</span> **Example.** Let <span class="math inline">\(\Phi\)</span> be a Poisson process on <span class="math inline">\(\mathbb{R}^d \setminus \{0\}\)</span> with intensity measure <span class="math display">\[\Lambda(dx) = \|x\|^{-d} dx.\]</span> Define the mapping <span class="math display">\[T: \mathbb{R}^d \setminus \{0\} \rightarrow \mathcal{A}(d, d-1)\]</span> where <span class="math inline">\(\mathcal{A}(d, d-1)\)</span> denotes the space of <span class="math inline">\((d-1)\)</span>-dimensional affine subspaces of <span class="math inline">\(\mathbb{R}^d\)</span>. For <span class="math inline">\(x \in \mathbb{R}^d \setminus \{0\}\)</span>, set <span class="math display">\[H(x) := \{ y \in \mathbb{R}^d : \langle x, y \rangle = 1 \}.\]</span> :::</p>
+<div class="lecture-nav"><a href="lecture6.html">← Lecture 6</a> &nbsp;|&nbsp; <a href="index.html">↑ All Lectures</a> &nbsp;|&nbsp; <a href="lecture8.html">Lecture 8 →</a></div>
+</body>
+</html>

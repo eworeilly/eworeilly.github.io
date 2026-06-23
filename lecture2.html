@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture 2: Intensity Measure and Campbell's Theorem — EN.553.726</title>
+<link rel="stylesheet" href="notes.css">
+<script>
+MathJax = {tex: {inlineMath: [['$','$']], displayMath: [['$$','$$']]}};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+<nav><ul>
+  <li><a href="../index.html">Home</a></li>
+  <li><a href="../research.html">Research</a></li>
+  <li><a href="../teaching.html">Teaching</a></li>
+  <li><a href="../CVApril2026.pdf" target="_blank">CV</a></li>
+</ul></nav>
+<div class="lecture-nav"><a href="lecture1.html">← Lecture 1</a> &nbsp;|&nbsp; <a href="index.html">↑ All Lectures</a> &nbsp;|&nbsp; <a href="lecture3.html">Lecture 3 →</a></div>
+<h1 id="introduction">Introduction</h1>
+<p><strong>Question:</strong> How can we understand or describe the distribution of a point process <span class="math inline">\(\Phi\)</span>?</p>
+<p>We want to find analogues of classical distributional characteristics for random variables:</p>
+<ol>
+<li><p>Expected value (this lecture)</p></li>
+<li><p>Higher moments</p></li>
+<li><p>Probability density</p></li>
+<li><p>Characterizing transforms (e.g., Laplace)</p></li>
+</ol>
+<p><strong>Setting:</strong> Let <span class="math inline">\(E\)</span> be a complete separable metric space (CSMS), <span class="math inline">\(\mathcal{B} := \mathcal{B}(E)\)</span> be the Borel <span class="math inline">\(\sigma\)</span>-algebra on <span class="math inline">\(E\)</span>, <span class="math inline">\(\mathcal{C}\)</span> be the set of all compact subsets of <span class="math inline">\(E\)</span>, <span class="math inline">\((\mathcal{M}(E), \mathscr{M}(E))\)</span> be the space of all counting measures on <span class="math inline">\(E\)</span>, and <span class="math inline">\(\Phi\)</span> be a simple point process on <span class="math inline">\(E\)</span>.</p>
+<h1 id="first-momentintensity-measure">First Moment/Intensity Measure</h1>
+<p>::: <span>definition</span> **Definition (First moment/intensity measure).** The <strong>intensity measure</strong> <span class="math inline">\(\Lambda\)</span> of <span class="math inline">\(\Phi\)</span> is the measure on <span class="math inline">\((E, \mathcal{B})\)</span> defined by <span class="math display">\[\Lambda(B) := \mathbb{E}[\Phi(B)], \qquad B \in \mathcal{B}(E).\]</span> <span class="math inline">\(\Lambda(B)\)</span> represents the expected number of points of <span class="math inline">\(\Phi\)</span> in the set <span class="math inline">\(B\)</span>. :::</p>
+<p>Even though <span class="math inline">\(\Phi\)</span> is locally finite almost surely, it is <strong>not necessarily</strong> a locally finite measure. In other words, <span class="math display">\[\forall C \in \mathcal{C},\ \mathbb{P}\big[ \Phi(C) &lt; \infty \big] = 1 
+\nRightarrow 
+\mathbb{E}\big[ \Phi(C) \big] &lt; \infty.\]</span></p>
+<p>In the future, we will need to assume this property.</p>
+<p>::: <span>example</span> **Example (Binomial point process).** If <span class="math inline">\(\Phi = \sum_{i=1}^n \delta_{X_i}\)</span> is a binomial point process with <span class="math inline">\(X_i \stackrel{\text{i.i.d.}}{\sim} \mathbb{Q}\)</span>, then <span class="math display">\[\Lambda(B) = \mathbb{E}[\Phi(B)] = \mathbb{E}\left[\sum_{i=1}^n 1_{\{X_i \in B\}}\right] = \sum_{i=1}^n \mathbb{P}(X_i \in B) = n \mathbb{Q}(B).\]</span> :::</p>
+<p>::: <span>example</span> **Example (Mixed binomial point process).** :::</p>
+<h1 id="campbells-theorem">Campbell’s Theorem</h1>
+<p>::: <span>theorem</span> **Theorem (Campbell’s theorem).** Let <span class="math inline">\(\Phi\)</span> be a point process on <span class="math inline">\(E\)</span> with intensity measure <span class="math inline">\(\Lambda\)</span> and let <span class="math inline">\(f\)</span> be a <span class="math inline">\(\Lambda\)</span>-integrable/non-negative function. Then <span class="math display">\[\mathbb{E}\left[ \int_E f(x) \, \Phi(dx) \right] = \mathbb{E}\left[\sum_{x\in\Phi}f(x) \right] = \int_E f(x) \, \Lambda(dx).\]</span> :::</p>
+<p>::: <span>proof</span> *Proof.* Let <span class="math inline">\(f = 1_A\)</span>, where <span class="math inline">\(A \in \mathcal{B}\)</span>. Then <span class="math display">\[\mathbb{E}\left[ \int_E 1_A \, d\Phi \right] 
+= \mathbb{E}\left[ \Phi(A) \right] 
+= \Lambda(A) 
+= \int_E 1_A \, d\Lambda.\]</span></p>
+<p>By a standard argument in measure theory, we can build up a <span class="math inline">\(\Lambda\)</span>-integrable function through simple functions and use the monotone convergence theorem.</p>
+<p><span class="math inline">\(\square\)</span> :::</p>
+<div class="lecture-nav"><a href="lecture1.html">← Lecture 1</a> &nbsp;|&nbsp; <a href="index.html">↑ All Lectures</a> &nbsp;|&nbsp; <a href="lecture3.html">Lecture 3 →</a></div>
+</body>
+</html>

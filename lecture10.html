@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture 10: Palm Distribution Continued — EN.553.726</title>
+<link rel="stylesheet" href="notes.css">
+<script>
+MathJax = {tex: {inlineMath: [['$','$']], displayMath: [['$$','$$']]}};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+<nav><ul>
+  <li><a href="../index.html">Home</a></li>
+  <li><a href="../research.html">Research</a></li>
+  <li><a href="../teaching.html">Teaching</a></li>
+  <li><a href="../CVApril2026.pdf" target="_blank">CV</a></li>
+</ul></nav>
+<div class="lecture-nav"><a href="lecture9.html">← Lecture 9</a> &nbsp;|&nbsp; <a href="index.html">↑ All Lectures</a> &nbsp;|&nbsp; <a href="lecture11.html">Lecture 11 →</a></div>
+<h1 id="introdution">Introdution</h1>
+<p>Last time: We defined the Palm version <span class="math inline">\(\Phi^0\)</span> of a stationary point process <span class="math inline">\(\Phi\)</span> on <span class="math inline">\(\mathbb{R}^d\)</span> with distribution <span class="math inline">\(\mathbb{P}_\Phi^0\)</span> as described in the Refined Campbell’s Theorem.</p>
+<p>::: <span>theorem</span> **Theorem (Refined Campbell’s Theorem).** Let <span class="math inline">\(\Phi\)</span> be a stationary point process on <span class="math inline">\(\mathbb{R}^{d}\)</span> with intensity <span class="math inline">\(\lambda \in (0,\infty)\)</span>. Then there is a unique probability measure <span class="math inline">\(P_{\Phi}^{0}\)</span> on <span class="math inline">\(\mathcal{M}(\mathbb{R}^{d})\)</span> such that, for all measurable <span class="math inline">\(f : \mathbb{R}^{d} \times \mathcal{M}(\mathbb{R}^{d}) \rightarrow \mathbb{R}_{+}\)</span>, <span class="math display">\[\mathbb{E}\bigg[ \int_{\mathbb{R}^{d}} f(x, t_x \Phi)\, \Phi(dx) \bigg]
+    =
+    \lambda \int_{\mathbb{R}^{d}} \int_{\mathcal{M}(\mathbb{R}^{d})} f(x,\nu)\, P_{\Phi}^{0}(d\nu)\, dx.\]</span> :::</p>
+<p>We also saw Slivnyak’s Theorem, which states that if <span class="math inline">\(\Phi\)</span> is a stationary Poisson process on <span class="math inline">\(\mathbb{R}^{d}\)</span>, then <span class="math display">\[\mathbb{P}_{\Phi}^{0}(A) = \mathbb{P}\big(\Phi + \delta_{0} \in A\big),\]</span> or equivalently, <span class="math display">\[\mathbb{P}_{\Phi}^{0,-}(A)
+:= 
+\mathbb{P}_{\Phi}^{0}(\Phi^{0} - \delta_{0} \in A)
+=
+\mathbb{P}(\Phi \in A).\]</span></p>
+<h1 id="palm-distribution-continued">Palm Distribution Continued</h1>
+<h2 id="example-matérn-i-hard-core-process">Example: Matérn I Hard-Core Process</h2>
+<p>::: <span>example</span> **Example (Matérn I Hard-Core Process).** Let <span class="math inline">\(\Phi = \sum_{k \in \mathbb{N}} \delta_{X_k}\)</span> be a stationary Poisson process on <span class="math inline">\(\mathbb{R}^{d}\)</span> with intensity <span class="math inline">\(\lambda\)</span>.</p>
+<p>Define <span class="math display">\[\widetilde{\Phi}
+    =
+    \sum_{k \in \mathbb{N}}
+    \delta_{X_k}\,
+    \mathbf{1}_{\{\Phi(B_{d}(X_k,r)) = 1\}}.\]</span> <strong>Question:</strong> What is the intensity measure of <span class="math inline">\(\widetilde{\Phi}\)</span>?</p>
+<p>For <span class="math inline">\(B \in \mathcal{B}(\mathbb{R}^d)\)</span>, <span class="math display">\[\mathbb{E}[\widetilde{\Phi}(B)]
+    = \mathbb{E}\!\left[
+    \sum_{k\in\mathbb{N}}
+    \mathbf{1}_{\{X_k \in B\}}
+    \mathbf{1}_{\{\Phi(B_d(X_k,r)) = 1\}}
+    \right].\]</span></p>
+<p><span class="math display">\[= \mathbb{E}\!\left[
+    \int_{\mathbb{R}^d}
+    \mathbf{1}_{\{x \in B\}}
+    \mathbf{1}_{\{\Phi(B_d(x,r)) = 1\}}
+    \, \Phi(dx)
+    \right].\]</span></p>
+<p>Note that <span class="math display">\[\mathbf{1}_{\{\Phi(B_d(x,r)) = 1\}}
+    = \mathbf{1}_{\{(t_x \Phi)(B_d(0,r)) = 1\}}.\]</span></p>
+<p><em>Refined Campbell’s theorem</em> gives <span class="math display">\[= \lambda
+    \int_{\mathbb{R}^d}
+    \int_{\mathcal{M}(\mathbb{R}^d)}
+    \mathbf{1}_{\{x \in B\}}
+    \mathbf{1}_{\{\nu(B_d(0,r)) = 1\}}
+    \, \mathbb{P}^0_{\Phi}(d\nu)
+    \, dx.\]</span></p>
+<p><span class="math display">\[= \lambda |B|
+    \mathbb{P}^0_{\Phi}\!\left(\Phi(B_d(0,r)) = 1\right).\]</span></p>
+<p>By Slivnyak’s theorem, <span class="math display">\[\mathbb{P}^0_{\Phi}\!\left(\Phi(B_d(0,r)) = 1\right)
+    = \mathbb{P}\!\left(\Phi(B_d(0,r)) = 0\right).\]</span></p>
+<p><span class="math display">\[= e^{-\lambda |B_d(0,r)|}.\]</span></p>
+<p>Hence, <span class="math display">\[\mathbb{E}[\widetilde{\Phi}(B)]
+    = \lambda |B| e^{-\lambda |B_d(0,r)|}.
+    \qed\]</span> :::</p>
+<h2 id="proof-of-refined-campbells-theorem">Proof of Refined Campbell’s Theorem</h2>
+<p>::: <span>proof</span> *Proof.* Let <span class="math inline">\(\Phi\)</span> be a stationary point process on <span class="math inline">\(\mathbb{R}^d\)</span> with intensity <span class="math inline">\(\lambda\)</span>. For each <span class="math inline">\(A \in \mathcal{M}(\mathbb{R}^d)\)</span>, define a measure <span class="math inline">\(\mu_A\)</span> on <span class="math inline">\(\mathbb{R}^d\)</span> by <span class="math display">\[\mu_A(B)
+    := \mathbb{E}\!\left[
+    \int_{\mathbb{R}^d}
+    \mathbf{1}_B(x)\,
+    \mathbf{1}_A(t_x \Phi)\,
+    \Phi(dx)
+    \right],
+    \qquad B \in \mathcal{B}(\mathbb{R}^d).\]</span></p>
+<p>We claim that <span class="math inline">\(\mu_A\)</span> is a translation-invariant measure. Indeed, for all <span class="math inline">\(y \in \mathbb{R}^d\)</span>, <span class="math display">\[\mu_A(B+y)
+    = \mathbb{E}\!\left[
+    \int_{\mathbb{R}^d}
+    \mathbf{1}_B(x-y)\,
+    \mathbf{1}_A(t_x \Phi)\,
+    \Phi(dx)
+    \right].\]</span></p>
+<p>If <span class="math inline">\(\Phi = \sum_k \delta_{X_k}\)</span>, then <span class="math display">\[= \mathbb{E}\!\left[
+    \sum_k
+    \mathbf{1}_B(X_k - y)\,
+    \mathbf{1}_A(t_{X_k}\Phi)
+    \right].\]</span></p>
+<p>Let <span class="math inline">\(Y_k := X_k - y\)</span>. Then <span class="math display">\[= \mathbb{E}\!\left[
+    \sum_k
+    \mathbf{1}_B(Y_k)\,
+    \mathbf{1}_A(t_{Y_k + y}\Phi)
+    \right]
+    = \mathbb{E}\!\left[
+    \sum_k
+    \mathbf{1}_B(Y_k)\,
+    \mathbf{1}_A(t_{Y_k} t_y \Phi)
+    \right].\]</span></p>
+<p>Hence, <span class="math display">\[= \mathbb{E}\!\left[
+    \int_{\mathbb{R}^d}
+    \mathbf{1}_B(x)\,
+    \mathbf{1}_A(t_x t_y \Phi)\,
+    t_y \Phi(dx)
+    \right].\]</span></p>
+<p>By stationarity of <span class="math inline">\(\Phi\)</span>, <span class="math inline">\(t_y \Phi \overset{d}{=} \Phi\)</span>, and therefore <span class="math display">\[= \mathbb{E}\!\left[
+    \int_{\mathbb{R}^d}
+    \mathbf{1}_B(x)\,
+    \mathbf{1}_A(t_x \Phi)\,
+    \Phi(dx)
+    \right]
+    = \mu_A(B).\]</span></p>
+<p>That is, <span class="math inline">\(\mu_A\)</span> is a translation-invariant measure on <span class="math inline">\(\mathbb{R}^d\)</span>. By uniqueness of Lebesgue measure, there exists <span class="math inline">\(\lambda_A \in [0,\infty)\)</span> such that <span class="math display">\[\mu_A(B) = \lambda_A |B|,
+    \qquad \forall B \in \mathcal{B}(\mathbb{R}^d).\]</span></p>
+<p>We can take <span class="math inline">\(B = [0,1]^d\)</span>, so <span class="math display">\[\lambda_A = \mu_A([0,1]^d).\]</span></p>
+<p>Also, <span class="math display">\[\lambda_{\mathcal{M}(\mathbb{R}^d)}
+    = \mathbb{E}\!\left[\Phi([0,1]^d)\right]
+    = \lambda,\]</span> so we can define a probability measure on <span class="math inline">\(\mathcal{M}(\mathbb{R}^d)\)</span> by <span class="math display">\[\mathbb{P}^0_\Phi(A)
+    := \frac{\lambda_A}{\lambda},
+    \qquad A \in \mathcal{M}(\mathbb{R}^d).\]</span></p>
+<p>We then have <span class="math display">\[\mathbb{E}\!\left[
+    \int_{\mathbb{R}^d}
+    \mathbf{1}_B(x)\,
+    \mathbf{1}_A(t_x \Phi)\,
+    \Phi(dx)
+    \right]
+    = \lambda\, \mathbb{P}^0_\Phi(A)\, |B|,\]</span> which is the claim of the theorem for <span class="math inline">\(f(x,\nu) = \mathbf{1}_{\{x \in B\}} \mathbf{1}_{\{\nu \in A\}}\)</span>, and can be built up to non-negative measurable functions in the usual way.</p>
+<p><span class="math inline">\(\square\)</span> :::</p>
+<h2 id="ergodic-interpretation-of-the-palm-distribution">Ergodic Interpretation of the Palm Distribution</h2>
+<p>We also have the ergodic interpretation of the Palm distribution. Let <span class="math display">\[B^d := B_d(0,1) \subset \mathbb{R}^d .\]</span></p>
+<p>Then <span class="math display">\[\mathbb{P}_{\Phi}^{0}(A)
+=
+\lim_{r \to \infty}
+\frac{\displaystyle \int_{r B^d} \mathbf{1}_A\!\left(t_x \Phi\right)\,\Phi(dx)}
+{\displaystyle \Phi\!\left(r B^d\right)}
+\quad \text{a.s.}\]</span></p>
+<p>for an ergodic stationary point process on <span class="math inline">\(\mathbb{R}^d\)</span>.</p>
+<p>Ergodicity is a topic we won’t go into further in this class, but see Section 8.4 in [last2018lectures] or Chapter 8 in [baccelli2024random] for definitions and additional theory.</p>
+<div class="lecture-nav"><a href="lecture9.html">← Lecture 9</a> &nbsp;|&nbsp; <a href="index.html">↑ All Lectures</a> &nbsp;|&nbsp; <a href="lecture11.html">Lecture 11 →</a></div>
+</body>
+</html>
