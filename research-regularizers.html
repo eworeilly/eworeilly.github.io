@@ -12,7 +12,7 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="research.html">Research</a></li>
             <li><a href="publications.html">Publications</a></li>
-            <li><a href="teaching.html">Teaching</a></li>
+            <li><a href="teaching.html">Teaching and Advising</a></li>
             <li><a href="CVApril2026.pdf" target="_blank">CV</a></li>
         </ul>
     </nav>
@@ -24,122 +24,104 @@
     <section>
         <h2>Overview</h2>
         <p>
-            In optimization-based approaches to inverse problems and statistical inference,
-          it is common to add a regularizer to the objective to promote desired structural
-          properties in the solution. A combination of prior domain information and
-          computational considerations typically drives the choice of a suitable regularizer.
-          Convex regularizers are attractive computationally, but are limited in the types of
-          structure they can promote. Nonconvex regularizers are more flexible, and have strong
-          empirical performance in some applications, but the associated optimization problems
-          come with computational challenges. Our work has studied the class of regularizers defined by Minkowski
-          functionals of star bodies, a class of compact sets that include both convex bodies and
-          nonconvex sets. Some of the questions our research aims to answer include:
-          <ul>
-            <li>What is the optimal regularizer to employ for a given data source from this class?</li>
-            <li>What properties of a data source govern whether its optimal regularizer is convex?</li>
-          </ul>
-
+            Many problems in data analysis require recovering an unknown signal from noisy or incomplete
+            measurements — for example, reconstructing a medical image from limited scan data, or estimating
+            a statistical model from a small dataset. <em>Regularization</em> is a fundamental technique for
+            making these problems well-posed: one adds a penalty term, called a regularizer, to the objective
+            that encourages solutions with desired structural properties, such as sparsity or smoothness. The
+            choice of regularizer profoundly affects the quality and interpretability of the result, yet
+            principled methods for selecting it from data remain underdeveloped. Our research develops a
+            geometric theory of regularizers and uses it to answer the question: given knowledge of the data
+            distribution, what is the best regularizer to use?
         </p>
+
         <figure class="research-figure medium">
             <img src="star-regularizers.png" alt="star">
-            <figcaption>Figure 1: Optimal star regularizers for different Gaussian misxture distributions</figcaption>
+            <figcaption>Figure 1: Optimal star regularizers for different Gaussian mixture distributions</figcaption>
         </figure>
+
+        <h3>The geometry of regularizers</h3>
+        <p>
+            We study the class of regularizers given by Minkowski functionals of <em>star bodies</em> —
+            compact sets that include convex bodies (like ellipsoids and polytopes) as a special case, but
+            also many nonconvex shapes. This is a broad family of functionals that capture many regularizers
+            used in practice. By connecting these regularizers to dual Brunn-Minkowski theory we show that a
+            single radial function derived from the data distribution acts as a kind of computational
+            sufficient statistic: it encodes all the information needed to identify the optimal regularizer
+            and to determine whether that regularizer is convex.
+        </p>
+
+        <h3>Learning regularizers from data</h3>
+        <p>
+            In practice, the data distribution is unknown, and regularizers must be learned from samples.
+            We study critic-based loss functions, where a regularizer is trained to assign low values to
+            likely data and high values to unlikely data. By leveraging star geometry and dual mixed volume
+            theory, we show that these losses can be interpreted geometrically in terms of the data
+            distribution, derive exact expressions for the optimal regularizer learned by this process in
+            special cases, and identify which neural network architectures naturally produce regularizers
+            from this star body class.
+        </p>
+
+        <h3>Robustness to distributional uncertainty</h3>
+        <p>
+            Real-world deployments often involve distributional shift: the data encountered at test time may
+            differ from training data. We introduce a framework for <em>distributionally robust</em> optimal
+            regularization, which identifies regularizers that remain effective under perturbations of the
+            data distribution. Using convex duality, we reformulate the underlying robust optimization
+            problem into tractable form. The resulting regularizers interpolate between memorizing the
+            training distribution and using a uniform prior, and we show that robustness to Wasserstein-1
+            perturbations naturally promotes regularizers with smaller Lipschitz constants.
+        </p>
     </section>
-
-    <!-- <section>
-        <h2>Key Questions</h2>
-        <ul>
-            <li>How does the geometry of the random parition affect machine learning algorithm performance?</li>
-            <li>How can dimensionality reduction be incorporated into the paritioning process?</li>
-        </ul>
-    </section> -->
-
-    <!-- <section>
-        <h2>Main Results</h2>
-
-        <h3>Random Projections and Dimension Reduction</h3>
-        <p>
-            We proved new concentration bounds for random projections that improve upon
-            classical Johnson-Lindenstrauss results under realistic data assumptions.
-            These results provide theoretical guarantees for dimensionality reduction
-            methods used in practice.
-        </p>
-
-        <h3>Convex Hulls of Random Point Sets</h3>
-        <p>
-            We characterized the typical number of faces and volume of convex hulls
-            formed by random points in high dimensions, with applications to support
-            vector machines and computational geometry.
-        </p>
-    </section> -->
 
     <section>
         <h2>Related Publications</h2>
 
-    <div class="publication">
-        <div class="pub-title">
-            Optimal regularization under uncertainty: Distributional robustness and convexity constraints
+        <div class="publication">
+            <div class="pub-title">
+                Optimal regularization under uncertainty: Distributional robustness and convexity constraints
+            </div>
+            <div class="pub-authors">
+                Oscar Leong, <strong>Eliza O'Reilly</strong>, Yong Sheng Soh
+            </div>
+            <div class="pub-venue">
+                Preprint, 2025
+            </div>
+            <div class="pub-links">
+                <a href="https://arxiv.org/abs/2510.03464" target="_blank">arXiv</a>
+            </div>
         </div>
-        <div class="pub-authors">
-            Oscar Leong, <strong>Eliza O'Reilly</strong>, Yong Sheng Soh
-        </div>
-        <div class="pub-venue">
-            Preprint, 2025
-        </div>
-        <div class="pub-links">
-            <a href="https://arxiv.org/abs/2510.03464" target="_blank">arXiv</a>
-        </div>
-    </div>
 
-    <div class="publication">
-        <div class="pub-title">
-            Optimal regularization for a data source
+        <div class="publication">
+            <div class="pub-title">
+                Optimal regularization for a data source
+            </div>
+            <div class="pub-authors">
+                Oscar Leong, <strong>Eliza O'Reilly</strong>, Yong Sheng Soh, Venkat Chandrasekaran
+            </div>
+            <div class="pub-venue">
+                <em>Foundations of Computational Mathematics</em>, 2025
+            </div>
+            <div class="pub-links">
+                <a href="https://link.springer.com/article/10.1007/s10208-025-09693-y" target="_blank">Journal</a>
+            </div>
         </div>
-        <div class="pub-authors">
-            Oscar Leong, <strong>Eliza O'Reilly</strong>, Yong Sheng Soh, Venkat Chandrasekaran
-        </div>
-        <div class="pub-venue">
-            <em>Foundations of Computational Mathematics</em>, 2025
-        </div>
-        <div class="pub-links">
-            <a href="https://link.springer.com/article/10.1007/s10208-025-09693-y" target="_blank">Journal</a>
-        </div>
-    </div>
 
-
-    <div class="publication">
-        <div class="pub-title">
-            The star geometry of critic-based regularizer learning
+        <div class="publication">
+            <div class="pub-title">
+                The star geometry of critic-based regularizer learning
+            </div>
+            <div class="pub-authors">
+                Oscar Leong, <strong>Eliza O'Reilly</strong>, Yong Sheng Soh
+            </div>
+            <div class="pub-venue">
+                <em>The Thirty-eighth Annual Conference on Neural Information Processing Systems (NeurIPS)</em>, 2024
+            </div>
+            <div class="pub-links">
+                <a href="https://proceedings.neurips.cc/paper_files/paper/2024/file/834d4d24d223e5dc05f9971eaf30d4a6-Paper-Conference.pdf" target="_blank">Paper</a>
+            </div>
         </div>
-        <div class="pub-authors">
-            Oscar Leong, <strong>Eliza O'Reilly</strong>, Yong Sheng Soh
-        </div>
-        <div class="pub-venue">
-            <em>The Thirty-eighth Annual Conference on Neural Information Processing Systems (NeurIPS)</em>, 2024
-        </div>
-        <div class="pub-links">
-            <a href="https://proceedings.neurips.cc/paper_files/paper/2024/file/834d4d24d223e5dc05f9971eaf30d4a6-Paper-Conference.pdf" target="_blank">Paper</a>
-        </div>
-    </div>
-
     </section>
-
-    <!-- <section>
-        <h2>Collaborators</h2>
-        <ul>
-            <li><a href="#">Collaborator Name</a> (University)</li>
-            <li><a href="#">Collaborator Name</a> (University)</li>
-        </ul>
-    </section> -->
-
-    <!-- <section>
-        <h2>Talks & Presentations</h2>
-        <ul>
-            <li><strong>January 2024:</strong> Workshop on Stochastic Geometry, ICERM</li>
-            <li><strong>November 2023:</strong> Applied Math Colloquium, MIT</li>
-            <li><strong>June 2023:</strong> Conference on Learning Theory (COLT)</li>
-        </ul>
-    </section> -->
 
     <footer>
         <p><a href="research.html">← Back to Research</a></p>
