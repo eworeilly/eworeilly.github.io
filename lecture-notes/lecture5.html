@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture 5: Poisson Processes — EN.553.726</title>
+<link rel="stylesheet" href="notes.css">
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$','$']],
+    displayMath: [['$$','$$']],
+    macros: {
+      NN: '{\\mathbb{N}_0 \\cup \\{\\infty\\}}'
+    }
+  }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+<nav><ul>
+  <li><a href="../index.html">Home</a></li>
+  <li><a href="../research.html">Research</a></li>
+  <li><a href="../teaching.html">Teaching</a></li>
+  <li><a href="../CVApril2026.pdf" target="_blank">CV</a></li>
+</ul></nav>
+<div class="lecture-nav"><a href="lecture4.html">← Lecture 4</a> &nbsp;|&nbsp; <a href="index.html">↑ All Lectures</a> &nbsp;|&nbsp; <a href="lecture6.html">Lecture 6 →</a></div>
+<h1 class="title">Lecture 5: Poisson Processes</h1>
+<h1 id="from-binomial-to-poisson-processes">From Binomial to Poisson Processes</h1>
+<p>Recall our main example of a <strong>Binomial point process</strong>.<br />
+For <span class="math inline">\(n \in \mathbb{N}\)</span> and <span class="math inline">\(X_1, \dots, X_n\)</span> i.i.d. random elements of CSMS <span class="math inline">\((E, \mathcal{B})\)</span> with distribution <span class="math inline">\(\mathbb{Q}\)</span>, letd <span class="math display">\[
+\Phi = \sum_{i=1}^n \delta_{X_i}.
+\]</span></p>
+<p>For <span class="math inline">\(B \in \mathcal{B}\)</span>, <span class="math inline">\(\Phi(B)\)</span> has a binomial distribution: <span class="math display">\[
+\mathbb{P}[\Phi(B) = k] = \binom{n}{k} \mathbb{Q}(B)^k (1 - \mathbb{Q}(B))^{n-k}.
+\]</span></p>
+<p>A binomial distribution <span class="math inline">\(\mathrm{Binomial}(n, p_n)\)</span> converges to a Poisson distribution <span class="math inline">\(\mathrm{Poisson}(\gamma)\)</span> if <span class="math inline">\(n p_n \to \gamma \in (0, \infty)\)</span>.</p>
+<p>Thus, letting <span class="math inline">\(n \to \infty\)</span> and <span class="math inline">\(\mathbb{Q}(B) \to 0\)</span> in an appropriate way leads us to a <strong>Poisson process</strong>.</p>
+<p>Let <span class="math inline">\(\Lambda\)</span> be a locally finite measure on <span class="math inline">\(E\)</span>, and let <span class="math inline">\(\{C_j\}_{j \in \mathbb{N}}\)</span> be a sequence of compact sets such that: <span class="math inline">\(C_j \uparrow E\)</span>, <span class="math inline">\(\Lambda(C_j) &lt; \infty\)</span>, and <span class="math inline">\(\Lambda(C_j) \to \infty\)</span> as <span class="math inline">\(j \to \infty\)</span>.</p>
+<p>Define a sequence of point processes <span class="math display">\[
+\Phi_j = \sum_{i=1}^{n_j} \delta_{X_i^{(j)}},
+\]</span> where <span class="math display">\[
+X_i^{(j)} \sim \frac{\Lambda(\cdot \cap C_j)}{\Lambda(C_j)}, \quad i = 1, \dots, n_j
+\]</span> are i.i.d. random variables.</p>
+<p>Assume that <span class="math display">\[
+\frac{n_j}{\Lambda(C_j)} \to 1 \quad \text{as } j \to \infty.
+\]</span></p>
+<p>Then, for <span class="math inline">\(B \in \mathcal{B}\)</span>: <span class="math display">\[
+\mathbb{P}\left[ \Phi_j(B) = k \right] 
+= \binom{n_j}{k} \left( \frac{\Lambda(B \cap C_j)}{\Lambda(C_j)} \right)^k 
+\left[ 1 - \frac{\Lambda(B \cap C_j)}{\Lambda(C_j)} \right]^{n_j - k}.
+\]</span></p>
+<p>Taking the limit <span class="math inline">\(j \to \infty\)</span>, we obtain: <span class="math display">\[
+\mathbb{P}\left[ \Phi(B) = k \right] 
+= \frac{\Lambda(B)^k}{k!} e^{-\Lambda(B)}.
+\]</span></p>
+<p>Thus, the limiting process <span class="math inline">\(\Phi\)</span> is a <strong>Poisson point process</strong> with mean measure <span class="math inline">\(\Lambda\)</span>.</p>
+<h1 id="poisson-point-processes">Poisson Point Processes</h1>
+<div class="definition">
+<p><strong>Definition.</strong> Let <span class="math inline">\(\Lambda\)</span> be a locally finite measure on the CSMS space <span class="math inline">\((E, \mathcal{B})\)</span>.<br />
+A <strong>Poisson point process</strong> <span class="math inline">\(\Phi\)</span> on <span class="math inline">\(E\)</span> with <strong>intensity measure</strong> <span class="math inline">\(\Lambda\)</span> is a point process such that:</p>
+<ol type="1">
+<li>For every <span class="math inline">\(B \in \mathcal{B}\)</span>, the random variable <span class="math inline">\(\Phi(B)\)</span> is Poisson distributed with parameter <span class="math inline">\(\Lambda(B)\)</span>.</li>
+<li>For every <span class="math inline">\(k \in \mathbb{N}\)</span> and pairwise disjoint sets <span class="math inline">\(B_1, \dots, B_k \in \mathcal{B}\)</span>, the random variables <span class="math inline">\(\Phi(B_1), \dots, \Phi(B_k)\)</span> are independent.</li>
+</ol>
+</div>
+<p>That is, <span class="math display">\[
+\mathbb{P}\left[ \Phi(B_1) = n_1, \dots, \Phi(B_k) = n_k \right] 
+= \prod_{i=1}^k e^{-\Lambda(B_i)} \frac{[\Lambda(B_i)]^{n_i}}{n_i!}.
+\]</span></p>
+<p>The use of the <em>intensity measure</em> is consistent since <span class="math display">\[
+\mathbb{E}\big[\Phi(B)\big] = \Lambda(B), \quad \forall B \in \mathcal{B}.
+\]</span></p>
+<p>Some further Observations:</p>
+<ul>
+<li>If <span class="math inline">\(\Phi\)</span> and <span class="math inline">\(\Phi&#39;\)</span> are two Poisson point processes with the same locally finite intensity measure <span class="math inline">\(\Lambda\)</span>, then $  ’. $</li>
+<li>The <strong>void function</strong> of a Poisson point process <span class="math inline">\(\Phi\)</span> is given by <span class="math display">\[
+    v_\Phi(B) = \mathbb{P}\left[ \Phi(B) = 0 \right] = e^{-\Lambda(B)}.
+    \]</span></li>
+<li>If we <strong>restrict</strong> a Poisson process <span class="math inline">\(\Phi\)</span> on <span class="math inline">\(E\)</span> to a measurable subset <span class="math inline">\(B \in \mathcal{B}\)</span>, then <span class="math display">\[
+    \Phi|_B(\cdot) = \Phi(\cdot \cap B)
+    \]</span> is itself a Poisson point process with intensity measure <span class="math display">\[
+    \Lambda_B(\cdot) = \Lambda(\cdot \cap B).
+    \]</span></li>
+</ul>
+<div class="proposition">
+<p><strong>Proposition.</strong> Let <span class="math inline">\(N\)</span> be a Poisson random variable with parameter <span class="math inline">\(\gamma &gt; 0\)</span>.<br />
+Let <span class="math inline">\(X_1, X_2, \dots\)</span> be i.i.d. random elements in <span class="math inline">\(E\)</span> with distribution <span class="math inline">\(\mathbb{Q}\)</span>, independent of <span class="math inline">\(N\)</span>.<br />
+Then <span class="math display">\[
+\Phi = \sum_{i=1}^{N} \delta_{X_i}
+\]</span> is a Poisson point process with intensity measure <span class="math inline">\(\gamma \mathbb{Q}\)</span>.</p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> It suffices to compute the joint distribution of <span class="math inline">\(\Phi(B_1), \dots, \Phi(B_k)\)</span> for pairwise disjoint sets <span class="math inline">\(B_1, \dots, B_k \in \mathcal{B}\)</span> such that <span class="math display">\[
+\bigcup_{i=1}^k B_i = E.
+\]</span> If not, we can simply add the complement of the union as an additional set.</p>
+<p>Let <span class="math inline">\(n_1, \dots, n_k \in \mathbb{N}_0\)</span> and define <span class="math inline">\(n = n_1 + \cdots + n_k\)</span>. Then,</p>
+<p><span class="math display">\[\begin{align*}
+     &amp;~\mathbb{P}\big[\Phi(B_1) = n_1, \dots, \Phi(B_k) = n_k \big]\\
+&amp;= \sum_{m=0}^\infty 
+\mathbb{P}\big[\Phi(B_1) = n_1, \dots, \Phi(B_k) = n_k \,\big|\, N = m \big]
+\mathbb{P}[N = m] \\
+&amp;= 
+\mathbb{P}\big[\Phi(B_1) = n_1, \dots, \Phi(B_k) = n_k \,\big|\, N = n \big]
+\mathbb{P}[N = n]\\
+&amp;= \mathbb{P}\left[\sum_{j=1}^n 1_{\{X_j \in B_1\}} = n_1, \dots, \sum_{j=1}^n 1_{\{X_j \in B_k\}} = n_k \,\middle|\, N = n\right] \mathbb{P}[N=n].
+\end{align*}\]</span></p>
+<p>The conditional distribution of <span class="math inline">\((\Phi(B_1),\dots,\Phi(B_k))\)</span> given <span class="math inline">\(N=n\)</span> is multinomial: <span class="math display">\[
+\mathbb{P}\left[\Phi(B_1)=n_1, \dots, \Phi(B_k)=n_k \,\middle|\, N=n\right]
+= \frac{n!}{n_1!\cdots n_k!} \mathbb{Q}(B_1)^{n_1}\cdots \mathbb{Q}(B_k)^{n_k}.
+\]</span></p>
+<p>Multiplying by <span class="math inline">\(\mathbb{P}[N=n] = \dfrac{\gamma^n e^{-\gamma}}{n!}\)</span> gives: <span class="math display">\[
+\mathbb{P}\big[\Phi(B_1)=n_1,\dots,\Phi(B_k)=n_k\big]
+= \prod_{i=1}^k \frac{(\gamma \mathbb{Q}(B_i))^{n_i}}{n_i!} e^{-\gamma \mathbb{Q}(B_i)}.
+\]</span></p>
+<p>Here we have used that <span class="math inline">\(\sum_{i=1}^k \mathbb{Q}(B_i) = 1\)</span>.</p>
+<p><span class="math inline">\(\square\)</span></p>
+</div>
+<h2 id="laplace-functional-of-a-poisson-process">Laplace Functional of a Poisson Process</h2>
+<div class="proposition">
+<p><strong>Proposition.</strong> Let <span class="math inline">\(\Phi\)</span> be a Poisson process on <span class="math inline">\(E\)</span> with intensity measure <span class="math inline">\(\Lambda\)</span>. Then, for all measurable functions <span class="math inline">\(f: E \to \mathbb{R}_+\)</span>, <span class="math display">\[
+L_\Phi(f) := \mathbb{E}\left[ e^{-\int_E f\, d\Phi} \right]
+= \exp\left( - \int_E (1 - e^{-f})\, d\Lambda \right).
+\]</span></p>
+</div>
+<p>Note: the Laplace transform of a Poisson random variable <span class="math inline">\(X\)</span> with parameter <span class="math inline">\(\gamma\)</span> is <span class="math display">\[
+\mathbb{E}\left[ e^{-tX} \right] = e^{-\gamma (1 - e^{-t})}, \quad t &gt; 0.
+\]</span></p>
+<div class="proof">
+<p><em>Proof.</em> Consider first a simple function <span class="math display">\[
+f = \sum_{i=1}^k a_i 1_{B_i}
+\]</span> for pairwise disjoint sets <span class="math inline">\(B_1, \dots, B_k \in \mathcal{B}\)</span> and constants <span class="math inline">\(a_i \in (0,\infty)\)</span>. Then,</p>
+<p><span class="math display">\[\begin{align*}
+\mathbb{E}\left[ e^{-\int_E f\, d\Phi} \right] 
+&amp;= \mathbb{E}\left[ e^{ - \sum_{i=1}^k a_i \Phi(B_i)} \right] \\
+&amp;= \prod_{i=1}^k \mathbb{E}\left[ e^{- a_i \Phi(B_i)} \right] \\
+&amp;= \prod_{i=1}^k e^{ - \Lambda(B_i) (1 - e^{-a_i}) } \\
+&amp;= \exp\left( - \sum_{i=1}^k \Lambda(B_i)(1 - e^{-a_i}) \right) \\
+&amp;= \exp\left( - \int_E (1 - e^{-f})\, d\Lambda \right).
+\end{align*}\]</span></p>
+<p>For a general measurable function <span class="math inline">\(f\)</span>, we approximate <span class="math inline">\(f\)</span> by an increasing sequence of simple functions and use the monotone convergence theorem to obtain the result.</p>
+<p><span class="math inline">\(\square\)</span></p>
+</div>
+<div class="lecture-nav"><a href="lecture4.html">← Lecture 4</a> &nbsp;|&nbsp; <a href="index.html">↑ All Lectures</a> &nbsp;|&nbsp; <a href="lecture6.html">Lecture 6 →</a></div>
+</body>
+</html>

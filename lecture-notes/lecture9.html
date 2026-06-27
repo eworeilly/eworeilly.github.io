@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture 9: The Palm Distribution — EN.553.726</title>
+<link rel="stylesheet" href="notes.css">
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$','$']],
+    displayMath: [['$$','$$']],
+    macros: {
+      NN: '{\\mathbb{N}_0 \\cup \\{\\infty\\}}'
+    }
+  }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+<nav><ul>
+  <li><a href="../index.html">Home</a></li>
+  <li><a href="../research.html">Research</a></li>
+  <li><a href="../teaching.html">Teaching</a></li>
+  <li><a href="../CVApril2026.pdf" target="_blank">CV</a></li>
+</ul></nav>
+<div class="lecture-nav"><a href="lecture8.html">← Lecture 8</a> &nbsp;|&nbsp; <a href="index.html">↑ All Lectures</a> &nbsp;|&nbsp; <a href="lecture10.html">Lecture 10 →</a></div>
+<h1 class="title">Lecture 9: The Palm Distribution</h1>
+<h1 id="refined-campbells-theorem">Refined Campbell’s Theorem</h1>
+<p>Recall Campbell’s Theorem: for a stationary point process <span class="math inline">\(\Phi\)</span> on <span class="math inline">\(\mathbb{R}^d\)</span> with intensity <span class="math inline">\(\lambda \in (0,\infty)\)</span>, [ = _{^d} f(x), dx. ]</p>
+<p>Related to the nearest-neighbor question: in a set <span class="math inline">\(B \subseteq \mathbb{R}^d\)</span>,<br />
+what is the expected number of points of <span class="math inline">\(\Phi\)</span> such that the closest neighbor is farther than distance <span class="math inline">\(r\)</span>?</p>
+<p><span class="math display">\[
+\mathbb{E}\left[ \sum_{k=1}^{\infty} 
+        \mathbf{1}_{\{X_k \in B\}} \,
+        \mathbf{1}_{\{\Phi(B_d(X_k, r)) = 1\}}
+    \right],
+\]</span> where <span class="math inline">\(B_d(X_k, r) = \{x \in \mathbb{R}^d : \|x - X_k\| \le r\}.\)</span></p>
+<div class="definition">
+<p><strong>Definition.</strong> The <em>Campbell measure</em> of a point process <span class="math inline">\(\Phi\)</span> on <span class="math inline">\(\mathbb{R}^d\)</span> is the measure<br />
+<span class="math inline">\(\mathcal{C}\)</span> on <span class="math inline">\(\mathbb{R}^d \times \mathcal{M}(\mathbb{R}^d)\)</span> defined by <span class="math display">\[
+    \mathcal{C}(B \times A)
+    =
+    \mathbb{E}\left[\Phi(B)\, \mathbf{1}_{\{\Phi \in A\}}\right],
+    \qquad
+    A \in \mathscr{M}(\mathbb{R}^d),\;
+    B \in \mathcal{B}(\mathbb{R}^d).
+\]</span></p>
+</div>
+<p>Note: <span class="math inline">\(\mathcal{C}(B \times \mathcal{M}(\mathbb{R}^d))  = \Lambda(B).\)</span></p>
+<p>Then, for measurable functions<br />
+<span class="math inline">\(f : \mathbb{R}^d \times \mathcal{M}(\mathbb{R}^d) \rightarrow \mathbb{R}_{+}\)</span>, <span class="math display">\[
+    \mathbb{E}\left[ \int_{\mathbb{R}^d} f(x, \Phi)\, \Phi(dx) \right]
+    =
+    \int_{\mathbb{R}^d \times \mathcal{M}(\mathbb{R}^d)}
+    f(x, \nu)\, \mathcal{C}(d(x,\nu)).
+\]</span></p>
+<p>We can decompose <span class="math inline">\(\mathcal{C}\)</span> in the stationary case and obtain the following result:</p>
+<div class="theorem">
+<p><strong>Theorem (Refined Campbell’s Theorem).</strong> Let <span class="math inline">\(\Phi\)</span> be a stationary poisson process on <span class="math inline">\(\mathbb{R}^d\)</span> with intensity <span class="math inline">\(\lambda \in (0,\infty)\)</span>.<br />
+Then there is a unique probability measure <span class="math inline">\(\mathbb{P}_{\Phi}^{0}\)</span> on <span class="math inline">\(\left(\mathcal{M}(\mathbb{R}^d), \mathscr{M}(\mathbb{R}^d)\right)\)</span> such that<br />
+for all measurable <span class="math inline">\(f : \mathbb{R}^d \times \mathcal{M}(\mathbb{R}^d) \rightarrow \mathbb{R}_{+}\)</span>,</p>
+<p><span class="math display">\[
+\mathbb{E}\left[ \int_{\mathbb{R}^d} f(x, t_x \Phi)\, \Phi(dx) \right]
+= \lambda \int_{\mathbb{R}^d} \int_{\mathcal{M}(\mathbb{R}^d)} f(x, \nu)\, P_{\Phi}^{0}(d\nu)\, dx,
+\]</span> or</p>
+<p><span class="math display">\[
+\mathbb{E}\left[ \int_{\mathbb{R}^d} f(x, \Phi)\, \Phi(dx) \right]
+=
+\lambda \int_{\mathbb{R}^d}
+\int_{\mathcal{M}(\mathbb{R}^d)} f(x, t_{-x} \nu)\, P_{\Phi}^{0}(d\nu)\, dx.
+\]</span></p>
+</div>
+<div class="corollary">
+<p><strong>Corollary.</strong> <span class="math inline">\(P_{\Phi}^{0}(A) = \frac{1}{\lambda |B|} \mathbb{E}\left[ \int_{\mathbb{R}^d}\mathbf{1}_{B}(x) \mathbf{1}_{A}(t_x \Phi)\, \Phi(dx) \right], \forall A \in \mathscr{M}(\mathbb{R}^d).\)</span></p>
+</div>
+<p>Note: Since <span class="math inline">\(\mathbf{1}_{\{t_x \Phi(\{0\}) &gt; 0\}}=\mathbf{1}_{\{\Phi(\{x\}) &gt; 0\}}\)</span>, we obtain</p>
+<p><span class="math display">\[\begin{align*}
+    &amp;P_{\Phi}^{0}\left(\{\nu \in \mathcal{M}(\mathbb{R}^d) : \nu(\{0\}) &gt; 0\}\right) \\
+    =&amp; \frac{1}{\lambda}\mathbb{E}\left[\int_{\mathbb{R}^d}\mathbf{1}_{[0,1]^d}(x)\mathbf{1}_{\{\Phi(\{x\}) &gt; 0\}}\, \Phi(dx)\right]\\
+    =&amp;\frac{1}{\lambda} \mathbb{E}\left[ \Phi([0,1]^d) \right] \\
+    =&amp;\frac{1}{\lambda} \lambda |[0,1]^d|\\
+    =&amp;1.
+\end{align*}\]</span></p>
+<p>That is, <span class="math inline">\(P_{\Phi}^{0}\)</span> has support on <span class="math inline">\(\nu \in \mathcal{M}(\mathbb{R}^d)\)</span> with an atom at the origin.</p>
+<h1 id="palm-version-and-slivnyaks-theorem">Palm Version and Slivnyak’s Theorem</h1>
+<div class="definition">
+<p><strong>Definition.</strong> <span class="math inline">\(P_{\Phi}^{0}\)</span> is called the <em>Palm distribution</em> of <span class="math inline">\(\Phi\)</span>.<br />
+The point process <span class="math inline">\(\Phi^{0}\)</span> with distribution <span class="math inline">\(P_{\Phi}^{0}\)</span> is called the <em>Palm version</em> of <span class="math inline">\(\Phi\)</span>.</p>
+</div>
+<div class="definition">
+<p><strong>Definition.</strong> Let <span class="math inline">\(\Phi^{0}\)</span> be the Palm version of a stationary Poisson process <span class="math inline">\(\Phi\)</span>.<br />
+Then <span class="math inline">\(\Phi_{\Phi}^{0,!} := \Phi^{0} - \delta_{0}\)</span> is called the <em>reduced Palm version</em> of <span class="math inline">\(\Phi\)</span>.</p>
+</div>
+<div class="theorem">
+<p><strong>Theorem (Slivnyak’s Theorem).</strong> Let <span class="math inline">\(\Phi\)</span> be a stationary point process on <span class="math inline">\(\mathbb{R}^{d}\)</span>.<br />
+Then <span class="math inline">\(\Phi\)</span> is Poisson if and only if<br />
+<span class="math display">\[
+    P_{\Phi}^{0}(A) = \mathbb{P}(\Phi + \delta_{0} \in A),
+    \]</span> if and only if ,<br />
+<span class="math display">\[
+    P_{\Phi}^{0,!}(A) = \mathbb{P}(\Phi \in A).
+    \]</span></p>
+</div>
+<div class="definition">
+<p><strong>Definition.</strong> The <em>nearest neighbor distribution</em> of a stationary Poisson process on <span class="math inline">\(\mathbb{R}^{d}\)</span> is<br />
+<span class="math display">\[
+D(r) := P_{\Phi}^{0,!}\big(\Phi(B_{d}(0,r)) &gt; 0\big).
+\]</span></p>
+</div>
+<div class="example">
+<p><strong>Example.</strong> Nearest neighbor distribution of a stationary Poisson process on <span class="math inline">\(\mathbb{R}^{d}\)</span> with intensity <span class="math inline">\(\lambda\)</span>: <span class="math display">\[
+    D(r)
+    = P_{\Phi}^{0,!}\big(\Phi(B_{d}(0,r)) &gt; 0\big)
+    = \mathbb{P}\big(\Phi(B_{d}(0,r)) &gt; 0\big)
+    = 1 - e^{-\lambda |B_{d}(0,r)|}.
+    \]</span></p>
+</div>
+<div class="example">
+<p><strong>Exercise (Matérn I Hard-Core Point Process).</strong> Let <span class="math inline">\(\Phi = \sum_{k \in \mathbb{N}} \delta_{X_k}\)</span> be a stationary Poisson process on <span class="math inline">\(\mathbb{R}^{d}\)</span> with intensity <span class="math inline">\(\lambda \in (0,\infty)\)</span>.</p>
+<pre><code>Define  
+$
+\widetilde{\Phi}
+=
+\sum_{k \in \mathbb{N}}
+\delta_{X_k}\,
+\mathbf{1}_{\{\Phi(B_{d}(X_k,r)) = 1\}}.
+$
+
+**Question:** What is the intensity measure of $\widetilde{\Phi}$?</code></pre>
+</div>
+<div class="lecture-nav"><a href="lecture8.html">← Lecture 8</a> &nbsp;|&nbsp; <a href="index.html">↑ All Lectures</a> &nbsp;|&nbsp; <a href="lecture10.html">Lecture 10 →</a></div>
+</body>
+</html>

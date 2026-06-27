@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture 13: Gibbs Point Processes (+ Intro to DPPs) — EN.553.726</title>
+<link rel="stylesheet" href="notes.css">
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$','$']],
+    displayMath: [['$$','$$']],
+    macros: {
+      NN: '{\\mathbb{N}_0 \\cup \\{\\infty\\}}'
+    }
+  }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+<nav><ul>
+  <li><a href="../index.html">Home</a></li>
+  <li><a href="../research.html">Research</a></li>
+  <li><a href="../teaching.html">Teaching</a></li>
+  <li><a href="../CVApril2026.pdf" target="_blank">CV</a></li>
+</ul></nav>
+<div class="lecture-nav"><a href="lecture12.html">← Lecture 12</a> &nbsp;|&nbsp; <a href="index.html">↑ All Lectures</a> &nbsp;|&nbsp; <a href="lecture14.html">Lecture 14 →</a></div>
+<h1 class="title">Lecture 13: Gibbs Point Processes (+ Intro to DPPs)</h1>
+<h1 id="introduction">Introduction</h1>
+<p>Last time: we defined Janossy measures for a finite point process<br />
+$ = <em>{i=1}^{N} </em>{X_i} $ on <span class="math inline">\(E \subseteq \mathbb{R}^d\)</span>.</p>
+<div class="definition">
+<p><strong>Definition (Janossy Measures).</strong> For <span class="math inline">\(n\in\mathbb{N}\)</span>, the <span class="math inline">\(n\)</span>-th Janossy measure of <span class="math inline">\(\Phi\)</span> is the measure <span class="math inline">\(J_n\)</span> on <span class="math inline">\(E^n\)</span> defined by <span class="math display">\[
+J_n(B_1 \times \cdots \times B_n) 
+= n! \, P_n \, \Pi_n^{\mathrm{sym}}(B_1 \times \cdots \times B_n),
+\qquad B_i \in \mathcal{B}(E),
+\]</span> where <span class="math inline">\(P_n = \mathbb{P}[N=n]\)</span> and <span class="math inline">\(\Pi_n^{\mathrm{sym}}\)</span> is the joint distribution of <span class="math inline">\((X_1,\ldots,X_n)\)</span> conditioned on <span class="math inline">\(N=n\)</span>.</p>
+</div>
+<p><strong>Remarks:</strong></p>
+<ul>
+<li><span class="math inline">\(J_n\)</span> is sometimes defined without the <span class="math inline">\(n!\)</span> constant. In that case one would have<br />
+<span class="math inline">\(J_n(E^n) = \mathbb{P}[N=n]\Pi_n^{\mathrm{sym}}(B_1 \times \cdots \times B_n)\)</span> instead of <span class="math inline">\(J_n(E^n) = n! \, \mathbb{P}[N=n]\Pi_n^{\mathrm{sym}}(B_1 \times \cdots \times B_n)\)</span>.</li>
+<li>Janossy measures (unlike moment measures and product densities) depend strongly on the observation region.</li>
+<li>If we have a point process on <span class="math inline">\(\mathbb{R}^d\)</span>, we may define its <em>local</em> Janossy measures and densities for any bounded <span class="math inline">\(E \subset \mathbb{R}^d\)</span> by restricting to <span class="math inline">\(E\)</span>.</li>
+<li>If local Janossy measures are given, one can define moment measures and finite–dimensional distributions.</li>
+<li>Existence of point processes from finite–dimensional distributions can be shown using Kolmogorov consistency conditions (Theorem 9.2.X in [daley2008introduction]).</li>
+</ul>
+<h1 id="gibbs-point-processes">Gibbs Point Processes</h1>
+<p>Assume <span class="math inline">\(E \subset \mathbb{R}^d\)</span> is compact.<br />
+Let <span class="math inline">\(\Phi\)</span> be a homogeneous Poisson process on <span class="math inline">\(E\)</span> with unit intensity. Let <span class="math inline">\(f : \mathcal{M}(E) \to \mathbb{R}_+\)</span> be measurable such that $ = 1 . $</p>
+<p>Define the probability measure <span class="math inline">\(\mathbb{P}_f\)</span> on <span class="math inline">\(\mathcal{M}(E)\)</span> by, for <span class="math inline">\(A\in\mathscr{M}(E)\)</span>, <span class="math display">\[
+\mathbb{P}_f(A)
+:= \mathbb{E}\big[\, f(\Phi)\, \mathbf{1}_{\{\Phi\in A\}} \big].
+\]</span></p>
+<div class="definition">
+<p><strong>Definition.</strong> A point process <span class="math inline">\(\Phi_f\)</span> with distribution <span class="math inline">\(\mathbb{P}_f\)</span> is said to have<br />
+probability density <span class="math inline">\(f\)</span> (with respect to the unit–intensity Poisson process).</p>
+</div>
+<div class="definition">
+<p><strong>Definition.</strong> A <em>Gibbs point process</em> on <span class="math inline">\(E\)</span> is a point process whose density is of the form <span class="math display">\[
+f\!\left( \sum_{i=1}^{n} \delta_{x_i} \right)
+= \alpha \exp\!\big[\, \mathcal{U}(x_1,\ldots,x_n) \big],
+\]</span> where <span class="math display">\[
+\mathcal{U}(x_1,\ldots,x_n)
+= \sum_{k=1}^{n} \; \sum_{\{i_1,\ldots,i_k\}\subset \{1,\ldots,n\}}
+V_k(x_{i_1},\ldots,x_{i_k}),
+\]</span> and <span class="math inline">\(V_k(\cdot)\)</span> is the <em>potential of order <span class="math inline">\(k\)</span></em>.<br />
+The constant <span class="math inline">\(\alpha\)</span> is a normalizing constant ensuring $ = 1. $</p>
+</div>
+<h2 id="janossy-densities-for-the-homogeneous-poisson-process">Janossy Densities for the Homogeneous Poisson Process</h2>
+<p>For a homogeneous Poisson process on <span class="math inline">\(E\)</span> with intensity <span class="math inline">\(1\)</span>, the Janossy densities satisfy <span class="math display">\[
+j_n(x_1,\ldots,x_n) = e^{-|E|},
+\]</span> where <span class="math inline">\(|E|\)</span> denotes the Lebesgue measure of <span class="math inline">\(E\)</span>.</p>
+<p>Thus for any measurable <span class="math inline">\(g:\mathcal{M}(E)\to\mathbb{R}_+\)</span>,</p>
+<p><span class="math display">\[\begin{align*}
+\mathbb{E}\big[g(\Phi_f)\big]
+&amp;= \mathbb{E}\big[g(\Phi)\, f(\Phi)\big] \\
+&amp;= e^{-|E|} \sum_{n=0}^{\infty} \frac{1}{n!}
+   \int_{E^n}
+      g\!\left(\sum_{i=1}^{n} \delta_{x_i}\right)
+      f\!\left(\sum_{i=1}^{n} \delta_{x_i}\right)
+   \, dx_1 \cdots dx_n .
+\end{align*}\]</span></p>
+<p>Comparing with the definition of Janossy measures, we see that Gibbs point processes on <span class="math inline">\(E\)</span> can be defined as point processes with Janossy densities <span class="math display">\[
+j_n(x_1,\ldots,x_n)
+\;\propto\;
+\exp\!\big[\, \mathcal{U}(x_1,\ldots,x_n) \big],
+\]</span> where <span class="math inline">\(\mathcal{U}\)</span> is as above.</p>
+<h2 id="examples">Examples</h2>
+<div class="example">
+<p><strong>Example (Strauss Process).</strong> Let <span class="math inline">\(\beta&gt;0\)</span>, <span class="math inline">\(0 \le \gamma \le 1\)</span>, and <span class="math inline">\(r&gt;0\)</span>.</p>
+<pre><code>Define the probability density
+$$
+f\!\left( \sum_{i=1}^{n} \delta_{x_i} \right)
+= \alpha \, \beta^{\, n} \, \gamma^{\, S(x_1,\ldots,x_n)},
+$$
+where
+$$
+S(x_1,\ldots,x_n)
+= \sum_{i&lt;j} \mathbf{1}_{\{\|x_i - x_j\|\le r\}} .
+$$
+
+Then the Gibbs point process $\Phi_f$ with density $f$ is called a *Strauss process*.</code></pre>
+</div>
+<ul>
+<li>If <span class="math inline">\(\gamma = 1\)</span>, this is a Poisson process of intensity <span class="math inline">\(\beta\)</span>.</li>
+<li>If <span class="math inline">\(\gamma = 0\)</span>, this is a hard–core process.</li>
+<li>For <span class="math inline">\(0 &lt; \gamma &lt; 1\)</span>, the interaction is inhibitory (repulsive).</li>
+</ul>
+<div class="lecture-nav"><a href="lecture12.html">← Lecture 12</a> &nbsp;|&nbsp; <a href="index.html">↑ All Lectures</a> &nbsp;|&nbsp; <a href="lecture14.html">Lecture 14 →</a></div>
+</body>
+</html>

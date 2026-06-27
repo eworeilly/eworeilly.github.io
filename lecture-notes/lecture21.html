@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture 21: Processes of Flats — EN.553.726</title>
+<link rel="stylesheet" href="notes.css">
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$','$']],
+    displayMath: [['$$','$$']],
+    macros: {
+      NN: '{\\mathbb{N}_0 \\cup \\{\\infty\\}}'
+    }
+  }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+<nav><ul>
+  <li><a href="../index.html">Home</a></li>
+  <li><a href="../research.html">Research</a></li>
+  <li><a href="../teaching.html">Teaching</a></li>
+  <li><a href="../CVApril2026.pdf" target="_blank">CV</a></li>
+</ul></nav>
+<div class="lecture-nav"><a href="lecture20.html">← Lecture 20</a> &nbsp;|&nbsp; <a href="index.html">↑ All Lectures</a> &nbsp;|&nbsp; <a href="lecture22.html">Lecture 22 →</a></div>
+<h1 class="title">Lecture 21: Processes of Flats</h1>
+<h1 id="introduction">Introduction</h1>
+<p>Outline for today:</p>
+<ul>
+<li>Stationary processes of flats;</li>
+<li>Decomposition of their intensity measure;</li>
+<li>Hyperplane processes;</li>
+<li>Poisson hyperplane processes.</li>
+</ul>
+<p>Notation:</p>
+<ul>
+<li><span class="math inline">\(\mathcal{A}(d,k)\)</span>: space of <span class="math inline">\(k\)</span>-flats, i.e. <span class="math inline">\(k\)</span>-dimensional affine subspaces of <span class="math inline">\(\mathbb{R}^d\)</span>.</li>
+<li><span class="math inline">\(\mathcal{G}(d,k)\)</span>: space of <span class="math inline">\(k\)</span>-dimensional linear subspaces of <span class="math inline">\(\mathbb{R}^d\)</span>.</li>
+<li>For <span class="math inline">\(L \in \mathcal{G}(d,k)\)</span>, <span class="math inline">\(\ell_L\)</span> denotes Lebesgue measure on <span class="math inline">\(L\)</span>.</li>
+<li><span class="math inline">\(\kappa_d\)</span>: <span class="math inline">\(d\)</span>-dimensional volume of the unit ball <span class="math inline">\(B^d\)</span> in <span class="math inline">\(\mathbb{R}^d\)</span>.</li>
+</ul>
+<h1 id="k-flat-processes"><span class="math inline">\(k\)</span>-Flat Processes</h1>
+<div class="definition">
+<p><strong>Definition (<span class="math inline">\(k\)</span>-Flat Processes).</strong> A <em><span class="math inline">\(k\)</span>-flat process</em> in <span class="math inline">\(\mathbb{R}^d\)</span> is a simple point process on <span class="math inline">\(\mathcal{F}&#39;\)</span> with (locally finite) intensity measure concentrated on <span class="math inline">\(\mathcal{A}(d,k)\)</span>.</p>
+</div>
+<p>As with particle processes, stationary <span class="math inline">\(k\)</span>-flat processes exhibit a decomposition of their intensity measure.</p>
+<div class="theorem">
+<p><strong>Theorem.</strong> Let <span class="math inline">\(\Phi\)</span> be a stationary <span class="math inline">\(k\)</span>-flat process in <span class="math inline">\(\mathbb{R}^d\)</span> with locally finite intensity measure <span class="math inline">\(\ell \neq 0\)</span> on <span class="math inline">\(\mathcal{A}(d,k)\)</span>.<br />
+Then there exists a number <span class="math inline">\(\gamma \in (0,\infty)\)</span> and a probability measure <span class="math inline">\(\mathbb{Q}\)</span> on <span class="math inline">\(\mathcal{G}(d,k)\)</span> such that for all measurable <span class="math inline">\(f : \mathcal{A}(d,k) \to \mathbb{R}_{+}\)</span>, <span class="math display">\[
+    \int_{\mathcal{A}(d,k)} f\,d\ell
+    =
+    \gamma
+    \int_{\mathcal{G}(d,k)}
+    \int_{L^{\perp}}
+    f(L+x)\,\ell_{L^{\perp}}(dx)\,
+    \mathbb{Q}(dL).
+    \]</span></p>
+<ul>
+<li><span class="math inline">\(\gamma\)</span> and <span class="math inline">\(\mathbb{Q}\)</span> are uniquely determined by <span class="math inline">\(\ell\)</span>.</li>
+<li><span class="math inline">\(\gamma\)</span> is called the <em>intensity</em> of <span class="math inline">\(\Phi\)</span>.</li>
+<li><span class="math inline">\(\mathbb{Q}\)</span> is called the <em>directional distribution</em> of <span class="math inline">\(\Phi\)</span>.</li>
+</ul>
+</div>
+<p>Let <span class="math inline">\(\pi_{0} : \bigcup_{k=1}^{d-1} \mathcal{A}(d,k) \to \bigcup_{k=1}^{d-1} \mathcal{G}(d,k)\)</span> map any affine subspace to its translate through the origin.</p>
+<p>Then, for any <span class="math inline">\(A \in \mathcal{B}(\mathcal{G}(d,k))\)</span>, <span class="math display">\[
+\gamma\,\mathbb{Q}(A)
+=
+\frac{1}{\kappa_{d-k}}
+\mathbb{E}\!\left[
+\Phi\!\left( \mathcal{F}_{B^{d}} \cap \pi_0^{-1}(A) \right)
+\right].
+\]</span></p>
+<p>In particular, <span class="math display">\[
+\gamma
+=
+\frac{1}{\kappa_{d-k}}
+\mathbb{E}\!\left[
+\Phi\!\left( \mathcal{F}_{B^{d}} \right)
+\right],
+\]</span> and <span class="math display">\[
+\mathbb{Q}(A)
+=
+\frac{
+\mathbb{E}\!\left[
+\Phi\!\left( \mathcal{F}_{B^{d}}\cap \pi_0^{-1}(A) \right)
+\right]
+}{
+\mathbb{E}\!\left[
+\Phi\!\left( \mathcal{F}_{B^{d}} \right)
+\right]
+}.
+\]</span> This highlights why <span class="math inline">\(\mathbb{Q}\)</span> is called the directional distribution.</p>
+<div class="proposition">
+<p><strong>Proposition.</strong> Let <span class="math inline">\(\Phi\)</span> be a stationary <span class="math inline">\(k\)</span>-flat process in <span class="math inline">\(\mathbb{R}^d\)</span> with intensity <span class="math inline">\(\gamma\)</span>.<br />
+Then, for all <span class="math inline">\(B \in \mathcal{B}(\mathbb{R}^d)\)</span>, <span class="math display">\[
+\mathbb{E}\!\left[
+\sum_{E \in \Phi} \ell_{E}(B)
+\right]
+=
+\gamma\,\ell(B).
+\]</span></p>
+</div>
+<div class="proof">
+<p><em>Proof.</em> By Campbell’s theorem and the decomposition of the intensity measure <span class="math inline">\(\Lambda\)</span>, <span class="math display">\[
+\mathbb{E}\!\left[
+\sum_{E \in \Phi} \ell_{E}(B)
+\right]
+=
+\int_{\mathcal{A}(d,k)}
+\ell_{E}(B)\,\Lambda(dE).
+\]</span></p>
+<h1 id="section">[</h1>
+<p><em>{(d,k)} </em>{L^{}} <em>{L+x}(B),</em>{L^{}}(dx), (dL) ]</p>
+<h1 id="section-1">[</h1>
+<p>_{(d,k)} (B),(dL) = ,(B). ]</p>
+<p><span class="math inline">\(\square\)</span></p>
+</div>
+<div class="lecture-nav"><a href="lecture20.html">← Lecture 20</a> &nbsp;|&nbsp; <a href="index.html">↑ All Lectures</a> &nbsp;|&nbsp; <a href="lecture22.html">Lecture 22 →</a></div>
+</body>
+</html>

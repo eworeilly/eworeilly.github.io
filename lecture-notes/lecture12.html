@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture 12: Janossy Measures — EN.553.726</title>
+<link rel="stylesheet" href="notes.css">
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$','$']],
+    displayMath: [['$$','$$']],
+    macros: {
+      NN: '{\\mathbb{N}_0 \\cup \\{\\infty\\}}'
+    }
+  }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+<nav><ul>
+  <li><a href="../index.html">Home</a></li>
+  <li><a href="../research.html">Research</a></li>
+  <li><a href="../teaching.html">Teaching</a></li>
+  <li><a href="../CVApril2026.pdf" target="_blank">CV</a></li>
+</ul></nav>
+<div class="lecture-nav"><a href="lecture11.html">← Lecture 11</a> &nbsp;|&nbsp; <a href="index.html">↑ All Lectures</a> &nbsp;|&nbsp; <a href="lecture13.html">Lecture 13 →</a></div>
+<h1 class="title">Lecture 12: Janossy Measures</h1>
+<h1 id="introduction">Introduction</h1>
+<p>In this class, we have seen ways to describe the distribution of point processes, proved existence of Poisson processes, and defined non-Poisson processes through thinning, superposition, and randomizing the intensity measure of a Poisson process.</p>
+<p>Today, we are going to go further in describing the distribution of finite point processes, and we will define a new class of point processes using densities with respect to a Poisson process.</p>
+<ul>
+<li>Finite point processes</li>
+<li>Janossy measures and densities</li>
+<li>Next time: Gibbs point processes</li>
+</ul>
+<h1 id="finite-point-processes-and-janossy-measures">Finite Point Processes and Janossy Measures</h1>
+<div class="definition">
+<p><strong>Definition (Finite Point Processes).</strong> A point process <span class="math inline">\(\Phi\)</span> on a CSMS <span class="math inline">\(E\)</span> is <em>finite</em> if<br />
+<span class="math display">\[
+\Phi(E) &lt; \infty \quad \text{almost surely}.
+\]</span></p>
+</div>
+<p>Today we will consider <span class="math inline">\(E \subseteq \mathbb{R}^{d}\)</span>.</p>
+<p>We have seen that a finite point process on <span class="math inline">\(E\)</span> can be written as <span class="math display">\[
+\Phi = \sum_{i=1}^{N} \delta_{X_i},
+\]</span> where <span class="math inline">\(N\)</span> is a random variable in <span class="math inline">\(\mathbb{N}_{0}\)</span> and <span class="math inline">\(\{X_i\}\)</span> are random elements of <span class="math inline">\(E\)</span>.</p>
+<p>A full description of the distribution of <span class="math inline">\(\Phi\)</span> can be obtained with:</p>
+<ol type="1">
+<li>A probability distribution <span class="math inline">\(\{p_n\}\)</span> on <span class="math inline">\(\mathbb{N}_{0}\)</span> with <span class="math inline">\(p_n = \mathbb{P}(N = n)\)</span>.</li>
+<li>For each <span class="math inline">\(n \in \mathbb{N}_{0}\)</span>, a probability measure <span class="math inline">\(\Pi_n\)</span> on <span class="math inline">\(E^{n}\)</span> giving the joint distribution of the points <span class="math inline">\(X_1, \ldots, X_n\)</span> given <span class="math inline">\(N = n\)</span>.</li>
+</ol>
+<p>We consider the points to be unordered, so we require that <span class="math inline">\(\Pi_n\)</span> is symmetric, i.e., it should give equal weights to all <span class="math inline">\(n!\)</span> permutations of the coordinates. If this is not already the case, we can take <span class="math inline">\(\Pi_n^{\mathrm{sym}}(A_1 \times \cdots \times A_n) = \frac{1}{n!} \sum_{\sigma} \Pi_n(A_{\sigma(1)} \times \cdots \times A_{\sigma(n)})\)</span>.</p>
+<div class="definition">
+<p><strong>Definition (Janossy measure).</strong> For <span class="math inline">\(n \in \mathbb{N}\)</span>, the <span class="math inline">\(n\)</span>-th Janossy measure of <span class="math inline">\(\Phi\)</span> is the measure <span class="math inline">\(J_n\)</span> on <span class="math inline">\(E^n\)</span> defined by<br />
+<span class="math inline">\(J_n(B_1 \times \cdots \times B_n) = n! \, p_n \, \Pi_n^{\mathrm{sym}}(B_1 \times \cdots \times B_n)\)</span>,<br />
+for <span class="math inline">\(B_i \in \mathcal{B}(E)\)</span>, where <span class="math inline">\(\sum_{n=0}^{\infty} p_n = 1\)</span> and <span class="math inline">\(p_n = \mathbb{P}(N = n)\)</span>.</p>
+</div>
+<p>In particular, this implies that for any measurable <span class="math inline">\(g : \mathcal{M}(E) \to \mathbb{R}_{+}\)</span>, <span class="math inline">\(\mathbb{E}[g(\Phi)] = g_0 p_0 + \sum_{n=1}^{\infty} \frac{1}{n!} \int_{E^n} g\!\big(\sum_{i=1}^{n} \delta_{x_i}\big)\, J_n(dx_1 \cdots dx_n)\)</span>, where <span class="math inline">\(g_0\)</span> is the value of <span class="math inline">\(g\)</span> for the zero measure.</p>
+<p>If <span class="math inline">\(J_n\)</span> is absolutely continuous with respect to Lebesgue measure, its density <span class="math inline">\(j_n\)</span> is called the <span class="math inline">\(n\)</span>-th <strong>Janossy density</strong> and it has the following interpretation:<br />
+<span class="math inline">\(j_n(x_1,\dots,x_n)\,dx_1 \cdots dx_n = \mathbb{P}\big(\text{there are exactly $n$ points of $\Phi$, one in each of the infinitesimal regions }(x_i,x_i+dx_i)\big)\)</span>.</p>
+<p><strong>Remark:</strong> Note that <span class="math inline">\(p_0 + \sum_{n=1}^{\infty} \frac{1}{n!} J_n(E^n) = 1\)</span>.</p>
+<p>If we are given symmetric measures <span class="math inline">\(\{J_n\}_{n\ge 0}\)</span> and <span class="math inline">\(p_0 \in [0,1]\)</span> satisfying this relation, we can construct a finite point process <span class="math inline">\(\Phi\)</span> on <span class="math inline">\(E\)</span> with these Janossy measures. Indeed, we let<br />
+<span class="math inline">\(p_n = \frac{1}{n!} J_n(E^n) = \mathbb{P}(N = n)\)</span>,<br />
+and if <span class="math inline">\(p_n &gt; 0\)</span>, define<br />
+<span class="math inline">\(\Pi_n(B) = \frac{J_n(B)}{J_n(E^n)}\)</span> for <span class="math inline">\(B \in \mathcal{B}(E^n)\)</span>.</p>
+<h1 id="relations-to-other-descriptors-of-phi">Relations to Other Descriptors of <span class="math inline">\(\Phi\)</span></h1>
+<p>Let <span class="math inline">\(\Phi\)</span> be a finite point process on <span class="math inline">\(E \subseteq \mathbb{R}^d\)</span>.</p>
+<p><strong>Question:</strong> How do Janossy measures relate to other descriptors of the distribution of <span class="math inline">\(\Phi\)</span>?</p>
+<div class="proposition">
+<p><strong>Proposition.</strong> For any disjoint <span class="math inline">\(B_1,\dots,B_k \in \mathcal{B}(E)\)</span> and integers <span class="math inline">\(n_1,\dots,n_k\)</span>, <span class="math inline">\(\mathbb{P}[\Phi(B_1)=n_1,\dots,\Phi(B_k)=n_k] = \frac{1}{n_1!\cdots n_k!} \sum_{r \in \mathbb{N}_0} J_{n+r}(B_1^{n_1} \times \cdots \times B_k^{n_k} \times C^{r})\)</span>, where <span class="math inline">\(C = E \setminus (B_1 \cup \cdots \cup B_k)\)</span> and <span class="math inline">\(n = \sum_{i=1}^{k} n_i\)</span>.</p>
+</div>
+<p>Here one can write this quantity as <span class="math inline">\(\sum_{r \in \mathbb{N}_0} \mathbb{P}\big(\Phi(B_1)=n_1,\dots,\Phi(B_k)=n_k,\ \Phi(E)=n+r\big)\)</span>, highlighting the contribution from configurations with total count <span class="math inline">\(n+r\)</span>. See Corollary 4.39 in [baccelli2024random] for detailed proof.</p>
+<p><strong>Recall:</strong> The <span class="math inline">\(k\)</span>-th factorial moment measure <span class="math inline">\(\alpha^{(k)}\)</span> of <span class="math inline">\(\Phi\)</span> on <span class="math inline">\(E^k\)</span> is defined by<br />
+<span class="math inline">\(\alpha^{(k)}(B) = \mathbb{E}[\Phi^{(k)}(B)]\)</span> for <span class="math inline">\(B \in \mathcal{B}(E^k)\)</span>,<br />
+where <span class="math inline">\(\Phi^{(k)} = \sum_{i_1 \neq \cdots \neq i_k} \delta_{(X_{i_1},\dots,X_{i_k})}\)</span>.</p>
+<div class="proposition">
+<p><strong>Proposition.</strong> For <span class="math inline">\(B \in \mathcal{B}(E^k)\)</span>, <span class="math inline">\(\alpha^{(k)}(B) = \sum_{n \in \mathbb{N}_0} \frac{1}{n!} J_{k+n}(B \times E^n)\)</span>.</p>
+</div>
+<p>See Proposition 4.3.10 in [baccelli2024random] for the proof.</p>
+<p>Recall that if <span class="math inline">\(\alpha^{(k)}\)</span> is absolutely continuous with respect to Lebesgue measure, its density <span class="math inline">\(\rho^{(k)}\)</span> is called the <span class="math inline">\(k\)</span>-th product density of <span class="math inline">\(\Phi\)</span> and has the interpretation<br />
+<span class="math inline">\(\rho^{(k)}(x_1,\dots,x_k)\,dx_1 \cdots dx_k = \mathbb{P}\big(\text{there is a point of $\Phi$ in each }(x_i,x_i+dx_i)\big)\)</span>.</p>
+<p>If product and Janossy densities exist, then <span class="math display">\[\rho^{(k)}(x_1,\dots,x_k)
+= \sum_{n=0}^{\infty} \frac{1}{n!}
+\int_{E^n}
+j_{k+n}(x_1,\dots,x_k,y_1,\dots,y_n)\,dy_1\cdots dy_n\]</span>.</p>
+<div class="example">
+<p><strong>Example.</strong> The Janossy measures of a Poisson process on <span class="math inline">\(E\)</span> with intensity measure <span class="math inline">\(\Lambda\)</span> are<br />
+<span class="math inline">\(J_n(\cdot) = e^{-\Lambda(E)}\,\Lambda^{n}(\cdot)\)</span>.</p>
+</div>
+<div class="lecture-nav"><a href="lecture11.html">← Lecture 11</a> &nbsp;|&nbsp; <a href="index.html">↑ All Lectures</a> &nbsp;|&nbsp; <a href="lecture13.html">Lecture 13 →</a></div>
+</body>
+</html>

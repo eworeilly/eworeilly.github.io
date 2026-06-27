@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lecture 22: Poisson Hyperplane Processes — EN.553.726</title>
+<link rel="stylesheet" href="notes.css">
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$','$']],
+    displayMath: [['$$','$$']],
+    macros: {
+      NN: '{\\mathbb{N}_0 \\cup \\{\\infty\\}}'
+    }
+  }
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+<nav><ul>
+  <li><a href="../index.html">Home</a></li>
+  <li><a href="../research.html">Research</a></li>
+  <li><a href="../teaching.html">Teaching</a></li>
+  <li><a href="../CVApril2026.pdf" target="_blank">CV</a></li>
+</ul></nav>
+<div class="lecture-nav"><a href="lecture21.html">← Lecture 21</a> &nbsp;|&nbsp; <a href="index.html">↑ All Lectures</a> &nbsp;|&nbsp; <a href="lecture23.html">Lecture 23 →</a></div>
+<h1 class="title">Lecture 22: Poisson Hyperplane Processes</h1>
+<h1 id="introduction">Introduction</h1>
+<p>Recall from last time:</p>
+<ul>
+<li>A <span class="math inline">\(k\)</span>-flat process is a set process with intensity measure concentrated on the space <span class="math inline">\(\mathcal{A}(d,k)\)</span> of <span class="math inline">\(k\)</span>-dimensional affine subspaces of <span class="math inline">\(\mathbb{R}^d\)</span>.</li>
+<li>All <span class="math inline">\(E \in \mathcal{A}(d,k)\)</span> can be written as $ E = L + x $ for a linear subspace <span class="math inline">\(L \in \mathcal{G}(d,k)\)</span> and a vector <span class="math inline">\(x \in L^{\perp} := \{y \in \mathbb{R}^d : \langle x, y\rangle = 0 \ \forall x \in L\}\)</span>.</li>
+<li>For a stationary <span class="math inline">\(k\)</span>-flat process <span class="math inline">\(\Phi\)</span> on <span class="math inline">\(\mathbb{R}^d\)</span> with locally finite intensity measure <span class="math inline">\(\Lambda \ne\mathbb{Q}\)</span> on <span class="math inline">\(\mathcal{A}(d,k)\)</span>, there exists an intensity <span class="math inline">\(\gamma \in (0,\infty)\)</span> and a directional distribution <span class="math inline">\(\mathbb{Q}\)</span> on <span class="math inline">\(\mathcal{G}(d,k)\)</span> such that <span class="math display">\[
+    \int_{\mathcal{A}(d,k)} f\,d\Lambda
+    =
+    \gamma
+    \int_{\mathcal{G}(d,k)}
+    \int_{L^{\perp}}
+    f(L+x)\,\ell_{L^{\perp}}(dx)\,
+    \mathbb{Q}(dL).
+    \]</span></li>
+</ul>
+<h1 id="hyperplane-processes">Hyperplane Processes</h1>
+<p>Consider a stationary <span class="math inline">\(k\)</span>-flat process in <span class="math inline">\(\mathbb{R}^d\)</span> with <span class="math inline">\(k = d-1\)</span>, i.e. a <em>hyperplane process</em>.</p>
+<p>In this case, instead of working with a directional distribution <span class="math inline">\(\mathbb{Q}\)</span> on <span class="math inline">\(\mathcal{G}(d,d-1)\)</span>, we can define a probability measure <span class="math inline">\(\varphi\)</span> on the unit sphere <span class="math inline">\(S^{d-1}\)</span> by: for <span class="math inline">\(A \in \mathcal{B}(S^{d-1})\)</span>, <span class="math display">\[
+\varphi(A)
+:=
+\frac{1}{2}\,
+\mathbb{Q}\!\left(\{\, u^{\perp} : u \in A \,\}\right),
+\]</span> where <span class="math inline">\(u^{\perp}:=\{x \in \mathbb{R}^d : \langle x, u\rangle = 0\}.\)</span></p>
+<p>The measure <span class="math inline">\(\varphi\)</span> is called the <em>spherical directional distribution</em>.<br />
+It satisfies <span class="math inline">\(\varphi(S^{d-1}) = 1,\)</span> and <span class="math inline">\(\varphi(A) = \varphi(-A).\)</span></p>
+<p>If <span class="math inline">\(\Phi\)</span> is a stationary hyperplane process in <span class="math inline">\(\mathbb{R}^d\)</span> with intensity <span class="math inline">\(\gamma\)</span> and spherical directional distribution <span class="math inline">\(\varphi\)</span>, then <span class="math display">\[
+\int_{\mathcal{A}(d,d-1)} f\,d\Lambda
+=
+\gamma
+\int_{S^{d-1}}
+\int_{\mathbb{R}}
+f\bigl(H(u,t)\bigr)\,dt\,
+\varphi(du),
+\]</span> where <span class="math display">\[
+H(u,t)
+:=
+\{x \in \mathbb{R}^d : \langle u, x\rangle = t\}.
+\]</span></p>
+<div class="example">
+<p><strong>Example.</strong> If <span class="math inline">\(\Phi\)</span> is isotropic (its distribution is invariant under rotations), then $ = _{d-1}, $ the normalized spherical Lebesgue measure.</p>
+</div>
+<div class="example">
+<p><strong>Example.</strong> If $ = <em>{i=1}^{n} (</em>{u_i} + _{-u_i}), $ then the hyperplanes only have normal vectors <span class="math inline">\(u_1,\dots, u_n\)</span>.</p>
+</div>
+<h2 id="poisson-hyperplance-processes">Poisson Hyperplance Processes</h2>
+<ul>
+<li>For every <span class="math inline">\(\gamma &gt; 0\)</span> and every even probability measure on <span class="math inline">\(S^{d-1}\)</span>, there exists exactly one (up to equality in distribution) stationary Poisson hyperplane process with intensity <span class="math inline">\(\gamma\)</span> and spherical directional distribution <span class="math inline">\(\varphi\)</span>.</li>
+<li>A stationary Poisson hyperplane process is isotropic iff <span class="math inline">\(\varphi = \sigma_{d-1}\)</span>.</li>
+</ul>
+<p>Let $ <em>{0} = </em>{i } _{t_i} $ be a Poisson process on <span class="math inline">\(\mathbb{R}\)</span> with intensity <span class="math inline">\(\gamma &gt; 0\)</span>. Let <span class="math inline">\(\{u_i\}_{i \in \mathbb{Z}}\)</span> be a collection of i.i.d. random unit vectors with distribution <span class="math inline">\(\varphi\)</span>, independent of <span class="math inline">\(\Phi_{0}\)</span>.</p>
+<p>Then $ = <em>{i } </em>{H(u_i, t_i)} $ is a stationary Poisson hyperplane process with intensity <span class="math inline">\(\gamma\)</span> and spherical directional distribution <span class="math inline">\(\varphi\)</span>.</p>
+<p>To see this, note that $  = <em>{i } </em>{(t_i, u_i)} $ is an independent marking of <span class="math inline">\(\Phi_{0}\)</span>, and so is a Poisson process on <span class="math inline">\(\mathbb{R} \times S^{d-1}\)</span> with intensity measure <span class="math inline">\(\gamma\,dt\,\varphi(du)\)</span>.</p>
+<p>Then the map <span class="math inline">\((u,t) \mapsto H(u,t)\)</span> is measurable, so the mapping theorem implies that <span class="math inline">\(\Phi\)</span> is a Poisson process on <span class="math inline">\(\mathcal{A}(d,d-1)\)</span>.</p>
+<h1 id="intersection-processes">Intersection Processes</h1>
+<div class="definition">
+<p><strong>Definition.</strong> For <span class="math inline">\(k \in \{2,\dots,d\}\)</span>, the hyperplanes <span class="math inline">\(H_1,\dots,H_k\)</span> in <span class="math inline">\(\mathbb{R}^d\)</span> are in <em>general position</em> if $ H_1 H_k $ is a <span class="math inline">\((d-k)\)</span>-dimensional affine subspace.</p>
+</div>
+<p>Let <span class="math inline">\(\Phi\)</span> be a stationary Poisson process in <span class="math inline">\(\mathbb{R}^d\)</span> with intensity <span class="math inline">\(\gamma\)</span> and spherical directional distribution <span class="math inline">\(\varphi\)</span>.</p>
+<p><strong>Fact:</strong> For any <span class="math inline">\((H_1,\dots,H_k) \in \Phi^{(k)}\)</span>, <span class="math display">\[
+H_1 \cap \cdots \cap H_k = \varnothing
+\quad\text{or}\quad
+H_1,\dots,H_k \text{ are in general position}.
+\]</span></p>
+<p>Define the point process <span class="math inline">\(\Phi_{k}\)</span> on <span class="math inline">\(\mathcal{A}(d,d-k)\)</span> by <span class="math display">\[
+\Phi_{k}(A)
+:=
+\frac{1}{k!}
+\sum_{(H_1,\dots,H_k)\in \Phi^{(k)}}
+\mathbf{1}_{\{H_1\cap\cdots\cap H_k \in A\}}.
+\]</span></p>
+<p>Then <span class="math inline">\(\Phi_{k}\)</span> is a stationary <span class="math inline">\((d-k)\)</span>-flat process.</p>
+<p><strong>Question:</strong> Is <span class="math inline">\(\Phi_{k}\)</span> a stationary Poisson flat process?</p>
+<p><strong>Answer:</strong> No. For example, there are almost surely no three collinear points in a stationary Poisson process.</p>
+<div class="theorem">
+<p><strong>Theorem.</strong> The intensity <span class="math inline">\(\gamma_{k}\)</span> and directional distribution <span class="math inline">\(\mathbb{Q}_{k}\)</span> of <span class="math inline">\(\Phi_{k}\)</span> satisfy, for any <span class="math inline">\(A \in \mathcal{B}(\mathcal{G}(d,d-k))\)</span>, <span class="math display">\[
+    \gamma_{k}\,\mathbb{Q}_{k}(A)
+    =
+    \frac{\gamma^{k}}{k!}
+    \int_{S^{d-1}}
+    \cdots
+    \int_{S^{d-1}}
+    \mathbf{1}_{A}(u_{1}^{\perp}\cap \cdots \cap u_{k}^{\perp})\,
+    \nabla_{d}(u_{1},\dots,u_{k})\,
+    \varphi(du_{1})\cdots\varphi(du_{k}),
+    \]</span> where <span class="math inline">\(\nabla_{d}(u_{1},\dots,u_{k})\)</span> is the volume of the parallelepiped spanned by <span class="math inline">\(u_{1},\dots,u_{k}\)</span>.</p>
+</div>
+<p>For <span class="math inline">\(k=d\)</span>, <span class="math display">\[
+\gamma_{d}
+=
+\frac{\gamma^{d}}{d!}
+\int_{S^{d-1}}
+\cdots
+\int_{S^{d-1}}
+\nabla_{d}(u_{1},\dots,u_{d})\,
+\varphi(du_{1})\cdots\varphi(du_{d}).
+\]</span></p>
+<div class="lecture-nav"><a href="lecture21.html">← Lecture 21</a> &nbsp;|&nbsp; <a href="index.html">↑ All Lectures</a> &nbsp;|&nbsp; <a href="lecture23.html">Lecture 23 →</a></div>
+</body>
+</html>
