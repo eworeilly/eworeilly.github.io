@@ -23,17 +23,6 @@
 
     <section>
         <h2>Overview</h2>
-        <p>
-            Many problems in data analysis require recovering an unknown signal from noisy or incomplete
-            measurements — for example, reconstructing a medical image from limited scan data, or estimating
-            a statistical model from a small dataset. <em>Regularization</em> is a fundamental technique for
-            making these problems well-posed: one adds a penalty term, called a regularizer, to the objective
-            that encourages solutions with desired structural properties, such as sparsity or smoothness. The
-            choice of regularizer profoundly affects the quality and interpretability of the result, yet
-            principled methods for selecting it from data remain underdeveloped. Our research develops a
-            geometric theory of regularizers and uses it to answer the question: given knowledge of the data
-            distribution, what is the best regularizer to use?
-        </p>
 
         <figure class="research-figure medium">
             <img src="star-regularizers.png" alt="star">
@@ -42,35 +31,38 @@
 
         <h3>The geometry of regularizers</h3>
         <p>
-            We study the class of regularizers given by Minkowski functionals of <em>star bodies</em> —
-            compact sets that include convex bodies (like ellipsoids and polytopes) as a special case, but
-            also many nonconvex shapes. This is a broad family of functionals that capture many regularizers
-            used in practice. By connecting these regularizers to dual Brunn-Minkowski theory we show that a
-            single radial function derived from the data distribution acts as a kind of computational
-            sufficient statistic: it encodes all the information needed to identify the optimal regularizer
-            and to determine whether that regularizer is convex.
+            In optimization-based approaches to inverse problems and statistical inference,
+            regularizers are added to an objective to promote desired structural properties in
+            solutions. Convex regularizers—such as the ℓ<sub>1</sub> norm for sparsity or the
+            nuclear norm for low rank—are computationally attractive but limited in the structures
+            they can represent. My research studies the broader class of regularizers defined by
+            <strong>Minkowski functionals of star bodies</strong>: compact sets that include both
+            convex bodies and a wide range of nonconvex shapes. This class is rich enough to
+            capture complex data structure while remaining amenable to geometric analysis.
         </p>
 
         <h3>Learning regularizers from data</h3>
         <p>
-            In practice, the data distribution is unknown, and regularizers must be learned from samples.
-            We study critic-based loss functions, where a regularizer is trained to assign low values to
-            likely data and high values to unlikely data. By leveraging star geometry and dual mixed volume
-            theory, we show that these losses can be interpreted geometrically in terms of the data
-            distribution, derive exact expressions for the optimal regularizer learned by this process in
-            special cases, and identify which neural network architectures naturally produce regularizers
-            from this star body class.
+            A central question is: given data drawn from an unknown distribution, what is the
+            <strong>optimal regularizer</strong> for recovering signals from that distribution?
+            In joint work with Oscar Leong, Yong Sheng Soh, and Venkat Chandrasekaran, we
+            characterize the optimal star-body regularizer for a data source and identify the
+            geometric properties of the data distribution that determine whether the optimal
+            regularizer is convex or nonconvex. We also study how well optimal regularizers can
+            be learned from data using critic-based methods, connecting the learning problem to
+            the geometry of Wasserstein distances and generative models.
         </p>
 
         <h3>Robustness to distributional uncertainty</h3>
         <p>
-            Real-world deployments often involve distributional shift: the data encountered at test time may
-            differ from training data. We introduce a framework for <em>distributionally robust</em> optimal
-            regularization, which identifies regularizers that remain effective under perturbations of the
-            data distribution. Using convex duality, we reformulate the underlying robust optimization
-            problem into tractable form. The resulting regularizers interpolate between memorizing the
-            training distribution and using a uniform prior, and we show that robustness to Wasserstein-1
-            perturbations naturally promotes regularizers with smaller Lipschitz constants.
+            In practice, the true data distribution is unknown and may shift between training
+            and deployment. We study <strong>distributionally robust</strong> variants of the
+            regularizer learning problem, in which the regularizer is chosen to perform well
+            across an ambiguity set of distributions. We characterize optimal robust regularizers
+            and establish conditions under which robustness considerations force the optimal
+            regularizer to be convex, providing theoretical grounding for the widespread use of
+            convex regularizers even in settings where nonconvex alternatives might otherwise
+            be preferred.
         </p>
     </section>
 
@@ -121,6 +113,7 @@
                 <a href="https://proceedings.neurips.cc/paper_files/paper/2024/file/834d4d24d223e5dc05f9971eaf30d4a6-Paper-Conference.pdf" target="_blank">Paper</a>
             </div>
         </div>
+
     </section>
 
     <footer>
